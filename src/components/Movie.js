@@ -1,26 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './Movie.css';
 
-class Movie extends Component {
-    render() {
-        console.log(this.props);
-        return (
-            <div className="movie">
-                <Movieposter />
-                <p>{this.props.title}</p>
-            </div>
-        );
-    }
+function Movie({
+  description, picture, id, name,
+}) {
+  return (
+    <div className="Movie" id={id}>
+      <div className="Movie__Column">
+        <MoviePoster picture={picture} alt={name} />
+      </div>
+      <div className="Movie__Column">
+        <h1>{description}</h1>
+      </div>
+    </div>
+  );
 }
 
-class Movieposter extends Component {
-    render() {
-        return (
-            <img src ="https://starwarsblog.starwars.com/wp-content/uploads/2015/10/tfa_poster_wide_header-1536x864-959818851016.jpg" width="400px"></img>
-        );
-    }
+function MoviePoster({ picture, alt }) {
+  return (
+    <img src={picture} alt={alt} title={alt} className="Movie__Poster" />
+  );
 }
 
 
+Movie.propTypes = {
+  description: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+};
+
+MoviePoster.propTypes = {
+  picture: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
 
 export default Movie;
