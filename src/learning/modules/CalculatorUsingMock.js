@@ -1,4 +1,4 @@
-import * as DependencyOfCalculator from './DependencyOfCalculator';
+import DependencyOfCalculator from './DependencyOfCalculator';
 
 function Calculator() {
 }

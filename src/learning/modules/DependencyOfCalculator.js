@@ -1,3 +1,5 @@
-export function add(a) {
-    return a;
-}
+const DependencyOfCalculator = {};
+
+export default DependencyOfCalculator;
+
+DependencyOfCalculator.add = value => value;

@@ -2,7 +2,7 @@
 import Calculator from '../../learning/modules/CalculatorUsingMock';
 
 // default로 function을 바로 내보내면 mock이 안 됨 (read-only)
-import * as DependencyOfCalculator from '../../learning/modules/DependencyOfCalculator';
+import DependencyOfCalculator from '../../learning/modules/DependencyOfCalculator';
 
 describe('Calculator 스펙 정의', () => {
     it('덧셈이 가능해야 한다', () => {
