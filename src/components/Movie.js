@@ -11,7 +11,7 @@ function Movie({
         <MoviePoster picture={picture} alt={name} />
       </div>
       <div className="Movie__Column">
-        <h1>{description}</h1>
+        <p>{description}</p>
       </div>
     </div>
   );
@@ -19,7 +19,7 @@ function Movie({
 
 function MoviePoster({ picture, alt }) {
   return (
-    <img src={picture} alt={alt} title={alt} className="Movie__Poster" />
+    <img src={picture} alt={alt} title={alt} className="Movie__Poster" width="400px" />
   );
 }
 
