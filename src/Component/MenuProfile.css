@@ -1,0 +1,62 @@
+.Cancle {
+    position: absolute;
+    margin: 0.5em;
+    cursor: pointer;
+    border-radius: 100%;
+    background: lightgray;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+}
+
+.Picture {
+    width: 100%
+}
+
+.MenuInfo {
+    background: lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.MenuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.Text {
+    margin: 0.5em;
+}
+
+.Title {
+    font-weight: bold;
+}
+
+.Price {
+    font-size: 0.5em;
+}
+
+.Discription {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.5em;
+    margin: 0.8em;
+}
+
+.OptionInfo {
+    background: lightblue;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.2em;
+}
+
+.OptionContents {
+    display: flex;
+    align-items: baseline; 
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
