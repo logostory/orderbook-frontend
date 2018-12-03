@@ -1,3 +1,18 @@
+## 추가 package
+
+"redux-thunk": "^2.3.0"
+"react-redux": "^5.1.1",
+"redux-actions": "^2.6.4",
+"@material-ui/core": "^3.6.1",
+"@material-ui/icons": "^3.0.1",
+
+## 삭제
+
+src/App.css
+src/logo.svg
+
+***
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
