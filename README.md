@@ -1,14 +1,14 @@
 ## 추가 package
 
-"redux-thunk": "^2.3.0"
-"react-redux": "^5.1.1",
-"redux-actions": "^2.6.4",
-"@material-ui/core": "^3.6.1",
-"@material-ui/icons": "^3.0.1",
+"redux-thunk": "^2.3.0"<br>
+"react-redux": "^5.1.1"<br>
+"redux-actions": "^2.6.4"<br>
+"@material-ui/core": "^3.6.1"<br>
+"@material-ui/icons": "^3.0.1"<br>
 
 ## 삭제
 
-src/App.css
+src/App.css<br>
 src/logo.svg
 
 ***
