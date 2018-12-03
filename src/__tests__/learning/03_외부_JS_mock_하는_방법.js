@@ -7,10 +7,10 @@ import DependencyOfCalculator from '../../learning/modules/DependencyOfCalculato
 describe('Calculator 스펙 정의', () => {
     it('덧셈이 가능해야 한다', () => {
         // STEP 1: 의존성을 mock함
-        DependencyOfCalculator.add = jest.fn(() => 1); // 항상 1을 반환하도록 구현
+        DependencyOfCalculator.add = jest.fn(() => 2); // 항상 1을 반환하도록 구현
 
         // STEP 2: sum을 호출
-        expect(Calculator.sum(1, 1)).toBe(1 + 1);
+        expect(Calculator.sum(1, 2)).toBe(1 + 2);
 
         // STEP 3: mock이 호출되었는지 검증
         expect(DependencyOfCalculator.add).toHaveBeenCalledTimes(1);
