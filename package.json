@@ -6,6 +6,8 @@
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
+    "immer": "^1.8.0",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-redux": "^5.1.1",

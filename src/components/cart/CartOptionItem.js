@@ -1,19 +1,28 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import * as util from '../../utils/utils';
 
-const styles = theme => {
-	return {
-		margin0: {
-			margin: 0
-		}
-	}
-};
+const styles = theme => ({
+  item: {
+		display: 'flex',
+		fontSize: '1rem',
+  },
+  unitPrice: {
+    fontSize: '1rem',
+    marginLeft: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
-const CartOptionItem = () => {
+const CartOptionItem = ({classes, name, unitPrice}) => {
 	return (
-		<div>
-			CartOptionItem
-		</div>
+		<div className={classes.item}>
+      <Typography variant="subtitle1">{name}</Typography>
+      <Typography variant="display4" className={classes.unitPrice}>({util.priceFormat(unitPrice)}원)</Typography>
+    </div>
 	);
 };
 

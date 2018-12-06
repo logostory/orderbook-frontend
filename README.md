@@ -1,10 +1,12 @@
-## 추가 package
+## 추가 dependencies
 
 "redux-thunk": "^2.3.0"<br>
 "react-redux": "^5.1.1"<br>
 "redux-actions": "^2.6.4"<br>
 "@material-ui/core": "^3.6.1"<br>
 "@material-ui/icons": "^3.0.1"<br>
+"immer": "^1.8.0"<br>
+"immutable": "^4.0.0-rc.12"<br>
 
 ## 삭제
 
