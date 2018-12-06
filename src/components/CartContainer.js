@@ -3,14 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { CartMenuItem, CartOptionItem } from './cart';
-import * as actions from '../stores/modules/Cart';
+import * as actions from 'stores/modules/Cart';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
-import * as util from '../utils/utils';
+import * as util from 'lib/utils';
 
 // import plus minus bar
 
