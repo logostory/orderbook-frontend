@@ -1,19 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import * as actions from './actions';
-import reducers from './reducers';
-
-const store = createStore(reducers);
-// console.log(store.getState());
-store.subscribe(() => console.log(store.getState()));
-store.dispatch(actions.increment());
-store.dispatch(actions.decrement());
-store.dispatch(actions.setColor([200, 200, 200]));
+import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>

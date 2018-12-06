@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Movie.css';
+
 
 function Movie({
   description, picture, id, name,
