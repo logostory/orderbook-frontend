@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import Counter from './components/Counter';
 import MUIDataTable from "mui-datatables";
 
+function MoviePoster( picture ) {
+  console.log(picture)
+  return (
+    <img src={picture} alt="alt" className="Movie__Poster" height="64px" />
+  );
+}
 
 class App extends Component {
+  
+ 
 
   state = {};
-  
 
   componentDidMount() {
     this._getMovies();
@@ -17,7 +24,7 @@ class App extends Component {
 
     const movies = this.state.movies.map((movie) => {
       return (
-        [movie.id, movie.picture, movie.description, movie.name, movie.category, movie.profileImage, movie.updatedTime, movie.createdTime, movie.width, movie.height, movie.status]
+        [movie.id, MoviePoster(movie.picture, movie.name), movie.description, movie.name, movie.category, MoviePoster(movie.profileImage, movie.name), movie.updatedTime, movie.createdTime, movie.width, movie.height, movie.status]
       );
     });
     const options = {
@@ -25,10 +32,10 @@ class App extends Component {
       filterType: "dropdown",
       responsive: "scroll"
     };
-    
+
     return (
       <MUIDataTable 
-        title={"Employee List"} 
+        title={"Movie"} 
         data={movies} 
         columns={columns} 
         options={options}
