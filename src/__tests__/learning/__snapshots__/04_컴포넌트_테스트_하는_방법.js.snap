@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestComp 테스트 TestComp를 렌더링하면 div여야 한다. 1`] = `<div />`;
