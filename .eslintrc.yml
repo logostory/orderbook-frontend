@@ -4,7 +4,11 @@ env:
   browser: true
   jest: true
 
+parser: babel-eslint
+
 rules:
   react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
   indent: ["error", 4]
   react/jsx-indent: [4]
+  react/jsx-indent-props: 12
+  react/prop-types: false
