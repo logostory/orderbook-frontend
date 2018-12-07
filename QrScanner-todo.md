@@ -59,3 +59,13 @@
 ## 추가 SPEC
 
 1. 배경은 회색이어야 한다. (`background-color: #cccccc`) (v)
+
+## QrScanner의 Container/Presentational 리팩토링
+
+1. QrScanner가 처리하는 내부 로직 및 상태를 Container로 리팩토링한다.
+
+2. Presentational은 QrReader를 렌더링하고, JSX 부분을 포함한다.
+
+3. Presentational의 작동을 위해 모든 콜백을 Container에서 전달한다.
+
+4. Container는 render에서 Presentational 컴포넌트만 그린다.
