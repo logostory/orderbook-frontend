@@ -1,0 +1,14 @@
+{
+  "main.css": "/orderbook-frontend/static/css/main.e5d93a91.chunk.css",
+  "main.js": "/orderbook-frontend/static/js/main.380c6ed3.chunk.js",
+  "main.js.map": "/orderbook-frontend/static/js/main.380c6ed3.chunk.js.map",
+  "static/js/1.9fcd1b0f.chunk.js": "/orderbook-frontend/static/js/1.9fcd1b0f.chunk.js",
+  "static/js/1.9fcd1b0f.chunk.js.map": "/orderbook-frontend/static/js/1.9fcd1b0f.chunk.js.map",
+  "runtime~main.js": "/orderbook-frontend/static/js/runtime~main.5b8861e0.js",
+  "runtime~main.js.map": "/orderbook-frontend/static/js/runtime~main.5b8861e0.js.map",
+  "static/media/logo.svg": "/orderbook-frontend/static/media/logo.5d5d9eef.svg",
+  "static/css/main.e5d93a91.chunk.css.map": "/orderbook-frontend/static/css/main.e5d93a91.chunk.css.map",
+  "index.html": "/orderbook-frontend/index.html",
+  "precache-manifest.139fd39b10dc29abe2da07401b38c4df.js": "/orderbook-frontend/precache-manifest.139fd39b10dc29abe2da07401b38c4df.js",
+  "service-worker.js": "/orderbook-frontend/service-worker.js"
+}
