@@ -1,9 +1,11 @@
 {
   "name": "logostory-frontend",
+  "homepage": "https://logostory.github.io/orderbook-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-router": "^4.3.1",
@@ -14,6 +16,8 @@
     "redux-saga": "^0.16.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
