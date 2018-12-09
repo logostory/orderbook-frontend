@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/orderbook-frontend/precache-manifest.eaefaee0c52d35e8a8b138b530a9b790.js"
+  "https://logostory.github.io/orderbook-frontend/precache-manifest.ee8b064397b1a3f13a87c0c523360997.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/orderbook-frontend/index.html", {
+workbox.routing.registerNavigationRoute("https://logostory.github.io/orderbook-frontend/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
