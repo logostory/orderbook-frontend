@@ -43,7 +43,7 @@ export default handleActions({
         orders.splice(action.payload.itemKey, 1);
         return ({
             ...state,
-            orders
+            orders,
         });
     },
 }, initialState);
