@@ -1,11 +1,11 @@
 {
-  "main.js": "/static/js/main.e962cfa6.chunk.js",
-  "main.js.map": "/static/js/main.e962cfa6.chunk.js.map",
-  "static/js/1.60ba0770.chunk.js": "/static/js/1.60ba0770.chunk.js",
-  "static/js/1.60ba0770.chunk.js.map": "/static/js/1.60ba0770.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.23acb21ec0406e43521ec61ca7dafc3d.js": "/precache-manifest.23acb21ec0406e43521ec61ca7dafc3d.js",
-  "service-worker.js": "/service-worker.js"
+  "main.js": "/orderbook-frontend/static/js/main.e962cfa6.chunk.js",
+  "main.js.map": "/orderbook-frontend/static/js/main.e962cfa6.chunk.js.map",
+  "static/js/1.60ba0770.chunk.js": "/orderbook-frontend/static/js/1.60ba0770.chunk.js",
+  "static/js/1.60ba0770.chunk.js.map": "/orderbook-frontend/static/js/1.60ba0770.chunk.js.map",
+  "runtime~main.js": "/orderbook-frontend/static/js/runtime~main.5b8861e0.js",
+  "runtime~main.js.map": "/orderbook-frontend/static/js/runtime~main.5b8861e0.js.map",
+  "index.html": "/orderbook-frontend/index.html",
+  "precache-manifest.eaefaee0c52d35e8a8b138b530a9b790.js": "/orderbook-frontend/precache-manifest.eaefaee0c52d35e8a8b138b530a9b790.js",
+  "service-worker.js": "/orderbook-frontend/service-worker.js"
 }
