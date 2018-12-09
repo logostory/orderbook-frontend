@@ -12,8 +12,14 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "react-redux": "^5.1.1",
+    "redux-actions": "^2.6.4",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.2"
+    "react-qr-reader": "^2.1.1",
+    "prop-types": "^15.6.2",
+    "@material-ui/core": "^3.6.1",
+    "@material-ui/icons": "^3.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -21,7 +27,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-https-windows": "cmd /V /C \"set HTTPS=true&&npm start\"",
+    "start-https-linux": "HTTPS=true&&npm start",
+    "test-with-console-log": "react-scripts test --watch --verbose false"
   },
   "browserslist": [
     ">0.2%",
@@ -31,12 +40,18 @@
   ],
   "devDependencies": {
     "enzyme": "^3.7.0",
-    "enzyme-react-16": "^1.0.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0"
+    "jest-dom": "^3.0.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "main": "index.js",
   "repository": "https://github.com/logostory/logostory-frontend",
