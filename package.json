@@ -1,6 +1,6 @@
 {
   "name": "logostory-frontend",
-  "homepage": "https://logostory.github.io/orderbook-frontend",
+  "homepage": "https://orderbook.logostory.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
