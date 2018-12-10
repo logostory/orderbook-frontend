@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 10px 20px;
+  background-color: #ff4a5b;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.header .backBtn img svg path{
+  fill: #fff;
+}
