@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // import * as util from 'utils/utils';
 // eslint-disable-next-line import/no-unresolved
 import { CartMenuItem, CartOptionItem } from 'components/cart';
-import cancelSvg from 'assets/svg/custom_icons_cancel.svg';
+import cancelSvg from 'Assets/svg/custom_icons_cancel.svg';
 
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
@@ -102,7 +102,7 @@ class CartContainer extends Component {
                     <Grid component="div" className={classes.Remove}>
                         <Typography component="span" className={classes.caption}>Remove this order</Typography>
                         <Typography component="span" variant="h5" className={classes.Times} onClick={() => CartActions.itemRemove({ itemKey: `${key}` })}>
-                            <img src={cancelSvg} />
+                            <img src={`${cancelSvg}`} />
                         </Typography>
                     </Grid>
                     <CartMenuItem name={name} unitPrice={unitPrice} />
