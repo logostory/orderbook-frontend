@@ -1,26 +1,26 @@
-import { createAction, handleActions } from 'redux-actions';
 
-const CART_ITEM_REMOVE = 'cart/ITEM_REMOVE';
+export const CART_ITEM_REMOVE = 'cart/ITEM_REMOVE';
 
-export const itemRemove = createAction(CART_ITEM_REMOVE);
+export const itemRemove = ({ itemKey }) => ({
+    type: CART_ITEM_REMOVE,
+    payload: { itemKey },
+});
 
 const initialState = {
-    identity: {
+    identity: [{
         shop: 0,
         table: 0,
-    },
+    }],
     orders: [
         {
             name: '바스버거',
             image: 'http://s3.amazon.com/...',
             unitPrice: 5000,
-            amount: 2,
         },
         {
             name: '치킨버거',
             image: 'http://s3.amazon.com/...',
             unitPrice: 5500,
-            amount: 2,
             options: [
                 {
                     name: '계란 프라이',
@@ -37,13 +37,17 @@ const initialState = {
     ],
 };
 
-export default handleActions({
-    [CART_ITEM_REMOVE]: (state, action) => {
+export default (state = initialState, action) => {
+    switch (action.type) {
+    case CART_ITEM_REMOVE:
+        // eslint-disable-next-line no-case-declarations
         const orders = state.orders.slice();
         orders.splice(action.payload.itemKey, 1);
         return ({
             ...state,
             orders,
         });
-    },
-}, initialState);
+    default:
+        return state;
+    }
+};

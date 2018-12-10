@@ -7,26 +7,50 @@ import * as util from 'utils/utils';
 
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
-    item: {
+    'Food-Option': {
         display: 'flex',
-        fontSize: '1rem',
+        // width: '360px',
+        height: '36px',
+        objectFit: 'contain',
     },
-    unitPrice: {
-        fontSize: '1rem',
-        marginLeft: '10px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+    'Subtitle-1': {
+        width: '80%',
+        height: '24px',
+        fontFamily: 'Roboto',
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: '1.5',
+        letterSpacing: '0.2px',
+        color: 'rgba(0, 0, 0, 0.6)',
+    },
+    caption: {
+        width: '20%',
+        height: '16px',
+        fontFamily: 'Roboto',
+        fontSize: '12px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: '1.33',
+        letterSpacing: '0.4px',
+        textAlign: 'right',
+        color: 'rgba(0, 0, 0, 0.6)',
     },
 });
 
 const CartOptionItem = ({ classes, name, unitPrice }) => (
-    <div className={classes.item}>
-        <Typography variant="subtitle1">{name}</Typography>
-        <Typography variant="display4" className={classes.unitPrice}>
-        (
+    <div className={classes['Food-Option']}>
+        <Typography component="span" className={classes['Subtitle-1']}>
+            +
+            {' '}
+            {name}
+        </Typography>
+        <Typography component="span" className={classes.caption}>
             {util.priceFormat(unitPrice)}
-        )
+            {' '}
+            won
         </Typography>
     </div>
 );
