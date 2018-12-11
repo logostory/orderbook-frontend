@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // import * as util from 'utils/utils';
 // eslint-disable-next-line import/no-unresolved
 import { CartMenuItem, CartOptionItem } from 'components/cart';
-import cancelSvg from 'Assets/svg/custom_icons_cancel.svg';
+import RemoveSvg from 'Assets/svg/custom_icons_cancel.svg';
 
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
@@ -83,6 +83,7 @@ class CartContainer extends Component {
     getOptions(options) {
         const OptionList = options.map((option, key) => {
             const { name, unitPrice } = option;
+            this.totalPrice += unitPrice;
             return (
                 <CartOptionItem name={name} unitPrice={unitPrice} key={key} />
             );
@@ -92,17 +93,18 @@ class CartContainer extends Component {
 
     getOrders() {
         const { orders, classes, CartActions } = this.props;
-
+        // const { totalPrice } = this;
+        // console.log(totalPrice);
         const OrderList = orders.map((order, key) => {
-            const { options, name, unitPrice } = order;
-
+            const { options, name, unitPrice /* , amount */ } = order;
+            this.totalPrice += unitPrice;
             return (
                 // eslint-disable-next-line react/no-array-index-key
                 <Grid key={key} component="div" className={classes.product}>
                     <Grid component="div" className={classes.Remove}>
                         <Typography component="span" className={classes.caption}>Remove this order</Typography>
                         <Typography component="span" variant="h5" className={classes.Times} onClick={() => CartActions.itemRemove({ itemKey: `${key}` })}>
-                            <img src={`${cancelSvg}`} />
+                            <img src={`${RemoveSvg}`} />
                         </Typography>
                     </Grid>
                     <CartMenuItem name={name} unitPrice={unitPrice} />
@@ -111,6 +113,8 @@ class CartContainer extends Component {
                 </Grid>
             );
         });
+
+        CartActions.sumPrice(this.totalPrice);
 
         return (
             <div>
