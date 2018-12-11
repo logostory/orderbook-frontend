@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from 'modules/Cart';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-// eslint-disable-next-line import/no-unresolved
 import CartContainer from 'containers/cart/CartContainer';
-// eslint-disable-next-line import/no-unresolved
 import Header from 'components/Header';
-// eslint-disable-next-line import/no-unresolved
 import Footer from 'components/Footer';
 
 // eslint-disable-next-line no-unused-vars

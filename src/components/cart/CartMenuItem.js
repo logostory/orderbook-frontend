@@ -1,7 +1,6 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-// eslint-disable-next-line import/no-unresolved
 import * as util from 'utils/utils';
 
 
