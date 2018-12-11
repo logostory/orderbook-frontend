@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// eslint-disable-next-line import/no-unresolved
 import * as actions from 'modules/Cart';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 // import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-// eslint-disable-next-line import/no-unresolved
 // import * as util from 'utils/utils';
-// eslint-disable-next-line import/no-unresolved
 import { CartMenuItem, CartOptionItem } from 'components/cart';
-import RemoveSvg from 'Assets/svg/custom_icons_cancel.svg';
+import RemoveSvg from 'Assets/svg/custom_icon_remove.svg';
 
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
@@ -51,12 +48,12 @@ const styles = theme => ({
         // border: '1px solid gray',
     },
     Times: {
-        marginTop: '13px',
+        marginTop: '12px',
         color: '#3eafa2',
         cursor: 'pointer',
         textAlign: 'center',
-        width: '24px',
-        height: '24px',
+        width: '20px',
+        height: '20px',
         // border: '1px solid #3eafa2',
     },
     'Rectangle-13': {
@@ -68,28 +65,25 @@ const styles = theme => ({
 
 
 class CartContainer extends Component {
-    // eslint-disable-next-line react/sort-comp
+    totalPrice = 0;
+
+    componentWillMount() {
+        return this.getOrderSize(this.props);
+    }
+
     componentDidMount() {
         const { CartActions } = this.props;
         CartActions.sumPrice(this.totalPrice);
-    }
-
-    // eslint-disable-next-line react/sort-comp
-    componentDidUpdate() {
-        const { CartActions } = this.props;
-        CartActions.sumPrice(this.totalPrice);
-    }
-    
-    componentWillMount() {
-        return this.getOrderSize(this.props);
     }
 
     shouldComponentUpdate(nextProps) {
         return this.getOrderSize(nextProps);
     }
 
-    // eslint-disable-next-line react/sort-comp
-    totalPrice = 0;
+    componentDidUpdate() {
+        const { CartActions } = this.props;
+        CartActions.sumPrice(this.totalPrice);
+    }
 
     // eslint-disable-next-line class-methods-use-this
     getOptions(options) {
@@ -116,7 +110,7 @@ class CartContainer extends Component {
                     <Grid component="div" className={classes.Remove}>
                         <Typography component="span" className={classes.caption}>Remove this order</Typography>
                         <Typography component="span" variant="h5" className={classes.Times} onClick={() => CartActions.itemRemove({ itemKey: `${key}` })}>
-                            <img src={`${RemoveSvg}`} />
+                            <img src={`${RemoveSvg}`} alt="Remove" />
                         </Typography>
                     </Grid>
                     <CartMenuItem name={name} unitPrice={unitPrice} />
