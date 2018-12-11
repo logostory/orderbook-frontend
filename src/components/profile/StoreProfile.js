@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import './StoreProfile.css'
-import logo from '../../Assets/logostory.jpg'
+import './StoreProfile.css';
+import logo from 'Assets/logostory.jpg';
 
-const StoreProfile = ({Picture, Title, TableNum}) => {
-
-    return (
+const StoreProfile = ({ Picture, Title, TableNum }) => (
         <React.Fragment>
             <img className="Picture" src={logo} />
             <div className="StoreInfo">
@@ -13,6 +11,5 @@ const StoreProfile = ({Picture, Title, TableNum}) => {
             </div>
         </React.Fragment>
     );
-  }
 
 export default StoreProfile;
