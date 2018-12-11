@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CategorieList from './CategorieList';
+import CategoryList from './CategoryList';
 import MenuList from './MenuList';
 
 class MenuContainer extends Component {
   state = {
-    selectedCategorie: 0,
+    selectedCategory: 0,
     categories: [
       { categoryId: 0, categoryName: '버거메뉴' },
       { categoryId: 1, categoryName: '사이드' },
@@ -87,21 +87,22 @@ class MenuContainer extends Component {
     ],
   };
 
-  handleClickCategorie = value => {
+  handleClickCategory = value => {
     this.setState({
-      selectedCategorie: value,
+      selectedCategory: value,
     });
   };
 
   render() {
+    const {categories, selectedCategory} = this.state;
     return (
       <div>
-        <CategorieList
-          categories={this.state.categories}
-          value={this.state.selectedCategorie}
-          onClick={this.handleClickCategorie}
+        <CategoryList
+          categories={categories}
+          value={selectedCategory}
+          onClick={this.handleClickCategory}
         />
-        <MenuList products={this.state.products} categories={this.state.categories} />
+        <MenuList products={this.state.products} categories={categories} />
       </div>
     );
   }

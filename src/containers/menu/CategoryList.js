@@ -12,10 +12,10 @@ const styles = theme => ({
   },
 });
 
-const CategorieList = ({
+const CategoryList = ({
   classes, theme, categories, onClick, value,
 }) => {
-  const categorisList = categories.map(item => (
+  const categoryList = categories.map(item => (
     <Tab
       component="a"
       key={item.categoryId}
@@ -39,11 +39,11 @@ const CategorieList = ({
           scrollable
           scrollButtons="off"
         >
-          {categorisList}
+          {categoryList}
         </Tabs>
       </NoSsr>
     </div>
   );
 };
 
-export default withStyles(styles, { withTheme: true })(CategorieList);
+export default withStyles(styles, { withTheme: true })(CategoryList);

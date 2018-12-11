@@ -17,8 +17,7 @@ const Menu = ({ product, classes }) => {
             <Typography component="span" className={classes.inline} color="textPrimary">
               to Scott, Alex, Jennifer
             </Typography>
-            {productPrice}
-원
+              {`${productPrice} won`}
           </React.Fragment>
 )}
       />
