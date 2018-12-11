@@ -7,8 +7,8 @@ import NoSsr from '@material-ui/core/NoSsr';
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    maxWidth: 360,
-    width: 360,
+    // maxWidth: 360,
+    // width: 360,
   },
 });
 
@@ -20,9 +20,9 @@ const CategorieList = ({
       component="a"
       key={item.categoryId}
       label={item.categoryName}
-      href={`#${item.categoryId}`}
+      href={`#tab_${item.categoryId}`}
       onClick={(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         onClick(item.categoryId);
       }}
     />

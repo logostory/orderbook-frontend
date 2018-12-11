@@ -6,12 +6,11 @@ import Menu from './Menu';
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
+    // width: '100%',
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 300,
+    maxHeight: 280,
   },
   listSection: {
     backgroundColor: 'inherit',
@@ -26,12 +25,12 @@ const styles = theme => ({
 
 const MenuList = ({ classes, products, categories }) => (
   <List className={classes.root} subheader={<li />}>
-    {categories.map(categorie => (
-      <li key={categorie.categoryId} className={classes.listSection}>
+    {categories.map(category => (
+      <li key={category.categoryId} className={classes.listSection} id={`tab_${category.categoryId}`}>
         <ul className={classes.ul}>
-          <ListSubheader>{categorie.categoryName}</ListSubheader>
+          <ListSubheader>{category.categoryName}</ListSubheader>
           {products
-            .filter(item => item.categoryId === categorie.categoryId)
+            .filter(item => item.categoryId === category.categoryId)
             .map(item => (
               <Menu product={item} key={item.productId} />
             ))}

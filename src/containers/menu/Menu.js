@@ -9,7 +9,7 @@ const ListItemLink = props => <ListItem button component="a" {...props} />;
 const Menu = ({ product, classes }) => {
   const { productName, productPrice, categoryId } = product;
   return (
-    <ListItemLink href={`#${categoryId}`}>
+    <ListItemLink>
       <ListItemText
         primary={productName}
         secondary={(
