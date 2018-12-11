@@ -44,9 +44,7 @@ const CartMenuItem = ({ classes, name, unitPrice }) => (
     <div className={classes['Food-Main']}>
         <Typography component="span" className={classes['Headline-6']}>{name}</Typography>
         <Typography component="span" variant="display4" className={classes.caption}>
-            { util.priceFormat(unitPrice) }
-            {' '}
-            won
+            { `${util.priceFormat(unitPrice)} won` }
         </Typography>
     </div>
 );

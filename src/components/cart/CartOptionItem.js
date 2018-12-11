@@ -43,14 +43,10 @@ const styles = theme => ({
 const CartOptionItem = ({ classes, name, unitPrice }) => (
     <div className={classes['Food-Option']}>
         <Typography component="span" className={classes['Subtitle-1']}>
-            +
-            {' '}
-            {name}
+            {`+ ${name}`}
         </Typography>
         <Typography component="span" className={classes.caption}>
-            {util.priceFormat(unitPrice)}
-            {' '}
-            won
+            {`${util.priceFormat(unitPrice)} won`}
         </Typography>
     </div>
 );
