@@ -68,6 +68,18 @@ const styles = theme => ({
 
 
 class CartContainer extends Component {
+    // eslint-disable-next-line react/sort-comp
+    componentDidMount() {
+        const { CartActions } = this.props;
+        CartActions.sumPrice(this.totalPrice);
+    }
+
+    // eslint-disable-next-line react/sort-comp
+    componentDidUpdate() {
+        const { CartActions } = this.props;
+        CartActions.sumPrice(this.totalPrice);
+    }
+    
     componentWillMount() {
         return this.getOrderSize(this.props);
     }
@@ -92,10 +104,10 @@ class CartContainer extends Component {
     }
 
     getOrders() {
-        const { orders, classes, CartActions } = this.props;
+        const { menus, classes, CartActions } = this.props;
         // const { totalPrice } = this;
         // console.log(totalPrice);
-        const OrderList = orders.map((order, key) => {
+        const OrderList = menus.map((order, key) => {
             const { options, name, unitPrice /* , amount */ } = order;
             this.totalPrice += unitPrice;
             return (
@@ -114,8 +126,6 @@ class CartContainer extends Component {
             );
         });
 
-        CartActions.sumPrice(this.totalPrice);
-
         return (
             <div>
                 {OrderList}
@@ -125,9 +135,9 @@ class CartContainer extends Component {
 
     // eslint-disable-next-line class-methods-use-this
     getOrderSize(props) {
-        const { orders } = props;
+        const { menus } = props;
 
-        if (!orders.length) {
+        if (!menus.length) {
             alert('주문 내역이 없습니다. 뒤로가기');
         }
         return true;
@@ -145,7 +155,7 @@ class CartContainer extends Component {
 
 export default connect(
     state => ({
-        orders: state.Cart.orders,
+        menus: state.Cart.menus,
     }),
     dispatch => ({
         CartActions: bindActionCreators(actions, dispatch),
