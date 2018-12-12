@@ -19,6 +19,7 @@ const styles = theme => ({
 class PaymentContainer extends Component {
     render() {
         const { classes } = this.props;
+
         return (
             <Grid container className={classes.root}>
                 <Exist />

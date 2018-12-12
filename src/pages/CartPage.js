@@ -32,7 +32,7 @@ const styles = theme => ({
         textAlign: 'center',
     },
     MainBody: {
-        height: 'calc(100vh - 10rem)',
+        height: 'calc(100vh - 8.5rem)',
         overflowY: 'auto',
     },
 });

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prefer-stateless-function */
+import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -57,34 +58,49 @@ const styles = theme => ({
         textAlign: 'right',
         color: 'rgba(0, 0, 0, 0.87)',
     },
+    checked: {
+        '&$checked': {
+            color: '#757575',
+        },
+    },
 });
 
-const Exist = ({ classes }) => {
-    return (
-        <Grid>
-            <Grid className={classes['Rectangle-blank']} />
-            <Grid className={classes['Rectangle-title']}>
-                <Typography className={classes['Headline-6']}>Existing Accounts</Typography>
+class Exist extends Component {
+    // state = {}
+
+    // handleChecked = name => e => {
+    //     this.setState({ [name]: e.target.checked });
+    // }
+
+    render() {
+        const { classes } = this.props;
+        // const { check1 } = this.state;
+        return (
+            <Grid>
+                <Grid className={classes['Rectangle-blank']} />
+                <Grid className={classes['Rectangle-title']}>
+                    <Typography className={classes['Headline-6']}>Existing Accounts</Typography>
+                </Grid>
+                <Grid className={classes.Subtitle}>
+                    <FormControlLabel
+                        control={<Checkbox classes={{ checked: classes.checked }} />}
+                        label="Visa Card"
+                        className={classes.ExistCardName}
+                    />
+                    <Typography className={classes.caption}>3515</Typography>
+                </Grid>
+                <Grid className={classes.Subtitle}>
+                    <FormControlLabel
+                        control={<Checkbox classes={{ checked: classes.checked }} />}
+                        label="Master Card"
+                        className={classes.ExistCardName}
+                    />
+                    <Typography className={classes.caption}>5152</Typography>
+                </Grid>
+                <div className={classes['Rectangle-line']} />
             </Grid>
-            <Grid className={classes.Subtitle}>
-                <FormControlLabel
-                    control={<Checkbox color="primary" />}
-                    label="Visa Card"
-                    className={classes.ExistCardName}
-                />
-                <Typography className={classes.caption}>3515</Typography>
-            </Grid>
-            <Grid className={classes.Subtitle}>
-                <FormControlLabel
-                    control={<Checkbox color="primary" />}
-                    label="Master Card"
-                    className={classes.ExistCardName}
-                />
-                <Typography className={classes.caption}>5152</Typography>
-            </Grid>
-            <div className={classes['Rectangle-line']} />
-        </Grid>
-    );
-};
+        );
+    }
+}
 
 export default withStyles(styles)(Exist);
