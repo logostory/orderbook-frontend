@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import * as actions from 'modules/Cart';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import CartContainer from 'containers/cart/CartContainer';
+import CartContainer from 'containers/payment/PaymentContainer';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-// eslint-disable-next-line no-unused-vars
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -37,19 +37,20 @@ const styles = theme => ({
     },
 });
 
-const CartPage = ({ classes, totalPrice }) => {
+
+const Payment = ({ classes, totalPrice }) => {
     return (
         <div className={classes.root}>
-            <Header title="My Order" />
+            <Header title="Payment Methods" />
             <div id="OrderGrid" className={classes.MainBody}>
                 <CartContainer />
             </div>
-            <Footer totalPrice={totalPrice} text="Place Order" />
+            <Footer totalPrice={totalPrice} text="Proceed to Transaction" />
         </div>
     );
 };
 
-// export default withStyles(styles)(CartPage);
+
 export default connect(
     state => ({
         totalPrice: state.Cart.totalPrice,
@@ -57,4 +58,4 @@ export default connect(
     dispatch => ({
         CartActions: bindActionCreators(actions, dispatch),
     }),
-)(withStyles(styles)(CartPage));
+)(withStyles(styles)(Payment));
