@@ -30,7 +30,7 @@ const CategoryList = ({
 
   return (
     <div className={classes.root}>
-      <NoSsr position="static" color="default">
+      <NoSsr>
         <Tabs
           value={value}
           indicatorColor="primary"
