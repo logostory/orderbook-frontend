@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -7,22 +7,30 @@ import NoSsr from '@material-ui/core/NoSsr';
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    // maxWidth: 360,
-    // width: 360,
   },
+  tabs: {
+    backgroundColor: '#3eafa2',
+  },
+  tabsColor: {
+    color: '#3eafa2'
+  },
+  tabBtn: {
+    width: 120,
+    height: 48
+  }
 });
 
 const CategoryList = ({
-  classes, theme, categories, onClick, value,
-}) => {
+                        classes, theme, categories, onClick, value,
+                      }) => {
   const categoryList = categories.map(item => (
     <Tab
+      className={classes.tabBtn}
       component="a"
       key={item.categoryId}
       label={item.categoryName}
       href={`#tab_${item.categoryId}`}
-      onClick={(e) => {
-        // e.preventDefault();
+      onClick={() => {
         onClick(item.categoryId);
       }}
     />
@@ -32,9 +40,10 @@ const CategoryList = ({
     <div className={classes.root}>
       <NoSsr>
         <Tabs
+          classes={{
+            indicator: classes.tabs,
+          }}
           value={value}
-          indicatorColor="primary"
-          textColor="primary"
           fullWidth
           scrollable
           scrollButtons="off"
@@ -46,4 +55,4 @@ const CategoryList = ({
   );
 };
 
-export default withStyles(styles, { withTheme: true })(CategoryList);
+export default withStyles(styles, {withTheme: true})(CategoryList);
