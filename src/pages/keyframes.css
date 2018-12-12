@@ -1,0 +1,8 @@
+@keyframes example {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -200px;
+    }
+}

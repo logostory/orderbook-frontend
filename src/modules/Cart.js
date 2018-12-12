@@ -50,6 +50,106 @@ const initialState = {
                 },
             ],
         },
+        {
+            id: 2,
+            name: '치킨버거',
+            image: 'http://s3.amazon.com/...',
+            unitPrice: 5500,
+            options: [
+                {
+                    id: 100,
+                    name: '계란 프라이',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 1000,
+                },
+                {
+                    id: 200,
+                    name: '감자',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 2000,
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '치킨버거',
+            image: 'http://s3.amazon.com/...',
+            unitPrice: 5500,
+            options: [
+                {
+                    id: 100,
+                    name: '계란 프라이',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 1000,
+                },
+                {
+                    id: 200,
+                    name: '감자',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 2000,
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '치킨버거',
+            image: 'http://s3.amazon.com/...',
+            unitPrice: 5500,
+            options: [
+                {
+                    id: 100,
+                    name: '계란 프라이',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 1000,
+                },
+                {
+                    id: 200,
+                    name: '감자',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 2000,
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '치킨버거',
+            image: 'http://s3.amazon.com/...',
+            unitPrice: 5500,
+            options: [
+                {
+                    id: 100,
+                    name: '계란 프라이',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 1000,
+                },
+                {
+                    id: 200,
+                    name: '감자',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 2000,
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '치킨버거',
+            image: 'http://s3.amazon.com/...',
+            unitPrice: 5500,
+            options: [
+                {
+                    id: 100,
+                    name: '계란 프라이',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 1000,
+                },
+                {
+                    id: 200,
+                    name: '감자',
+                    image: 'http://s3.amazon.com/...',
+                    unitPrice: 2000,
+                },
+            ],
+        },
     ],
 };
 

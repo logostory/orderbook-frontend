@@ -3,7 +3,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import * as util from 'utils/utils';
 
-
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
     'Food-Option': {

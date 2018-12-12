@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -85,7 +86,6 @@ class CartContainer extends Component {
         CartActions.sumPrice(this.totalPrice);
     }
 
-    // eslint-disable-next-line class-methods-use-this
     getOptions(options) {
         const OptionList = options.map((option, key) => {
             const { name, unitPrice } = option;
@@ -105,7 +105,6 @@ class CartContainer extends Component {
             const { options, name, unitPrice /* , amount */ } = order;
             this.totalPrice += unitPrice;
             return (
-                // eslint-disable-next-line react/no-array-index-key
                 <Grid key={key} component="div" className={classes.product}>
                     <Grid component="div" className={classes.Remove}>
                         <Typography component="span" className={classes.caption}>Remove this order</Typography>
@@ -127,7 +126,6 @@ class CartContainer extends Component {
         );
     }
 
-    // eslint-disable-next-line class-methods-use-this
     getOrderSize(props) {
         const { menus } = props;
 
