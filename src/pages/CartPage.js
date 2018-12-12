@@ -32,8 +32,9 @@ const styles = theme => ({
         textAlign: 'center',
     },
     MainBody: {
-        height: 'calc(100vh - 8.5rem)',
-        overflowY: 'auto',
+        height: `calc(100vh - 136px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
+        overflow: 'auto',
+        '-webkit-overflow-scrolling': 'touch',
     },
 });
 
