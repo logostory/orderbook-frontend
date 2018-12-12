@@ -24,7 +24,7 @@ const initialState = {
       categoryName: '버거메뉴',
       productId: 1,
       productName: '바스버거',
-      productImage: 'https://s3.amazon.com/xxx/products/1/xxx.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 5800,
     },
     {
@@ -32,7 +32,7 @@ const initialState = {
       categoryName: '버거메뉴',
       productId: 2,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -40,7 +40,7 @@ const initialState = {
       categoryName: '버거메뉴',
       productId: 3,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -48,7 +48,7 @@ const initialState = {
       categoryName: '메뉴1',
       productId: 4,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -56,7 +56,7 @@ const initialState = {
       categoryName: '메뉴1',
       productId: 5,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -64,7 +64,7 @@ const initialState = {
       categoryName: '메뉴2',
       productId: 6,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -72,7 +72,7 @@ const initialState = {
       categoryName: '메뉴2',
       productId: 7,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -80,7 +80,7 @@ const initialState = {
       categoryName: '메뉴3',
       productId: 8,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
     {
@@ -88,7 +88,7 @@ const initialState = {
       categoryName: '메뉴3',
       productId: 9,
       productName: '더블 베이컨 치즈 버거 세트',
-      productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
+      productImage: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg',
       productPrice: 11200,
     },
   ],
