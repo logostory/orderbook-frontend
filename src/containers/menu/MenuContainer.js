@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CategoryList from './CategoryList';
-import MenuList from './MenuList';
+import {CategoryList} from 'components/Category';
+import {MenuList} from 'components/Menu';
 
 class MenuContainer extends Component {
   state = {
@@ -93,8 +93,12 @@ class MenuContainer extends Component {
     });
   };
 
+  handleScroll = (value) =>{
+    console.log(value)
+  };
+
   render() {
-    const {categories, selectedCategory} = this.state;
+    const {categories, selectedCategory, products} = this.state;
     return (
       <div>
         <CategoryList
@@ -102,7 +106,7 @@ class MenuContainer extends Component {
           value={selectedCategory}
           onClick={this.handleClickCategory}
         />
-        <MenuList products={this.state.products} categories={categories} />
+        <MenuList products={products} categories={categories} onScroll={this.handleScroll} />
       </div>
     );
   }

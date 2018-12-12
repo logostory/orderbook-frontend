@@ -23,8 +23,8 @@ const styles = theme => ({
   },
 });
 
-const MenuList = ({ classes, products, categories }) => (
-  <List className={classes.root} subheader={<li />}>
+const MenuList = ({ classes, products, categories, onScroll }) => (
+  <List className={classes.root} subheader={<li />} onScroll={() => onScroll('11')} >
     {categories.map(category => (
       <li key={category.categoryId} className={classes.listSection} id={`tab_${category.categoryId}`}>
         <ul className={classes.ul}>
