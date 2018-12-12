@@ -13,7 +13,7 @@ const styles = theme => ({
     root: {
         width: '100%',
         // eslint-disable-next-line quotes
-        [`@media screen and (max-width: 376px) and  (orientation: portrait)`]: {
+        [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {
             width: '360px',
         },
     },

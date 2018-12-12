@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
+// eslint-disable-next-line no-unused-vars
 const styles = theme => ({
     'Rectangle-blank': {
         width: '100%',
