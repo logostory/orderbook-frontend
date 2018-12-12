@@ -7,6 +7,10 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 const styles = theme => ({
+  ListItemLink: {
+    padding: 0,
+    height: 88
+  },
   avatar: {
     borderRadius: 0,
     width: 64,
@@ -67,7 +71,7 @@ const ListItemLink = props => <ListItem button component="a" {...props} />;
 const Menu = ({product, classes, onClick}) => {
   const {productName, productPrice, categoryId, productId, productImage, menuComment} = product;
   return (
-    <ListItemLink onClick={() => onClick(productId)}>
+    <ListItemLink className={classes.ListItemLink} onClick={() => onClick(productId)}>
       <ListItemAvatar>
         <Avatar className={classes.avatar} alt="Remy Sharp" src={productImage}/>
       </ListItemAvatar>

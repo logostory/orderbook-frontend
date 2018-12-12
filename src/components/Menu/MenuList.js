@@ -19,16 +19,17 @@ const styles = theme => ({
     backgroundColor: 'inherit',
     padding: 0,
     textAlign: 'left',
-    // textSize: 20, ??
   },
   ListSubheader: {
+    height: 48
+  },
+  subheaderText: {
     marginTop: 12,
     marginBottom: 12,
-    marginLeft: 16,
     fontSize: 16,
     lineHeight: 1.5,
     letterSpacing: 0.2,
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'rgba(0, 0, 0, 0.87)',
   }
 });
 
@@ -37,7 +38,9 @@ const MenuList = ({classes, products, categories, onScroll, onClick}) => (
     {categories.map(category => (
       <li key={category.categoryId} className={classes.listSection} id={`tab_${category.categoryId}`}>
         <ul className={classes.ul}>
-          <ListSubheader className={classes.ListSubheader}>{category.categoryName}</ListSubheader>
+          <ListSubheader className={classes.ListSubheader}>
+            <span className={classes.subheaderText}>{category.categoryName}</span>
+          </ListSubheader>
           {products
             .filter(item => item.categoryId === category.categoryId)
             .map(item => (

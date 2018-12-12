@@ -15,6 +15,7 @@ const styles = theme => ({
     color: '#3eafa2'
   },
   tabBtn: {
+    minWidth: 120,
     width: 120,
     height: 48
   }
