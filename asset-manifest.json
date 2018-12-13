@@ -1,7 +1,7 @@
 {
   "main.css": "https://logostory.github.io/orderbook-frontend/static/css/main.c168a615.chunk.css",
-  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.41525df2.chunk.js",
-  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.41525df2.chunk.js.map",
+  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.01c12caa.chunk.js",
+  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.01c12caa.chunk.js.map",
   "static/js/1.f92dfc79.chunk.js": "https://logostory.github.io/orderbook-frontend/static/js/1.f92dfc79.chunk.js",
   "static/js/1.f92dfc79.chunk.js.map": "https://logostory.github.io/orderbook-frontend/static/js/1.f92dfc79.chunk.js.map",
   "runtime~main.js": "https://logostory.github.io/orderbook-frontend/static/js/runtime~main.c06beff0.js",
@@ -15,6 +15,6 @@
   "static/media/baseline-chevron_left-24px.svg": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg",
   "static/css/main.c168a615.chunk.css.map": "https://logostory.github.io/orderbook-frontend/static/css/main.c168a615.chunk.css.map",
   "index.html": "https://logostory.github.io/orderbook-frontend/index.html",
-  "precache-manifest.701f132a541817e50cd09415c38df522.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.701f132a541817e50cd09415c38df522.js",
+  "precache-manifest.5984baa8b4d8cd07a8521e6a98314d84.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.5984baa8b4d8cd07a8521e6a98314d84.js",
   "service-worker.js": "https://logostory.github.io/orderbook-frontend/service-worker.js"
 }
