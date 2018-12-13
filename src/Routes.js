@@ -7,7 +7,7 @@ import Loading from './pages/Loading';
 
 
 export default () => (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PRD_URL}>
         <Switch>
             <Route exact path="/" component={Loading} />
             <Route path="/basic" component={BasicPage} />
