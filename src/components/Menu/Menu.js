@@ -9,7 +9,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 const styles = theme => ({
   ListItemLink: {
     padding: 0,
-    height: 88
+    height: 88,
   },
   avatar: {
     borderRadius: 0,
@@ -52,7 +52,7 @@ const styles = theme => ({
     letterSpacing: 0.4,
     color: 'rgba(0,0,0,0.87)',
     marginTop: 5,
-    marginBottom: 3
+    marginBottom: 3,
   },
   secondTextLine: {
     display: 'inline-block',
@@ -63,7 +63,7 @@ const styles = theme => ({
   menuComment: {
     margin: 0,
     padding: 0,
-  }
+  },
 });
 
 const ListItemLink = props => <ListItem button component="a" {...props} />;
@@ -71,27 +71,30 @@ const ListItemLink = props => <ListItem button component="a" {...props} />;
 const Menu = ({product, classes, onClick}) => {
   const {productName, productPrice, categoryId, productId, productImage, menuComment} = product;
   return (
-    <ListItemLink className={classes.ListItemLink} onClick={() => onClick(productId)}>
-      <ListItemAvatar>
-        <Avatar className={classes.avatar} alt="Remy Sharp" src={productImage}/>
-      </ListItemAvatar>
-      <ListItemText
-        className={classes.listTextArea}
-        primary={(<span className={classes.firstTextLine}>
+      <ListItemLink className={classes.ListItemLink}
+                    onClick={() => onClick(productId)}>
+        <ListItemAvatar>
+          <Avatar className={classes.avatar} alt="Remy Sharp"
+                  src={productImage}/>
+        </ListItemAvatar>
+        <ListItemText
+            className={classes.listTextArea}
+            primary={(<span className={classes.firstTextLine}>
         <p className={classes.productName}>{productName}</p>
         <p className={classes.price}>{`${productPrice} won`}</p>
       </span>)}
-        secondary={(
-          <React.Fragment>
-            <Typography component="span" className={classes.secondTextLine}>
-              {/*menuComment 추가 되면 수정 */}
-              {/*<p>{menuComment}</p>*/}
-              <p className={classes.menuComment}>메뉴설명</p>
-            </Typography>
-          </React.Fragment>
-        )}
-      />
-    </ListItemLink>
+            secondary={(
+                <React.Fragment>
+                  <Typography component="span"
+                              className={classes.secondTextLine}>
+                    {/*menuComment 추가 되면 수정 */}
+                    {/*<p>{menuComment}</p>*/}
+                    <p className={classes.menuComment}>메뉴설명</p>
+                  </Typography>
+                </React.Fragment>
+            )}
+        />
+      </ListItemLink>
   );
 };
 

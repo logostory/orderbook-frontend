@@ -26,14 +26,15 @@ const CategoryList = ({
                       }) => {
   const categoryList = categories.map(item => (
     <Tab
-      className={classes.tabBtn}
-      component="a"
-      key={item.categoryId}
-      label={item.categoryName}
-      href={`#tab_${item.categoryId}`}
-      onClick={() => {
+        className={classes.tabBtn}
+        component="a"
+        key={item.categoryId}
+        label={item.categoryName}
+        href={`#tab_${item.categoryId}`}
+        onClick={() => {
         onClick(item.categoryId);
       }}
+        classes={{selected: classes.tabsColor}}
     />
   ));
 
