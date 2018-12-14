@@ -3,7 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Fade } from '@material-ui/core';
 import logoTemp from 'Assets/svg/logo-temp.svg';
 // import { Redirect } from 'react-router-dom';
-import StartDisplay from 'components/StartDisplay';
+import StartDisplay from './StartDisplay';
 import Keyframes from './keyframes.css';
 
 const styles = theme => ({
@@ -21,7 +21,7 @@ const styles = theme => ({
 
     },
     movelogo: {
-        top: '-200px',
+        top: '-150px',
         position: 'relative',
         animationName: 'example',
         animationDuration: '0.5s',

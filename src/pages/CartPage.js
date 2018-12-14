@@ -1,61 +1,27 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from 'modules/Cart';
-
-import withStyles from '@material-ui/core/styles/withStyles';
 import CartContainer from 'containers/cart/CartContainer';
+
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-// eslint-disable-next-line no-unused-vars
-const styles = theme => ({
-    root: {
-        width: '100%',
-        // eslint-disable-next-line quotes
-        [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {
-            width: '360px',
-        },
-    },
-    Top: {
-        height: '56px',
-        objectFit: 'contain',
-        backgroundColor: '#ff4a5b',
-        color: 'white',
-        textAlign: 'center',
-        alignItems: 'center',
-    },
-    Mask: {
-        height: '100px',
-        backgroundColor: '#ff4a5b',
-        color: 'white',
-        textAlign: 'center',
-    },
-    MainBody: {
-        height: `calc(100vh - 136px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
-        overflow: 'auto',
-        '-webkit-overflow-scrolling': 'touch',
-    },
-});
+// eslint-disable-next-line react/prefer-stateless-function
+class CartPage extends Component {
+    render() {
+        const { totalPrice } = this.props;
 
-const CartPage = ({ classes, totalPrice }) => {
-    return (
-        <div className={classes.root}>
-            <Header title="My Order" />
-            <div id="OrderGrid" className={classes.MainBody}>
+        return (
+            <div>
+                <Header title="My Order" />
                 <CartContainer />
+                <Footer totalPrice={totalPrice} text="Place Order" />
             </div>
-            <Footer totalPrice={totalPrice} text="Place Order" />
-        </div>
-    );
-};
+        );
+    }
+}
 
-// export default withStyles(styles)(CartPage);
 export default connect(
     state => ({
         totalPrice: state.Cart.totalPrice,
     }),
-    dispatch => ({
-        CartActions: bindActionCreators(actions, dispatch),
-    }),
-)(withStyles(styles)(CartPage));
+)(CartPage);
