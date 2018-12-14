@@ -7,7 +7,8 @@ import * as util from 'utils/utils';
 const styles = theme => ({
     'Food-Option': {
         display: 'flex',
-        // width: '360px',
+        alignItems: 'center',
+        justifyContent: 'center',
         height: '36px',
         objectFit: 'contain',
     },
