@@ -4,11 +4,12 @@ import { Fade } from '@material-ui/core';
 import logoTemp from 'Assets/svg/logo-temp.svg';
 // import { Redirect } from 'react-router-dom';
 import StartDisplay from './StartDisplay';
-import Keyframes from './keyframes.css';
+// import Keyframes from './keyframes.css';
 
+const height = '-5rem';
 const styles = theme => ({
     root: {
-        height: '100vh',
+        height: `calc(100vh - 136px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
         width: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -20,10 +21,18 @@ const styles = theme => ({
     logo: {
 
     },
+    '@keyframes moveUp': {
+        from: {
+            top: '0px',
+        },
+        to: {
+            top: height,
+        },
+    },
     movelogo: {
-        top: '-150px',
+        top: height,
         position: 'relative',
-        animationName: 'example',
+        animationName: 'moveUp',
         animationDuration: '0.5s',
     },
 });
@@ -38,7 +47,7 @@ class Loading extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, handleClick } = this.props;
         const { loaded } = this.state;
 
         return (
@@ -46,7 +55,7 @@ class Loading extends React.Component {
                 <Fade in timeout={{ enter: 1000 }}>
                     <img src={`${logoTemp}`} alt="" className={classes[loaded ? 'movelogo' : 'logo']} />
                 </Fade>
-                { loaded && <StartDisplay />}
+                { loaded && <StartDisplay handleClick={handleClick} />}
             </div>
         );
     }
