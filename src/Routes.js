@@ -7,12 +7,12 @@ import LoadingPage from './pages/LoadingPage';
 
 
 export default () => (
-    <BrowserRouter>
+    <HashRouter>
         <Switch>
             <Route exact path="/" component={LoadingPage} />
             <Route path="/basic" component={BasicPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/payment" component={PaymentPage} />
         </Switch>
-    </BrowserRouter>
+    </HashRouter>
 );
