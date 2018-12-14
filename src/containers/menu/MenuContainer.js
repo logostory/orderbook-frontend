@@ -1,110 +1,55 @@
-import React, { Component } from 'react';
-import CategorieList from './CategorieList';
-import MenuList from './MenuList';
+import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as menuActions from 'modules/menu';
+
+import {CategoryList} from 'components/Category';
+import {MenuList} from 'components/Menu';
 
 class MenuContainer extends Component {
-  state = {
-    selectedCategorie: 0,
-    categories: [
-      { categoryId: 0, categoryName: '버거메뉴' },
-      { categoryId: 1, categoryName: '사이드' },
-      { categoryId: 2, categoryName: '음료수' },
-      { categoryId: 3, categoryName: '세트메뉴' },
-    ],
-    products: [
-      {
-        categoryId: 0,
-        categoryName: '버거메뉴',
-        productId: 1,
-        productName: '바스버거',
-        productImage: 'https://s3.amazon.com/xxx/products/1/xxx.jpg',
-        productPrice: 5800,
-      },
-      {
-        categoryId: 0,
-        categoryName: '버거메뉴',
-        productId: 2,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 0,
-        categoryName: '버거메뉴',
-        productId: 3,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 1,
-        categoryName: '메뉴1',
-        productId: 4,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 1,
-        categoryName: '메뉴1',
-        productId: 5,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 2,
-        categoryName: '메뉴2',
-        productId: 6,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 2,
-        categoryName: '메뉴2',
-        productId: 7,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 3,
-        categoryName: '메뉴3',
-        productId: 8,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-      {
-        categoryId: 3,
-        categoryName: '메뉴3',
-        productId: 9,
-        productName: '더블 베이컨 치즈 버거 세트',
-        productImage: 'https://s3.amazon.com/xxx/products/2/yyy.jpg',
-        productPrice: 11200,
-      },
-    ],
+
+  handleClickCategory = value => {
+    const {MenuActions} = this.props;
+    MenuActions.changeSelectedCategory(value)
   };
 
-  handleClickCategorie = value => {
-    this.setState({
-      selectedCategorie: value,
-    });
+  // @Leo 매뉴 클릭 함수
+  handleClickMenu = menuId => {
+    const {MenuActions} = this.props;
+    MenuActions.clickManu(menuId)
+  };
+
+  handleScroll = (value) => {
+    console.log(value)
   };
 
   render() {
+    const {categories, selectedCategory, products} = this.props;
     return (
       <div>
-        <CategorieList
-          categories={this.state.categories}
-          value={this.state.selectedCategorie}
-          onClick={this.handleClickCategorie}
+        <CategoryList
+          categories={categories}
+          value={selectedCategory}
+          onClick={this.handleClickCategory}
         />
-        <MenuList products={this.state.products} categories={this.state.categories} />
+        <MenuList products={products} categories={categories} onScroll={this.handleScroll}
+                  onClick={this.handleClickMenu}/>
       </div>
     );
   }
 }
 
-export default MenuContainer;
+const mapStateToProps = ({menu}) => ({
+  selectedCategory: menu.selectedCategory,
+  categories: menu.categories,
+  products: menu.products
+});
+
+const mapDispatchToProps = dispatch => ({
+  MenuActions: bindActionCreators(menuActions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MenuContainer);
