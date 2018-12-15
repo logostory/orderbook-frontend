@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import * as util from 'utils/utils';
 
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,7 +24,7 @@ const styles = {
         padding: 0,
     },
     image: {
-        width: '324px',
+        width: '338px',
         height: '183px',
     },
     list: {
@@ -80,7 +81,10 @@ const styles = {
         paddingBottom: '0px',
     },
     checkbox: {
-        padding: '12px 0px 12px 0px',
+        padding: '12px 16px 12px 0px',
+    },
+    options: {
+        padding: 0,
     },
     optionTitleText: {
         fontFamily: 'Roboto',
@@ -127,28 +131,26 @@ const styles = {
 };
 
 const MenuProfile = ({
-    classes, Image, Menu, Options,
+    classes, onOpen, onClose, onOrder, Image, Menu, Options,
 }) => (
     <React.Fragment>
-        <Dialog open="true" style={{ backgroundColor: 'none' }}>
-            <IconButton className={classes.closeBtn}>
+        <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
+            <IconButton className={classes.closeBtn} onClick={onClose}>
                 <CloseIcon />
             </IconButton>
-            <img className={classes.image} src={Image} alt="menu" />
+            <img className={classes.image} src={Menu.productImage} alt="menu" />
             <List className={classes.list}>
                 <ListItem className={classes.menu}>
                     <ListItemText
                         className={classes.menuDescription}
-                        primary={<Typography className={classes.menuTitle} variant="h6">{Menu.Title}</Typography>}
-                        secondary={<Typography className={classes.menuDetail} variant="body2">{Menu.Description}</Typography>}
+                        primary={<Typography className={classes.menuTitle} variant="h6">{Menu.productName}</Typography>}
+                        secondary={<Typography className={classes.menuDetail} variant="body2">{Menu.productName}</Typography>}
                     />
                     <ListItemText
                         className={classes.menuPrice}
                         primary={(
                             <Typography className={classes.menuPriceText} variant="caption">
-                                {Menu.Price}
-                                {' '}
-                                won
+                                { `${util.priceFormat(Menu.productPrice)} won` }
                             </Typography>
                         )}
                     />
@@ -156,25 +158,30 @@ const MenuProfile = ({
             </List>
             <Divider />
             <List className={classes.list}>
-                {Options.map(key => (
+                { Menu.options !== undefined ? Menu.options.map(key => (
                     <ListItem className={classes.optionList}>
                         <Checkbox
                             className={classes.checkbox}
-                            checked="false"
+                            checked={false}
+                            value={key}
                         />
-                        <ListItemText primary={<Typography className={classes.optionTitleText} variant="subtitle1">{key.title}</Typography>} />
-                        <ListItemText primary={<Typography className={classes.optionPriceeText} variant="caption">{key.price}</Typography>} />
+                        <ListItemText className={classes.options} primary={<Typography className={classes.optionTitleText} variant="subtitle1">{key.optionName}</Typography>} />
+                        <ListItemText className={classes.options} primary={<Typography className={classes.optionPriceeText} variant="caption">{ `${util.priceFormat(key.optionPrice)} won`}</Typography>} />
                     </ListItem>
-                ))}
+                ))
+                    : <ListItem />
+                }
             </List>
             <Divider />
             <List className={classes.list}>
                 <ListItem className={classes.footer}>
                     <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
-                    <Typography className={classes.footerText} variant="subtitle1">9,000 won</Typography>
+                    <Typography className={classes.footerText} variant="subtitle1">
+                        { `${util.priceFormat(Menu.productPrice)} won` }
+                    </Typography>
                 </ListItem>
             </List>
-            <Button variant="contained" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => onOrder(Menu)}>
                 ADD TO ORDER
             </Button>
         </Dialog>
