@@ -1,7 +1,7 @@
 {
-  "main.css": "https://logostory.github.io/orderbook-frontend/static/css/main.79a68a37.chunk.css",
-  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.8bcd1efe.chunk.js",
-  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.8bcd1efe.chunk.js.map",
+  "main.css": "https://logostory.github.io/orderbook-frontend/static/css/main.8fd9192b.chunk.css",
+  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.31d680f7.chunk.js",
+  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.31d680f7.chunk.js.map",
   "static/js/1.c25624f8.chunk.js": "https://logostory.github.io/orderbook-frontend/static/js/1.c25624f8.chunk.js",
   "static/js/1.c25624f8.chunk.js.map": "https://logostory.github.io/orderbook-frontend/static/js/1.c25624f8.chunk.js.map",
   "runtime~main.js": "https://logostory.github.io/orderbook-frontend/static/js/runtime~main.c06beff0.js",
@@ -13,8 +13,8 @@
   "static/media/custom_icon_remove.svg": "https://logostory.github.io/orderbook-frontend/static/media/custom_icon_remove.9e214224.svg",
   "static/media/logo-temp.svg": "https://logostory.github.io/orderbook-frontend/static/media/logo-temp.7253b346.svg",
   "static/media/baseline-chevron_left-24px.svg": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg",
-  "static/css/main.79a68a37.chunk.css.map": "https://logostory.github.io/orderbook-frontend/static/css/main.79a68a37.chunk.css.map",
+  "static/css/main.8fd9192b.chunk.css.map": "https://logostory.github.io/orderbook-frontend/static/css/main.8fd9192b.chunk.css.map",
   "index.html": "https://logostory.github.io/orderbook-frontend/index.html",
-  "precache-manifest.9d1e2678a0c7380290c3ce37aa2a63e9.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.9d1e2678a0c7380290c3ce37aa2a63e9.js",
+  "precache-manifest.5ee171a17fda54dd47606cb0660870a1.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.5ee171a17fda54dd47606cb0660870a1.js",
   "service-worker.js": "https://logostory.github.io/orderbook-frontend/service-worker.js"
 }
