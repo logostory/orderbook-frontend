@@ -20,18 +20,19 @@ class MenuContainer extends Component {
   };
 
   handleScroll = (e) => {
-    const children = e.target.childNodes;
-    const { selectedCategory, MenuActions } = this.props;
-    for(let i = 0, height = 0, chgID; i < children.length; i++) {
-      if (children[i].id === '') continue;
-      height += children[i].scrollHeight;
-      if (e.target.scrollTop < height) {
-        chgID = children[i].id.split('_')[1];
-        if (chgID !== selectedCategory) MenuActions.categoryChange(parseInt(chgID));
-        return;
+      const children = e.target.childNodes;
+      const { selectedCategory, MenuActions } = this.props;
+      for (let i = 0, height = 0, chgID; i < children.length; i++) {
+          if (children[i].id === '') continue;
+          height += children[i].scrollHeight;
+          if (e.target.scrollTop < height) {
+              chgID = children[i].id.split('_')[1];
+              if (chgID !== selectedCategory) MenuActions.categoryChange(parseInt(chgID));
+              return;
+          }
       }
-    }
-    
+  }
+
   handleClickClose = () => {
       const { MenuActions } = this.props;
       MenuActions.clickClose();
@@ -48,6 +49,7 @@ class MenuContainer extends Component {
           openDig, categories, selectedCategory, products, selectedMenu,
       } = this.props;
       console.log(selectedMenu);
+
       return (
           <div>
               <MenuProfile

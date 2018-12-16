@@ -122,17 +122,15 @@ const initialState = {
 
 export default handleActions(
     {
-      [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
-          ...state,
-          selectedCategory: action.payload,
-      }
-    },
-    [CATEGORY_CHANGE]: (state, action) => {
-      return {
-        ...state,
-        selectedCategory: action.payload,
-      }
-    },
+        [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
+            ...state,
+            selectedCategory: action.payload,
+        }),
+
+        [CATEGORY_CHANGE]: (state, action) => ({
+            ...state,
+            selectedCategory: action.payload,
+        }),
         // @Leo 메뉴 클릭 액션
         [CLICK_MENU]: (state, action) => ({
             ...state,
