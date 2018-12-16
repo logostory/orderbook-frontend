@@ -6,7 +6,6 @@ import CartMenuItem from './CartMenuItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        padding: '0 16px',
         display: 'block',
         height: `calc(100vh - 136px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
         [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {

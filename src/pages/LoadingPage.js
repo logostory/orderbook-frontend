@@ -1,12 +1,12 @@
 import React from 'react';
 import Loading from 'components/Loading';
-
+import { withRouter } from 'react-router-dom';
 // const LoadingPage = () => <Loading />;
 
 class LoadingPage extends React.Component {
     handleClick = (e) => {
-        console.log(e.target.tagName);
-        e.target.blur();
+        const { history } = this.props;
+        history.push('/basic');
     }
 
     render() {
@@ -15,4 +15,4 @@ class LoadingPage extends React.Component {
     }
 }
 
-export default LoadingPage;
+export default withRouter(LoadingPage);

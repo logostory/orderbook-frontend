@@ -10,7 +10,7 @@ import CartOptionItem from './CartOptionItem';
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
     product: {
-        width: '100%',
+        padding: '0 16px',
         // border: '1px solid red',
     },
     Remove: {

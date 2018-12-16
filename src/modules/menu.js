@@ -2,12 +2,15 @@ import {createAction, handleActions} from 'redux-actions';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
 const CLICK_MENU = 'menu/CLICK_MENU';
+const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
+
 
 export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, value => value);
 
 // @LEO 메뉴 클릭시 액션이 필요하실거 같아서 일단 만들어 놨습니다.
 export const clickManu = createAction(CLICK_MENU, key => key);
 
+export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
 
 // API LOAD 구현 되면 삭제
 const initialState = {
@@ -97,6 +100,13 @@ const initialState = {
 export default handleActions(
   {
     [CHANGE_SELECTED_CATEGORY]: (state, action) => {
+      return {
+        ...state,
+        selectedCategory: action.payload,
+
+      }
+    },
+    [CATEGORY_CHANGE]: (state, action) => {
       return {
         ...state,
         selectedCategory: action.payload,
