@@ -6,11 +6,11 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 const PaymentPage = ({ totalPrice }) => (
-    <div>
+    <React.Fragment>
         <Header title="Payment Methods" />
         <PaymentContainer />
         <Footer totalPrice={totalPrice} text="Proceed to Transaction" />
-    </div>
+    </React.Fragment>
 );
 
 export default connect(

@@ -37,15 +37,15 @@ const styles = theme => ({
         color: 'white',
         backgroundColor: '#ff4a5b',
         '&:hover': {
-            backgroundColor: '#424242',
+            backgroundColor: '#ff4a5b',
         },
         '&:active': {
-            backgroundColor: '#424242',
+            backgroundColor: '#ff4a5b',
         },
     },
 });
 
-const StartDisplay = ({ classes }) => {
+const StartDisplay = ({ classes, handleClick }) => {
     return (
         <Fade in timeout={1500}>
             <Grid container className={classes.root}>
@@ -54,7 +54,9 @@ const StartDisplay = ({ classes }) => {
                     <Typography>QR code by your</Typography>
                     <Typography>table to start.</Typography>
                 </Grid>
-                <Button className={classes['Rectangle-13']}>SCAN QR CODE</Button>
+                <Button classes={{
+                    root: classes['Rectangle-13']
+                }} onClick={handleClick}>SCAN QR CODE</Button>
             </Grid>
         </Fade>
     );

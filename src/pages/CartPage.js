@@ -11,11 +11,11 @@ class CartPage extends Component {
         const { totalPrice } = this.props;
 
         return (
-            <div>
+            <React.Fragment>
                 <Header title="My Order" />
                 <CartContainer />
                 <Footer totalPrice={totalPrice} text="Place Order" />
-            </div>
+            </React.Fragment>
         );
     }
 }

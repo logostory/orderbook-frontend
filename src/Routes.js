@@ -7,12 +7,12 @@ import LoadingPage from './pages/LoadingPage';
 
 
 export default () => (
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route exact path="/" component={LoadingPage} />
             <Route path="/basic" component={BasicPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/payment" component={PaymentPage} />
         </Switch>
-    </HashRouter>
+    </BrowserRouter>
 );

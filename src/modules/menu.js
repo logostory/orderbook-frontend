@@ -2,6 +2,8 @@ import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
 const CLICK_MENU = 'menu/CLICK_MENU';
+const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
+
 const CLICK_CLOSE = 'menu/CLICK_CLOSE';
 const ADD_TO_ORDER = 'menu/ADD_TO_ORDER';
 
@@ -12,6 +14,7 @@ export const clickManu = createAction(CLICK_MENU, key => key);
 export const clickClose = createAction(CLICK_CLOSE, key => key);
 export const addToOrder = createAction(ADD_TO_ORDER, value => value);
 
+export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
 
 // API LOAD 구현 되면 삭제
 const initialState = {
@@ -119,11 +122,17 @@ const initialState = {
 
 export default handleActions(
     {
-        [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
-            ...state,
-            selectedCategory: action.payload,
-
-        }),
+      [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
+          ...state,
+          selectedCategory: action.payload,
+      }
+    },
+    [CATEGORY_CHANGE]: (state, action) => {
+      return {
+        ...state,
+        selectedCategory: action.payload,
+      }
+    },
         // @Leo 메뉴 클릭 액션
         [CLICK_MENU]: (state, action) => ({
             ...state,

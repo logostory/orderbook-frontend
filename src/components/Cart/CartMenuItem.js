@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +10,7 @@ import CartOptionItem from './CartOptionItem';
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
     product: {
-        width: '100%',
+        padding: '0 16px',
         // border: '1px solid red',
     },
     Remove: {
@@ -82,28 +83,44 @@ const styles = theme => ({
         textAlign: 'right',
         color: 'rgba(0, 0, 0, 0.6)',
     },
+    hidden: {
+        visibility: 'hidden',
+        opacity: 0,
+        backgroundColor: '#ECEFF1',
+        boxShadow: '0px 7px 3px #CFD8DC',
+        transition: 'visibility 0s 0.25s, opacity 0.25s linear',
+    },
 });
 
-const CartMenuItem = ({ classes, name, unitPrice, key, CartActions, options = [] }) => {
-    const OptionList = options.map((option, optKey) => {
-        return (
-            <CartOptionItem
-                name={option.name}
-                unitPrice={option.unitPrice}
-                key={optKey}
-            />
-        );
-    });
+const CartMenuItem = ({
+    classes, name, unitPrice, index, handleRemove, options = [],
+}) => {
+    const OptionList = options.map((option, optKey) => (
+        <CartOptionItem
+            name={option.name}
+            unitPrice={option.unitPrice}
+            key={optKey}
+        />
+    ));
+
+    const handleAnimation = (idkey) => {
+        const elem = document.querySelector(`#CartMenu${idkey}`);
+        elem.classList.add(classes.hidden);
+        setTimeout(() => {
+            handleRemove.call(idkey);
+            elem.classList.remove(classes.hidden);
+        }, 250);
+    };
 
     return (
-        <Grid key={key} component="div" className={classes.product}>
+        <Grid id={`CartMenu${index}`} key={index} component="div" className={classes.product}>
             <Grid component="div" className={classes.Remove}>
                 <Typography component="span" className={classes.RemoveCaption}>Remove this order</Typography>
-                <Typography component="span" variant="h5" className={classes.Times} onClick={() => CartActions.itemRemove({ itemKey: `${key}` })}>
+                <Typography component="span" variant="h5" className={classes.Times} onClick={() => handleAnimation(`${index}`)}>
                     <img src={`${RemoveSvg}`} alt="Remove" />
                 </Typography>
             </Grid>
-            <div className={classes['Food-Main']} key={key}>
+            <div className={classes['Food-Main']} key={index}>
                 <Typography component="span" className={classes['Headline-6']}>{name}</Typography>
                 <Typography component="span" variant="display4" className={classes.caption}>
                     { `${util.priceFormat(unitPrice)} won` }
@@ -113,6 +130,15 @@ const CartMenuItem = ({ classes, name, unitPrice, key, CartActions, options = []
             <div className={classes['Rectangle-13']} />
         </Grid>
     );
+};
+
+CartMenuItem.propTypes = {
+    classes: Proptypes.object.isRequired,
+    name: Proptypes.string.isRequired,
+    unitPrice: Proptypes.number.isRequired,
+    index: Proptypes.any.isRequired,
+    handleRemove: Proptypes.func.isRequired,
+    options: Proptypes.array,
 };
 
 export default withStyles(styles)(CartMenuItem);

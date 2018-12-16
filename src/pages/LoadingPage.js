@@ -1,10 +1,18 @@
 import React from 'react';
 import Loading from 'components/Loading';
+import { withRouter } from 'react-router-dom';
+// const LoadingPage = () => <Loading />;
 
-const LoadingPage = () => (
-    <div>
-        <Loading />
-    </div>
-);
+class LoadingPage extends React.Component {
+    handleClick = (e) => {
+        const { history } = this.props;
+        history.push('/basic');
+    }
 
-export default LoadingPage;
+    render() {
+        const { handleClick } = this;
+        return (<Loading handleClick={handleClick} />);
+    }
+}
+
+export default withRouter(LoadingPage);
