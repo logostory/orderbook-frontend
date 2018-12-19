@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
 const CLICK_MENU = 'menu/CLICK_MENU';
+const CLICK_OPTION = 'menu/CLICK_OPTION';
 const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
 
 const CLICK_CLOSE = 'menu/CLICK_CLOSE';
@@ -11,6 +12,7 @@ export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, val
 
 // @LEO 메뉴 클릭시 액션이 필요하실거 같아서 일단 만들어 놨습니다.
 export const clickManu = createAction(CLICK_MENU, key => key);
+export const clickOption = createAction(CLICK_OPTION, key => key);
 export const clickClose = createAction(CLICK_CLOSE, key => key);
 export const addToOrder = createAction(ADD_TO_ORDER, value => value);
 
@@ -138,6 +140,10 @@ export default handleActions(
             selectedMenu: state.products.filter(
                 product => product.productId === action.payload,
             )[0],
+        }),
+        [CLICK_OPTION]: (state, action) => ({
+            ...state,
+            selectedOption: state.selectedOption.concat(action.payload),
         }),
         [CLICK_CLOSE]: state => ({
             ...state,
