@@ -13,6 +13,11 @@ const styles = {
         marginLeft: '16px',
         marginRight: '16px',
     },
+    imageCard: {
+        display: 'flex',
+        justifyContent: 'center',
+        boxShadow: 'none',
+    },
     image: {
         width: 'calc(100% - 16px)',
         minHeight: '150px',
@@ -49,7 +54,7 @@ const StoreProfile = ({
     classes, Image, Table, Title,
 }) => (
     <React.Fragment>
-        <Card className={classes.card}>
+        <Card className={classes.imageCard}>
             <img className={classes.image} src={Image} alt="storeProfile" />
         </Card>
         <Card className={classes.card}>
