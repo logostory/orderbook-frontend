@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/baseline-menu-24px.a50ff341.svg"
   },
   {
-    "revision": "31d680f7f86c43c3d96c",
+    "revision": "6307ce895d3605a92348",
     "url": "https://logostory.github.io/orderbook-frontend/static/css/main.8fd9192b.chunk.css"
   },
   {
-    "revision": "c25624f8cfcd9be9f202",
-    "url": "https://logostory.github.io/orderbook-frontend/static/js/1.c25624f8.chunk.js"
+    "revision": "2803ccfcb63f276b4b19",
+    "url": "https://logostory.github.io/orderbook-frontend/static/js/1.2803ccfc.chunk.js"
   },
   {
     "revision": "c06beff04608f363c580",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg"
   },
   {
-    "revision": "31d680f7f86c43c3d96c",
-    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.31d680f7.chunk.js"
+    "revision": "6307ce895d3605a92348",
+    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.6307ce89.chunk.js"
   },
   {
     "revision": "d78234fa22f7035b93ff2540071b2237",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/logo-temp.7253b346.svg"
   },
   {
-    "revision": "11dbd569fcf0f7533871822e64f5e8ec",
+    "revision": "efd23c4dae4c008bfba6900d02bf1c15",
     "url": "https://logostory.github.io/orderbook-frontend/index.html"
   }
 ];
