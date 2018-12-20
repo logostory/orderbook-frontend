@@ -6,7 +6,8 @@ import NoSsr from '@material-ui/core/NoSsr';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.paper,
+      zIndex: 2,
   },
   tabs: {
     backgroundColor: '#3eafa2',
@@ -17,12 +18,12 @@ const styles = theme => ({
   tabBtn: {
     minWidth: 120,
     width: 120,
-    height: 48
+      height: 48,
   }
 });
 
 const CategoryList = ({
-                        classes, theme, categories, onClick, value,
+                          classes, theme, categories, onClick, value, style,
                       }) => {
   const categoryList = categories.map(item => (
     <Tab
@@ -31,7 +32,8 @@ const CategoryList = ({
         key={item.categoryId}
         label={item.categoryName}
         href={`#tab_${item.categoryId}`}
-        onClick={() => {
+        onClick={(e) => {
+            e.preventDefault();
         onClick(item.categoryId);
       }}
         classes={{selected: classes.tabsColor}}
@@ -39,7 +41,7 @@ const CategoryList = ({
   ));
 
   return (
-    <div className={classes.root}>
+      <div className={classes.root} style={style}>
       <NoSsr>
         <Tabs
           classes={{
