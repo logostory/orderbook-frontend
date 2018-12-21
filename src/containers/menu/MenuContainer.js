@@ -25,6 +25,7 @@ class MenuContainer extends Component {
         const children = e.target.childNodes;
         const {selectedCategory, MenuActions} = this.props;
         for (let i = 0, height = 0, chgID; i < children.length; i++) {
+            console.log(children[i]);
             if (children[i].id === '') continue;
             height += children[i].scrollHeight;
             if (e.target.scrollTop < height) {
@@ -64,7 +65,7 @@ class MenuContainer extends Component {
                     onOrder={this.handleAddToOrder}
                 />
                 <StickyContainer>
-                    <Sticky topOffset={-76}>
+                    <Sticky topOffset={-74}>
                         {({
                               style,
                               isSticky,
@@ -81,8 +82,8 @@ class MenuContainer extends Component {
                     <MenuList
                         products={products}
                         categories={categories}
-                        onScroll={this.handleScroll}
                         onClick={this.handleClickMenu}
+                        onScroll={(e) => this.handleScroll(e)}
                     />
                 </StickyContainer>
             </div>
@@ -92,9 +93,11 @@ class MenuContainer extends Component {
 }
 
 const containerStyle = {
-    height: window.screen.height,
-    maxHeight: window.screen.height,
+    height: window.screen.height - 60,
+    maxHeight: window.screen.height - 60,
     overflow: 'auto',
+    marginBottom: 70,
+    '-webkit-overflow-scrolling': 'scroll',
 };
 
 const mapStateToProps = ({menu}) => ({

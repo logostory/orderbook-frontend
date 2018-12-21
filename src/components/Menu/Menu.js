@@ -53,6 +53,7 @@ const styles = theme => ({
     color: 'rgba(0,0,0,0.87)',
     marginTop: 5,
     marginBottom: 3,
+      marginRight: 16,
   },
   secondTextLine: {
     display: 'inline-block',
