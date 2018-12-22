@@ -9,11 +9,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import CloseIcon from '@material-ui/icons/Close';
+
+import MenuDetail from './MenuDetail';
 
 
 const styles = {
@@ -76,37 +77,6 @@ const styles = {
         textAlign: 'end',
         color: 'rgba(0, 0, 0, 0.6)',
     },
-    optionList: {
-        paddingTop: '0px',
-        paddingBottom: '0px',
-    },
-    checkbox: {
-        padding: '12px 16px 12px 0px',
-    },
-    options: {
-        padding: 0,
-    },
-    optionTitleText: {
-        fontFamily: 'Roboto',
-        fontSize: '16px',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        lineHeight: 1.5,
-        letterSpacing: '0.2px',
-        color: 'rgba(0, 0, 0, 0.87)',
-    },
-    optionPriceeText: {
-        fontFamily: 'Roboto',
-        fontSize: '12px',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        lineHeight: 1.33,
-        letterSpacing: '0.4px',
-        textAlign: 'end',
-        color: 'rgba(0, 0, 0, 0.87)',
-    },
     footer: {
         display: 'flex',
         justifyContent: 'flex-end',
@@ -131,7 +101,7 @@ const styles = {
 };
 
 const MenuProfile = ({
-    classes, onOpen, onClose, onOrder, Image, Menu, Options,
+    classes, onOpen, onClose, onOrder, Menu,
 }) => (
     <React.Fragment>
         <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
@@ -158,19 +128,7 @@ const MenuProfile = ({
             </List>
             <Divider />
             <List className={classes.list}>
-                { Menu.options !== undefined ? Menu.options.map(key => (
-                    <ListItem className={classes.optionList}>
-                        <Checkbox
-                            className={classes.checkbox}
-                            checked={false}
-                            value={key}
-                        />
-                        <ListItemText className={classes.options} primary={<Typography className={classes.optionTitleText} variant="subtitle1">{key.optionName}</Typography>} />
-                        <ListItemText className={classes.options} primary={<Typography className={classes.optionPriceeText} variant="caption">{ `${util.priceFormat(key.optionPrice)} won`}</Typography>} />
-                    </ListItem>
-                ))
-                    : <ListItem />
-                }
+                <MenuDetail options={Menu.options} />
             </List>
             <Divider />
             <List className={classes.list}>
