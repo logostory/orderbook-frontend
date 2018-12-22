@@ -89,7 +89,7 @@ const Menu = ({product, classes, onClick}) => {
                               className={classes.secondTextLine}>
                     {/*menuComment 추가 되면 수정 */}
                     {/*<p>{menuComment}</p>*/}
-                    <p className={classes.menuComment}>메뉴설명</p>
+                    <span className={classes.menuComment}>메뉴설명</span>
                   </Typography>
                 </React.Fragment>
             )}
