@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import OrderConfirm from "../components/Order/OrderConfirm";
+import {withRouter} from "react-router-dom";
 
-class OrderConfirmPage extends Component {
+class OrderConfirmPage extends React.Component {
+
+    handleClickConfirm = (e) => {
+        const { history } = this.props;
+        history.push('/basic');
+    };
+
+    handleClickAbout = (e) => {
+        const { history } = this.props;
+    };
+
     render() {
-
+        const { handleClickConfirm, handleClickAbout } = this;
         return (
-            <React.Fragment>
-
-            </React.Fragment>
+            <OrderConfirm handleClickConfirm={handleClickConfirm} handleClickAbout={handleClickAbout}/>
         );
     }
 }
-export default OrderConfirmPage;
+
+export default withRouter(OrderConfirmPage);
