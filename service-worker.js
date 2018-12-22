@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://logostory.github.io/orderbook-frontend/precache-manifest.67e542a5ccaaab482a2f416ea4843b6b.js"
+  "https://logostory.github.io/orderbook-frontend/precache-manifest.7e7b170c6bf537fef0ccea9eea534a83.js"
 );
 
 workbox.clientsClaim();
