@@ -60,16 +60,30 @@ class errPageHandler extends Component {
             title: 'Page not found.',
             desc: '',
             actionLabel: 'Go to home',
+            actionClick: './basic',
         },
     }
 
+    handleClick = (e) => {
+        /*
+        라우트로 설정한 컴포넌트는, history, location, match 3가지의 props 를 전달받게 됩니다:
+        이중에서 history 이 객체의 push, replace 를 통해 다른 경로로 이동하거나 앞 뒤 페이지로 전환 할 수 있습니다.
+        이 Loading 페이지에서는 Router를 통해서 로딩페이지가 '/basic' 페이지로 이동하는 링크를 만들기 위해서 .push를 사용합니다.
+        */
+        const { history } = this.props;
+        history.push('/basic');
+    };
+
     render() {
-        const { classes, handleClick } = this.props;
+        const { classes } = this.props;
         const {
-            code, title, desc, actionLabel,
+            code, title, desc, actionLabel, actionClick,
         } = this.props.error;
 
         // const imgUrl = `/Assets/svg/${code}.svg`; // 이런 식으로 좀 동적으로 관리하고 싶은데...
+
+        const { handleClick } = this;
+
 
         return (
             <Fragment>
@@ -114,6 +128,7 @@ class errPageHandler extends Component {
 
 errPageHandler.propTypes = {
     classes: PropTypes.object.isRequired,
+    handleClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(errPageHandler);
