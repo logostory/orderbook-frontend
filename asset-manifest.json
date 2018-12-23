@@ -1,7 +1,7 @@
 {
   "main.css": "https://logostory.github.io/orderbook-frontend/static/css/main.741f2e60.chunk.css",
-  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.b24ddea4.chunk.js",
-  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.b24ddea4.chunk.js.map",
+  "main.js": "https://logostory.github.io/orderbook-frontend/static/js/main.3061e6b7.chunk.js",
+  "main.js.map": "https://logostory.github.io/orderbook-frontend/static/js/main.3061e6b7.chunk.js.map",
   "static/js/1.c1e03426.chunk.js": "https://logostory.github.io/orderbook-frontend/static/js/1.c1e03426.chunk.js",
   "static/js/1.c1e03426.chunk.js.map": "https://logostory.github.io/orderbook-frontend/static/js/1.c1e03426.chunk.js.map",
   "runtime~main.js": "https://logostory.github.io/orderbook-frontend/static/js/runtime~main.c06beff0.js",
@@ -16,6 +16,6 @@
   "static/media/logostory.jpg": "https://logostory.github.io/orderbook-frontend/static/media/logostory.5850e49c.jpg",
   "static/css/main.741f2e60.chunk.css.map": "https://logostory.github.io/orderbook-frontend/static/css/main.741f2e60.chunk.css.map",
   "index.html": "https://logostory.github.io/orderbook-frontend/index.html",
-  "precache-manifest.b88014a5a935f85740a02faf7d9ffb60.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.b88014a5a935f85740a02faf7d9ffb60.js",
+  "precache-manifest.a51fc4c2564f1b8633f5cf8a1db09c47.js": "https://logostory.github.io/orderbook-frontend/precache-manifest.a51fc4c2564f1b8633f5cf8a1db09c47.js",
   "service-worker.js": "https://logostory.github.io/orderbook-frontend/service-worker.js"
 }
