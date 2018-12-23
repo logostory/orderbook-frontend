@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "1547086b976b47046f14ce2f33f3af3c",
-    "url": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg"
+    "revision": "7253b3463fa35ad56d65333cec8f7a4e",
+    "url": "https://logostory.github.io/orderbook-frontend/static/media/logo-temp.7253b346.svg"
   },
   {
-    "revision": "64118ec4256a7e21d5de",
-    "url": "https://logostory.github.io/orderbook-frontend/static/css/main.7cc50c39.chunk.css"
+    "revision": "b24ddea4a4bb4138a56d",
+    "url": "https://logostory.github.io/orderbook-frontend/static/css/main.741f2e60.chunk.css"
   },
   {
-    "revision": "7dd550935a8064ecc8f0",
-    "url": "https://logostory.github.io/orderbook-frontend/static/js/1.7dd55093.chunk.js"
+    "revision": "c1e03426f444a4c6b869",
+    "url": "https://logostory.github.io/orderbook-frontend/static/js/1.c1e03426.chunk.js"
   },
   {
     "revision": "c06beff04608f363c580",
@@ -24,8 +24,12 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/logostory.5850e49c.jpg"
   },
   {
-    "revision": "64118ec4256a7e21d5de",
-    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.64118ec4.chunk.js"
+    "revision": "b24ddea4a4bb4138a56d",
+    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.b24ddea4.chunk.js"
+  },
+  {
+    "revision": "1547086b976b47046f14ce2f33f3af3c",
+    "url": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg"
   },
   {
     "revision": "a50ff34191d10c5d9b4dd6914120aa9b",
@@ -40,11 +44,11 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/custom_icon_remove.9e214224.svg"
   },
   {
-    "revision": "7253b3463fa35ad56d65333cec8f7a4e",
-    "url": "https://logostory.github.io/orderbook-frontend/static/media/logo-temp.7253b346.svg"
+    "revision": "0228c16b978899c8d4fc16af98ccf0eb",
+    "url": "https://logostory.github.io/orderbook-frontend/static/media/404.0228c16b.svg"
   },
   {
-    "revision": "46b043193c98514c67976c0117d1c2a6",
+    "revision": "9698b7cd4bf4ebe691d0af63c64f1bf4",
     "url": "https://logostory.github.io/orderbook-frontend/index.html"
   }
 ];
