@@ -1,18 +1,64 @@
 import React from 'react';
-import {Button, Grid, Typography} from "@material-ui/core";
+import {Button, AppBar, Grid, Typography} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
+import standingCopy from "Assets/svg/standing-copy.svg";
 
 const styles = theme => ({
     root: {
         position: 'absolute',
         width: '100%',
-        bottom: '100px',
-        display: 'flex',
-        flexFlow: 'column',
+        bottom: '16px',
         padding: '0 2rem',
-        [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {
-            width: '360px',
+    },
+    appBar: {
+        width: '100%',
+        height: '56px',
+        backgroundColor: '#ff4a5b',
+    },
+    title: {
+        fontFamily: 'Roboto',
+        fontSize: '20px',
+        fontWeight: '500',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: 'normal',
+        letterSpacing: '0.3px',
+        textAlign: 'center',
+        color: '#ffffff'
+    },
+    order: {
+        fontFamily: 'Roboto',
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: '1.5',
+        letterSpacing: '0.2px',
+        textAlign: 'center',
+        color: 'rgba(0, 0, 0, 0.6)',
+    },
+    orderNumber: {
+        fontFamily: 'Roboto',
+        fontSize: '48px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        textAlign: 'center',
+        color: 'rgba(0, 0, 0, 0.87)',
+    },
+    aboutBtn: {
+        marginTop: '12px',
+        width: '100%',
+        height: '48px',
+        color: '#ff4a5b',
+        backgroundColor: 'c',
+        '&:hover': {
+            backgroundColor: '#ffffff',
         },
+        '&:active': {
+            backgroundColor: '#ffffff',
+        },
+        outlineColor: '#ff4a5b'
     },
     button: {
         marginTop: '12px',
@@ -27,6 +73,12 @@ const styles = theme => ({
             backgroundColor: '#ff4a5b',
         },
     },
+    img: {
+        width: '100px',
+        height: '140px',
+        objectFit: 'contain',
+        align: 'center'
+    }
 });
 
 
@@ -34,25 +86,31 @@ const styles = theme => ({
 class OrderConfirm extends React.Component {
 
     render() {
-        const { classes, handleClickConfirm, handleClickAbout } = this.props;
+        const { classes, handleClickConfirm, handleClickAbout, orderNumber } = this.props;
 
         return (
-            <Grid container className={classes.root}>
+            <React.Fragment className={classes.root}>
+                <AppBar position="static" className={classes.appBar}>
+                    <Typography className={classes.title}>Done !</Typography>
+                </AppBar>
                 <Grid>
-                    <Typography>Your order number is:</Typography>
-                    <Typography>A21</Typography>
+                    <Typography className={classes.order}>Your order number is:</Typography>
+                    <Typography className={classes.orderNumber}>{orderNumber}</Typography>
+                    <img className={classes.img} src={`${standingCopy}`} alt="" />
                 </Grid>
                 <Grid>
-                    <Typography>Please wait while your</Typography>
-                    <Typography>meal is being prepared.</Typography>
+                    <Typography className={classes.order}>Please wait while your</Typography>
+                    <Typography className={classes.order}>meal is being prepared.</Typography>
                 </Grid>
-                <Button classes={{
-                    root: classes.button
-                }} onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
-                <Button classes={{
-                    root: classes.button
-                }} onClick={handleClickConfirm}>CONFIRM</Button>
-            </Grid>
+                <Grid>
+                    <Button classes={{
+                        root: classes.aboutBtn
+                    }} onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
+                    <Button classes={{
+                        root: classes.button
+                    }} onClick={handleClickConfirm}>CONFIRM</Button>
+                </Grid>
+            </React.Fragment>
         );
     }
 };

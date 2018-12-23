@@ -16,7 +16,7 @@ class OrderConfirmPage extends React.Component {
     render() {
         const { handleClickConfirm, handleClickAbout } = this;
         return (
-            <OrderConfirm handleClickConfirm={handleClickConfirm} handleClickAbout={handleClickAbout}/>
+            <OrderConfirm handleClickConfirm={handleClickConfirm} handleClickAbout={handleClickAbout} orderNumber={'A21'}/>
         );
     }
 }
