@@ -55,30 +55,30 @@ const styles = theme => ({
 
 class errPageHandler extends Component {
     static defaultProps = {
-        error: {
-            code: '404',
-            title: 'Page not found.',
-            desc: '',
-            actionLabel: 'Go to home',
-            actionClick: './basic',
-        },
+        code: '404',
+        title: 'Page not found.',
+        desc: '',
+        actionLabel: 'Go to home',
+        actionClick: './basic',
     }
 
     handleClick = (e) => {
+        const { history } = this.props;
+
         /*
         라우트로 설정한 컴포넌트는, history, location, match 3가지의 props 를 전달받게 됩니다:
         이중에서 history 이 객체의 push, replace 를 통해 다른 경로로 이동하거나 앞 뒤 페이지로 전환 할 수 있습니다.
         이 Loading 페이지에서는 Router를 통해서 로딩페이지가 '/basic' 페이지로 이동하는 링크를 만들기 위해서 .push를 사용합니다.
         */
-        const { history } = this.props;
+
+        // history.push(e);
         history.push('/basic');
     };
 
     render() {
-        const { classes } = this.props;
         const {
-            code, title, desc, actionLabel, actionClick,
-        } = this.props.error;
+            classes, code, title, desc, actionLabel, actionClick,
+        } = this.props;
 
         // const imgUrl = `/Assets/svg/${code}.svg`; // 이런 식으로 좀 동적으로 관리하고 싶은데...
 
@@ -98,7 +98,9 @@ class errPageHandler extends Component {
                             gutterBottom
                             className={classes.title}
                         >
-                            {title}
+                            {code} 
+{' '}
+{title}
                         </Typography>
                         <Typography
                             variant="h5"
