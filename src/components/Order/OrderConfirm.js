@@ -14,6 +14,7 @@ const styles = theme => ({
         width: '100%',
         height: '56px',
         backgroundColor: '#ff4a5b',
+        marginBottom: '58px'
     },
     title: {
         fontFamily: 'Roboto',
@@ -24,7 +25,9 @@ const styles = theme => ({
         lineHeight: 'normal',
         letterSpacing: '0.3px',
         textAlign: 'center',
-        color: '#ffffff'
+        color: '#ffffff',
+        marginTop: '15px',
+        marginBottom: '17px'
     },
     order: {
         fontFamily: 'Roboto',
@@ -47,7 +50,7 @@ const styles = theme => ({
         color: 'rgba(0, 0, 0, 0.87)',
     },
     aboutBtn: {
-        marginTop: '12px',
+
         width: '100%',
         height: '48px',
         color: '#ff4a5b',
@@ -58,10 +61,11 @@ const styles = theme => ({
         '&:active': {
             backgroundColor: '#ffffff',
         },
-        outlineColor: '#ff4a5b'
+        marginTop: '58px',
+        marginLeft: '16px',
+        marginRight: '16px'
     },
     button: {
-        marginTop: '12px',
         width: '100%',
         height: '48px',
         color: 'white',
@@ -72,12 +76,18 @@ const styles = theme => ({
         '&:active': {
             backgroundColor: '#ff4a5b',
         },
+        marginTop: '16px',
+        marginLeft: '16px',
+        marginRight: '16px',
+        marginBottom: '16px',
     },
     img: {
         width: '100px',
         height: '140px',
         objectFit: 'contain',
-        align: 'center'
+        align: 'center',
+        marginTop: '24px',
+        marginBottom:' 24px'
     }
 });
 
@@ -103,7 +113,7 @@ class OrderConfirm extends React.Component {
                     <Typography className={classes.order}>meal is being prepared.</Typography>
                 </Grid>
                 <Grid>
-                    <Button classes={{
+                    <Button variant="outlined" classes={{
                         root: classes.aboutBtn
                     }} onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
                     <Button classes={{
