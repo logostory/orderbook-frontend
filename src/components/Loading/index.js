@@ -2,9 +2,7 @@ import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Fade } from '@material-ui/core';
 import logoTemp from 'Assets/svg/logo-temp.svg';
-// import { Redirect } from 'react-router-dom';
 import StartDisplay from './StartDisplay';
-// import Keyframes from './keyframes.css';
 
 const height = '-5rem';
 const styles = theme => ({
@@ -14,7 +12,7 @@ const styles = theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {
+        '@media screen and (max-width: 360px) and  (orientation: portrait)': {
             width: '360px',
         },
     },

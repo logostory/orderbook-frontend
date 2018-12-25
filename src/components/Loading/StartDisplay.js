@@ -1,6 +1,8 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Fade, Grid, Typography, Button } from '@material-ui/core';
+import {
+    Fade, Grid, Typography, Button,
+} from '@material-ui/core';
 
 const styles = theme => ({
     root: {
@@ -10,7 +12,7 @@ const styles = theme => ({
         display: 'flex',
         flexFlow: 'column',
         padding: '0 2rem',
-        [`@media screen and (max-width: 360px) and  (orientation: portrait)`]: {
+        '@media screen and (max-width: 360px) and  (orientation: portrait)': {
             width: '360px',
         },
     },
@@ -45,21 +47,24 @@ const styles = theme => ({
     },
 });
 
-const StartDisplay = ({ classes, handleClick }) => {
-    return (
-        <Fade in timeout={1500}>
-            <Grid container className={classes.root}>
-                <Grid className={classes['Take-a-picture-of-QR']}>
-                    <Typography>Take a picture of</Typography>
-                    <Typography>QR code by your</Typography>
-                    <Typography>table to start.</Typography>
-                </Grid>
-                <Button classes={{
-                    root: classes['Rectangle-13']
-                }} onClick={handleClick}>SCAN QR CODE</Button>
+const StartDisplay = ({ classes, handleClick }) => (
+    <Fade in timeout={1500}>
+        <Grid container className={classes.root}>
+            <Grid className={classes['Take-a-picture-of-QR']}>
+                <Typography>Take a picture of</Typography>
+                <Typography>QR code by your</Typography>
+                <Typography>table to start.</Typography>
             </Grid>
-        </Fade>
-    );
-};
+            <Button
+                classes={{
+                    root: classes['Rectangle-13'],
+                }}
+                onClick={handleClick}
+            >
+SCAN QR CODE
+            </Button>
+        </Grid>
+    </Fade>
+);
 
 export default withStyles(styles)(StartDisplay);
