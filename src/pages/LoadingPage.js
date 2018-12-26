@@ -1,29 +1,61 @@
 import React from 'react';
-import Loading from 'components/Loading';
-import { withRouter } from 'react-router-dom';
-// const LoadingPage = () => <Loading />;
+import LoadingContainer from '../containers/LoadingContainer';
 
+/**
+ * TODO
+ *
+ * 1. Module에서 API 구현
+ *
+ * 2. Page는 Container를 렌더링
+ *
+ * 3. Container는 Module과 연결되어 호출
+ *
+ * 4. Container가 적절한 기능을 Component에게 전달
+ *
+ * 5. Container는 Component를 렌더링하고, Component는 화면을 렌더링
+ *
+ * Server: http://api-orderbook.logostory.io/
+ * ShopId: 2
+ * Basic Auth: orderbook:secret
+ * Access Token: c6c9daef-fd38-4cfa-8c35-2b08c965607c
+ *
+ * 1. OAuth 토큰 발행
+ *    POST /oauth/token
+ *      - Content-Type: application/x-www-form-urlencoded
+ *      - Authorization: basic b3JkZXJib29rOnNlY3JldA==
+ *
+ * 2. GET /v1/api/shops/{shopId}
+ *      - Authorization: bearer
+ * 3. GET /v1/api/shops/{shopId}/categories
+ * 4. GET /v1/api/shops/{shopId}/menus
+ */
 class LoadingPage extends React.Component {
-    handleClick = (e) => {
-        /*
-        라우트로 설정한 컴포넌트는, history, location, match 3가지의 props 를 전달받게 됩니다:
-        이중에서 history 이 객체의 push, replace 를 통해 다른 경로로 이동하거나 앞 뒤 페이지로 전환 할 수 있습니다.
-        이 Loading 페이지에서는 Router를 통해서 로딩페이지가 '/basic' 페이지로 이동하는 링크를 만들기 위해서 .push를 사용합니다.
-        */
+    constructor() {
+        super();
+
+        this.moveToNextPage = this.moveToNextPage.bind(this);
+    }
+
+    // 로딩 이후 전환 시 호출되는 메소드
+    moveToNextPage() {
         const { history } = this.props;
+
         history.push('/basic');
     }
 
     render() {
-        const { handleClick } = this;
-        return (<Loading handleClick={handleClick} />);
+        return <LoadingContainer moveToNextPage={this.moveToNextPage} />;
     }
 }
 
-// ?? Loading page에서만 withRouter를 사용해서 export한 이유가 있나요?
 /*
-https://velopert.com/3417
-https://reacttraining.com/react-router/web/api/withRouter
-*/
+Q:
+    withRouter를 Page에도 쓸 필요가 있는가?
 
-export default withRouter(LoadingPage);
+A:
+    <Route exact path="/" component={LoadingPage} /> 와 같이
+    Route의 component로 전달되는 컴포넌트에는 React-router가 제공하는
+    props가 기본적으로 전달되므로, withRouter HoC를 쓸 필요가 없습니다.
+
+*/
+export default LoadingPage;
