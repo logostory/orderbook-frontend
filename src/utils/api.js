@@ -3,13 +3,12 @@ import ServerConfig from 'ServerConfig';
 
 const api = axios.create({
     baseURL: ServerConfig.ROOT_URL,
-    auth: {
-        username: 'orderbook',
-        password: 'secret',
-    },
 });
 
-// axios global config
+api.addInterceptor = (onFulfilled, onRejected) => {
+    api.interceptors.request.use(onFulfilled, onRejected);
+};
+
 // json => 'application/json'
 // form => 'application/x-www-form-urlencoded'
 api.setContentType = (type) => {

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { requestToken, getAccessToken } from 'modules/OAuth';
+import { requestNewAccessToken, getAccessToken } from 'modules/OAuth';
 import Loading from 'components/Loading';
 
 class OAuthContainer extends Component {
     // 컨테이너 로딩 시점
     componentDidMount() {
-        const { requestToken: req } = this.props;
+        const { requestToken: askOAuthToken } = this.props;
 
-        // OAuth 토큰 요청
-        req();
+        askOAuthToken();
     }
 
     render() {
@@ -27,7 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    requestToken,
+    requestToken: requestNewAccessToken,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OAuthContainer);
