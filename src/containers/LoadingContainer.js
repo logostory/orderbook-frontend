@@ -13,11 +13,18 @@ class OAuthContainer extends Component {
     }
 
     render() {
-        const { handleClick, accessToken } = this.props;
+        const { moveToNextPage, accessToken } = this.props;
 
-        if (accessToken === null) { return null; }
+        const accessTokenIsLoaded = accessToken !== null && accessToken !== undefined;
+        const shopApiIsLoaded = true;
+        const done = accessTokenIsLoaded && shopApiIsLoaded;
 
-        return <Loading handleClick={handleClick} />;
+        return (
+            <Loading
+                done={done}
+                moveToNextPage={moveToNextPage}
+            />
+        );
     }
 }
 

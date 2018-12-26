@@ -79,6 +79,12 @@ const LoadingBar = withStyles({
     },
 })(LinearProgress);
 
+/*
+    로딩 바는 시작하고 나서 알아서 상승하도록 만들었습니다.
+
+    모든 API의 로딩이 완료되고 나면 로딩바가 100%가 되고,
+    이후 화면이 전환됩니다.
+*/
 class Loading extends React.Component {
     state = {
         completed: 0,
@@ -94,18 +100,27 @@ class Loading extends React.Component {
 
     progress = () => {
         const { completed } = this.state;
+        const { done, moveToNextPage } = this.props;
+
+        // 로딩 바 100% 시 전환
         if (completed === 100) {
-            this.setState({ completed: 0 });
+            moveToNextPage();
         } else {
             const diff = Math.random() * 10;
-            this.setState({ completed: Math.min(completed + diff, 100) });
+            this.setState({ completed: Math.min(completed + diff, 90) });
+        }
+
+        // API 호출 완료 시 로딩바 100%로
+        if (done) {
+            this.setState({ completed: 100 });
         }
     };
 
     render() {
-        const { classes, handleClick } = this.props;
+        const { classes } = this.props;
         const { completed } = this.state;
 
+        // Grid 부분은 제가 CSS를 잘 못해서 기존거 그냥 사용했습니다 :3
         return (
             <div className={classes.root}>
                 <Fade in timeout={1000}>

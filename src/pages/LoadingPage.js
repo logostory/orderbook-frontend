@@ -1,5 +1,5 @@
 import React from 'react';
-import OAuthContainer from '../containers/OAuthContainer';
+import LoadingContainer from '../containers/LoadingContainer';
 
 /**
  * TODO
@@ -33,16 +33,18 @@ class LoadingPage extends React.Component {
     constructor() {
         super();
 
-        this.handleClick = this.handleClick.bind();
+        this.moveToNextPage = this.moveToNextPage.bind(this);
     }
 
-    handleClick = () => {
+    // 로딩 이후 전환 시 호출되는 메소드
+    moveToNextPage() {
         const { history } = this.props;
+
         history.push('/basic');
     }
 
     render() {
-        return <OAuthContainer handleClick={this.handleClick} />;
+        return <LoadingContainer moveToNextPage={this.moveToNextPage} />;
     }
 }
 
