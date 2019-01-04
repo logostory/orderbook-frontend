@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/baseline-chevron_left-24px.1547086b.svg"
   },
   {
-    "revision": "be06a7d2d1f3a55a7b49",
+    "revision": "8161cd1a2f1bca32f282",
     "url": "https://logostory.github.io/orderbook-frontend/static/css/main.3fef81df.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/logostory.5850e49c.jpg"
   },
   {
-    "revision": "be06a7d2d1f3a55a7b49",
-    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.be06a7d2.chunk.js"
+    "revision": "8161cd1a2f1bca32f282",
+    "url": "https://logostory.github.io/orderbook-frontend/static/js/main.8161cd1a.chunk.js"
   },
   {
     "revision": "a50ff34191d10c5d9b4dd6914120aa9b",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "https://logostory.github.io/orderbook-frontend/static/media/404.0228c16b.svg"
   },
   {
-    "revision": "c4a80ce2592701829f01c3827701f791",
+    "revision": "a2f14f9b7842b416c76f37efd54cca5d",
     "url": "https://logostory.github.io/orderbook-frontend/index.html"
   }
 ];
