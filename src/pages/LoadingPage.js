@@ -1,4 +1,7 @@
 import React from 'react';
+import queryString from 'query-string';
+
+import api from 'utils/api';
 import LoadingContainer from '../containers/LoadingContainer';
 
 /**
@@ -38,9 +41,16 @@ class LoadingPage extends React.Component {
 
     // 로딩 이후 전환 시 호출되는 메소드
     moveToNextPage() {
-        const { history } = this.props;
+        const { history, location: { search } } = this.props;
+        const { shopId } = queryString.parse(search);
+        console.log(`shopId:${shopId}`);
 
-        history.push('/basic');
+        api.get(`/v1/api/shops/${shopId}`)
+            .then(({ data }) => {
+                console.log(data);
+
+                history.push('/basic');
+            });
     }
 
     render() {
