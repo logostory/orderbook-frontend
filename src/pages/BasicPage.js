@@ -7,7 +7,7 @@ const BasicPage = () => (
     <div>
         <Header title="Menu" hideBackBtn />
         <MenuContainer />
-        <Footer />
+        <Footer totalPrice={9000} />
     </div>
 );
 
