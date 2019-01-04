@@ -25,8 +25,10 @@ const styles = {
         padding: 0,
     },
     image: {
-        width: '338px',
         height: '183px',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '50% 50%',
     },
     list: {
         paddingTop: '2px',
@@ -108,7 +110,7 @@ const MenuProfile = ({
             <IconButton className={classes.closeBtn} onClick={onClose}>
                 <CloseIcon />
             </IconButton>
-            <img className={classes.image} src={Menu.productImage} alt="menu" />
+            <div className={classes.image} style={{ backgroundImage: `url(${Menu.productImage})` }} />
             <List className={classes.list}>
                 <ListItem className={classes.menu}>
                     <ListItemText
