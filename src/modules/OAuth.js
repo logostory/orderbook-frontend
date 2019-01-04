@@ -41,7 +41,7 @@ const dispatchToken = (dispatch, accessToken, refreshToken) => {
 const commonRequestToken = getFormData => (dispatch, getState) => {
     prepareOAuth();
 
-    api.post('/oauth/token', getFormData(getState))
+    return api.post('/oauth/token', getFormData(getState))
         .then(({ data }) => {
             const { access_token: accessToken, refresh_token: refreshToken } = data;
 
@@ -54,6 +54,7 @@ const commonRequestToken = getFormData => (dispatch, getState) => {
 /* Action Creators */
 /* 토큰 발행 */
 export const requestNewAccessToken = () => {
+    console.log('new token...');
     // 1. formData 준비
     const getFormData = () => api.convertBodyAsFormUrlEncoded(ServerConfig.TOKEN_AUTH_FORM);
 
@@ -63,6 +64,8 @@ export const requestNewAccessToken = () => {
 
 /* 토큰 리프레시 */
 export const requestTokenRefresh = () => {
+    console.log('refreshing token...');
+
     // 1. formData 준비
     const getFormData = getState => api.convertBodyAsFormUrlEncoded({
         refresh_token: getRefreshToken(getState()),
@@ -89,14 +92,16 @@ export const requestTokenRefresh = () => {
         ]
     }
 */
-export const checkToken = () => {
+export const checkToken = (accessToken) => {
     // 1. AUTHRIZATION 헤더 변경
     api.setAccessToken(ServerConfig.TOKEN_AUTHORIZATION);
 
     // 2. Content-Type 변경
     api.setContentType('application/x-www-form-urlencoded');
 
-    const formData = api.convertBodyAsFormUrlEncoded(ServerConfig.TOKEN_AUTH_FORM);
+    const formData = api.convertBodyAsFormUrlEncoded({
+        token: accessToken,
+    });
 
     // 3. active를 받아서 반환
     return api.post('/oauth/check_token', formData);

@@ -10,4 +10,4 @@
 
 ### URL 사용
 
-[클릭](http://orderbook.logostory.io?shopId=2)
+[클릭](http://orderbook.logostory.io/#?shopId=2)

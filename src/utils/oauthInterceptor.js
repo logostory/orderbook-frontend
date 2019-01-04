@@ -1,4 +1,5 @@
-import { checkToken, requestTokenRefresh } from 'modules/OAuth';
+import { checkToken, getAccessToken, requestTokenRefresh } from 'modules/OAuth';
+import { access } from 'fs';
 import api from './api';
 
 // 발급, 조회 시에 무한 루프가 걸리게 됨
@@ -17,15 +18,20 @@ const configureAndConnectOAUthInterceptor = ({ dispatch, getState }) => {
             return AxiosRequestConfig;
         }
 
+        const accessToken = getAccessToken(getState());
+
         return new Promise((resolve) => {
-            checkToken()
-                .then((active) => {
+            checkToken(accessToken)
+                .then(({ data: { active } }) => {
                     // 리프레시 필요 없음
-                    if (active) { resolve(AxiosRequestConfig); }
+                    if (active) {
+                        resolve(AxiosRequestConfig);
+                        return;
+                    }
 
                     // interceptor는 Redux Store에 connect될 수 없기 때문에
                     // dispatch, getState를 직접 전달
-                    return requestTokenRefresh()(dispatch, getState)
+                    requestTokenRefresh()(dispatch, getState)
                         .then(() => resolve(AxiosRequestConfig));
                 });
         });
