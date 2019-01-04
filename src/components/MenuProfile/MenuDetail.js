@@ -42,7 +42,6 @@ const styles = {
     },
 };
 
-
 class MenuDetail extends Component {
     state = {
         optionState: [],
@@ -55,14 +54,15 @@ class MenuDetail extends Component {
         const array = [];
 
         if (options !== undefined) {
-            options.map(key => (
-                key.check = false,
-                array.push(key)
-            ));
+            options.forEach((key) => {
+                key.check = false;
+                array.push(key);
+            });
 
             this.setState({
                 optionState: optionState.concat(array),
             });
+            console.log('array:', array);
         }
     }
 
