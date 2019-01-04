@@ -53,8 +53,7 @@ class MenuContainer extends Component {
         const {
             openDig, categories, selectedCategory, products, selectedMenu,
         } = this.props;
-        // console.log(selectedMenu);
-
+        const topMargin = 56;
         return (
             <div style={containerStyle}>
 
@@ -70,7 +69,7 @@ class MenuContainer extends Component {
                     onOrder={this.handleAddToOrder}
                 />
                 <StickyContainer>
-                    <Sticky topOffset={-76}>
+                    <Sticky topOffset={topMargin * -1}>
                         {({
                             style,
                             isSticky,
@@ -78,7 +77,7 @@ class MenuContainer extends Component {
                             <CategoryList
                                 style={{
                                     ...style,
-                                    marginTop: isSticky ? '76px' : '0px',
+                                    marginTop: isSticky ? `${topMargin}px` : '0px',
                                 }}
                                 categories={categories}
                                 value={selectedCategory}
@@ -94,7 +93,6 @@ class MenuContainer extends Component {
                     />
                 </StickyContainer>
             </div>
-
         );
     }
 }
