@@ -3,11 +3,9 @@ import Header from '../components/Header';
 import MenuContainer from '../containers/menu/MenuContainer';
 import Footer from '../components/Footer';
 
-import Image from '../Assets/logostory.jpg';
-
 const BasicPage = () => (
     <div>
-        <Header />
+        <Header title="Menu" hideBackBtn />
         <MenuContainer />
         <Footer />
     </div>
