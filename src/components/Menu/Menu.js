@@ -5,8 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import StringUtils from 'utils/StringUtils';
 
-const styles = theme => ({
+const styles = () => ({
     ListItemLink: {
         padding: 0,
         height: 88,
@@ -71,10 +72,6 @@ const styles = theme => ({
     },
 });
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
-
 const ListItemLink = props => (
     <ListItem
         button
@@ -87,28 +84,29 @@ const ListItemLink = props => (
 
 const Menu = ({ product, classes, onClick }) => {
     const {
-        productName, productPrice, categoryId, productId, productImage, menuComment = '메뉴설명',
+        name, price, menuId, imagePath, comment,
     } = product;
 
-    const priceWithCommas = numberWithCommas(productPrice);
+    // 가격을 천 단위로 Comma 찍어서 반환하는 함수
+    const priceWithCommas = StringUtils.formatPrice(price);
 
     return (
         <ListItemLink
             className={classes.ListItemLink}
-            onClick={() => onClick(productId)}
+            onClick={() => onClick(menuId)}
         >
             <ListItemAvatar>
                 <Avatar
                     className={classes.avatar}
                     alt="Remy Sharp"
-                    src={productImage}
+                    src={imagePath}
                 />
             </ListItemAvatar>
             <ListItemText
                 className={classes.listTextArea}
                 primary={(
                     <span className={classes.firstTextLine}>
-                        <p className={classes.productName}>{productName}</p>
+                        <p className={classes.productName}>{name}</p>
                         <p className={classes.price}>{`${priceWithCommas} won`}</p>
                     </span>
                 )}
@@ -118,7 +116,7 @@ const Menu = ({ product, classes, onClick }) => {
                             component="span"
                             className={classes.secondTextLine}
                         >
-                            <span className={classes.menuComment}>{menuComment}</span>
+                            <span className={classes.menuComment}>{comment}</span>
                         </Typography>
                     </React.Fragment>
                 )}

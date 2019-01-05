@@ -1,7 +1,7 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import * as util from 'utils/utils';
+import StringUtils from 'utils/StringUtils';
 
 // eslint-disable-next-line no-unused-vars
 const styles = theme => ({
@@ -45,7 +45,7 @@ const CartOptionItem = ({ classes, name, unitPrice }) => (
             {`+ ${name}`}
         </Typography>
         <Typography component="span" className={classes.caption}>
-            {`${util.priceFormat(unitPrice)} won`}
+            {`${StringUtils.formatPrice(unitPrice)} won`}
         </Typography>
     </div>
 );

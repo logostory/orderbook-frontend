@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as menuActions from 'modules/menu';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { CategoryList } from 'components/Category';
+import CategoryList from 'components/Category';
 import { MenuList } from 'components/Menu';
-import MenuProfile from 'components/MenuProfile';
+import MenuDialog from 'components/MenuDialog';
 import StoreProfile from 'components/StoreProfile';
 import Image from '../../Assets/logostory.jpg';
 
@@ -21,17 +21,20 @@ class MenuContainer extends Component {
         MenuActions.clickManu(menuId);
     };
 
+    /*
+        함수형으로 바꿔야
+    */
     handleScroll = (e) => {
         const children = e.target.childNodes;
         const { selectedCategory, MenuActions } = this.props;
-        for (let i = 0, height = 0, chgID; i < children.length; i++) {
+        for (let i = 0, height = 0; i < children.length; i++) {
             if (children[i].id === '') continue;
             height += children[i].scrollHeight;
             if (e.target.scrollTop < height) {
-                chgID = children[i].id.split('_')[1];
+                const [, chgID] = children[i].id.split('_');
                 if (chgID !== selectedCategory) {
                     MenuActions.categoryChange(
-                        parseInt(chgID),
+                        parseInt(chgID, 10), // 10진수
                     );
                 }
                 return;
@@ -53,16 +56,16 @@ class MenuContainer extends Component {
         const {
             openDig, categories, selectedCategory, products, selectedMenu,
         } = this.props;
+
         const topMargin = 56;
         return (
             <div style={containerStyle}>
-
                 <StoreProfile
                     Image={Image}
                     Table="TABLE 17"
                     Title="The Burgur Co"
                 />
-                <MenuProfile
+                <MenuDialog
                     Menu={selectedMenu}
                     onOpen={openDig}
                     onClose={this.handleClickClose}
