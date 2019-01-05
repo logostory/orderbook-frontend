@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import StringUtils from 'utils/StringUtils';
 
 import Dialog from '@material-ui/core/Dialog';
-import IconButton from '@material-ui/core/IconButton';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,16 +12,23 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import CloseIcon from '@material-ui/icons/Close';
-
 import OptionPane from './OptionPane';
 
 const styles = {
-    closeBtn: {
-        position: 'absolute',
-        top: '12px',
-        left: '12px',
-        padding: 0,
+    title: {
+        padding: 14,
+        margin: '0 auto',
+        width: '240px',
+        height: '24px',
+        fontFamily: 'Roboto',
+        fontSize: '20px',
+        fontWeight: '700',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: 'normal',
+        letterSpacing: '0.3px',
+        textAlign: 'center',
+        color: 'rgba(0, 0, 0, 0.87)',
     },
     image: {
         height: '183px',
@@ -79,8 +86,15 @@ const styles = {
         color: 'rgba(0, 0, 0, 0.6)',
     },
     button: {
-        backgroundColor: '#3eafa2',
-        color: '#ffffff',
+        color: '#3eafa2',
+        height: '16px',
+        fontFamily: 'Roboto',
+        fontSize: '14px',
+        fontWeight: '500',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: '1.14',
+        letterSpacing: '1.3px',
     },
 };
 
@@ -99,9 +113,7 @@ const MenuProfile = ({
     return (
         <React.Fragment>
             <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
-                <IconButton className={classes.closeBtn} onClick={onClose}>
-                    <CloseIcon />
-                </IconButton>
+                <DialogTitle className={classes.title}>Menu Detail</DialogTitle>
                 <div className={classes.image} style={{ backgroundImage: `url(${imagePath})` }} />
                 <List className={classes.list}>
                     <ListItem className={classes.menu}>
@@ -124,16 +136,17 @@ const MenuProfile = ({
                 <List className={classes.list}>
                     <OptionPane options={options} menuPrice={price} />
                 </List>
-                <Button variant="contained" className={classes.button} onClick={() => onOrder(Menu)}>
+                <DialogActions>
+                    <Button className={classes.button} onClick={onClose}>
+                    CANCEL
+                    </Button>
+                    <Button className={classes.button} onClick={() => onOrder(Menu)}>
                     ADD TO ORDER
-                </Button>
+                    </Button>
+                </DialogActions>
             </Dialog>
         </React.Fragment>
     );
-};
-
-MenuProfile.propTypes = {
-    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MenuProfile);

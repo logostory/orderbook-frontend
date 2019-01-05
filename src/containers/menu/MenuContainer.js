@@ -57,9 +57,6 @@ class MenuContainer extends Component {
             openDig, categories, selectedCategory, products, selectedMenu,
         } = this.props;
 
-        console.log('Menu Dialog Open:', openDig);
-        console.log('MenuContainer - selectedMenu: ', selectedMenu);
-
         const topMargin = 56;
         return (
             <div style={containerStyle}>
