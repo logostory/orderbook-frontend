@@ -79,16 +79,16 @@ class MenuDetail extends Component {
         const { classes, options } = this.props;
         const { optionState } = this.state;
         return (
-            options !== undefined ? options.map((key, index) => (
+            options !== undefined ? options.map((option, index) => (
                 <ListItem className={classes.optionList}>
                     <Checkbox
                         className={classes.checkbox}
                         checked={optionState[index].check}
-                        value={key}
+                        value={option}
                         onChange={() => this.handleChange(index)}
                     />
-                    <ListItemText className={classes.options} primary={<Typography className={classes.optionTitleText} variant="subtitle1">{key.optionName}</Typography>} />
-                    <ListItemText className={classes.options} primary={<Typography className={classes.optionPriceeText} variant="caption">{ `${util.priceFormat(key.optionPrice)} won`}</Typography>} />
+                    <ListItemText className={classes.options} primary={<Typography className={classes.optionTitleText} variant="subtitle1">{option.name}</Typography>} />
+                    <ListItemText className={classes.options} primary={<Typography className={classes.optionPriceeText} variant="caption">{ `${util.priceFormat(option.price)} won`}</Typography>} />
                 </ListItem>
             )) : <ListItem />
         );

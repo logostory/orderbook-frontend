@@ -40,25 +40,25 @@ const MenuList = ({
         dense
         onScroll={e => onScroll(e)}
     >
-        {categories.map(category => (
+        {categories.map(({ categoryId, categoryName }) => (
             <li
-                key={category.categoryId}
+                key={categoryId}
                 className={classes.listSection}
-                id={`tab_${category.categoryId}`}
+                id={`tab_${categoryId}`}
             >
                 <ul className={classes.ul}>
                     <ListSubheader
                         className={classes.ListSubheader}
                         disableSticky
                     >
-                        <span className={classes.subheaderText}>{category.categoryName}</span>
+                        <span className={classes.subheaderText}>{categoryName}</span>
                     </ListSubheader>
                     {products
-                        .filter(item => item.categoryId === category.categoryId)
+                        .filter(item => item.categoryId === categoryId)
                         .map(item => (
                             <Menu
                                 product={item}
-                                key={item.productId}
+                                key={item.menuId}
                                 onClick={onClick}
                             />
                         ))}

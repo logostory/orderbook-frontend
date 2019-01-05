@@ -16,7 +16,6 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import MenuDetail from './MenuDetail';
 
-
 const styles = {
     closeBtn: {
         position: 'absolute',
@@ -110,19 +109,19 @@ const MenuProfile = ({
             <IconButton className={classes.closeBtn} onClick={onClose}>
                 <CloseIcon />
             </IconButton>
-            <div className={classes.image} style={{ backgroundImage: `url(${Menu.productImage})` }} />
+            <div className={classes.image} style={{ backgroundImage: `url(${Menu.imagePath})` }} />
             <List className={classes.list}>
                 <ListItem className={classes.menu}>
                     <ListItemText
                         className={classes.menuDescription}
-                        primary={<Typography className={classes.menuTitle} variant="h6">{Menu.productName}</Typography>}
-                        secondary={<Typography className={classes.menuDetail} variant="body2">{Menu.productName}</Typography>}
+                        primary={<Typography className={classes.menuTitle} variant="h6">{Menu.name}</Typography>}
+                        secondary={<Typography className={classes.menuDetail} variant="body2">{Menu.name}</Typography>}
                     />
                     <ListItemText
                         className={classes.menuPrice}
                         primary={(
                             <Typography className={classes.menuPriceText} variant="caption">
-                                { `${util.priceFormat(Menu.productPrice)} won` }
+                                { `${util.priceFormat(Menu.price)} won` }
                             </Typography>
                         )}
                     />
@@ -137,7 +136,7 @@ const MenuProfile = ({
                 <ListItem className={classes.footer}>
                     <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
                     <Typography className={classes.footerText} variant="subtitle1">
-                        { `${util.priceFormat(Menu.productPrice)} won` }
+                        { `${util.priceFormat(Menu.price)} won` }
                     </Typography>
                 </ListItem>
             </List>
