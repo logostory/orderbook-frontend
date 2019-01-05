@@ -7,6 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 
 const styles = {
     optionList: {
@@ -29,7 +31,7 @@ const styles = {
         letterSpacing: '0.2px',
         color: 'rgba(0, 0, 0, 0.87)',
     },
-    optionPriceeText: {
+    optionPriceText: {
         fontFamily: 'Roboto',
         fontSize: '12px',
         fontWeight: 'normal',
@@ -40,77 +42,118 @@ const styles = {
         textAlign: 'end',
         color: 'rgba(0, 0, 0, 0.87)',
     },
+
+    list: {
+        paddingTop: '2px',
+        paddingBottom: '2px',
+        overflow: 'auto',
+        maxHeight: '173px',
+    },
+    footer: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        backgroundColor: '#ffffff',
+    },
+    footerText: {
+        fontFamily: 'Roboto',
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: 1.5,
+        letterSpacing: '0.2px',
+        textAlign: 'end',
+        color: '#3eafa2',
+        width: '110px',
+    },
 };
 
 class OptionPane extends Component {
     state = {
-        optionState: [],
+        chosenOptions: [],
+        subtotal: 0,
     }
 
-    componentWillMount() {
-        const { options } = this.props;
-        const { optionState } = this.state;
+    componentDidMount() {
+        this.calculateSubtotal();
+    }
 
-        const array = [];
+    calculateSubtotal() {
+        const { options, menuPrice } = this.props;
+        const { chosenOptions } = this.state;
+        console.log('calculateSubtotal - chosenOptions:', chosenOptions);
+        let subtotal = menuPrice;
+        options.forEach(({ optionId, price }) => {
+            if (chosenOptions.includes(optionId)) { subtotal += price; }
+        });
+        this.setState({ subtotal });
+    }
 
-        if (options !== undefined) {
-            options.forEach((key) => {
-                key.check = false;
-                array.push(key);
-            });
+    handleChange(optionId) {
+        const { chosenOptions } = this.state;
+        let nextVal = chosenOptions.slice();
 
-            this.setState({
-                optionState: optionState.concat(array),
-            });
-            console.log('array:', array);
+        if (chosenOptions.includes(optionId)) {
+            nextVal = chosenOptions.filter(chosenOption => chosenOption !== optionId);
+        } else {
+            nextVal.push(optionId);
         }
-    }
-
-    handleChange(index) {
-        const { optionState } = this.state;
-
-        const newOptionState = optionState.slice();
-
-        newOptionState[index].check = !optionState[index].check;
-        this.setState({ optionState: newOptionState });
+        this.setState(
+            { chosenOptions: nextVal },
+            () => this.calculateSubtotal(),
+        );
     }
 
     render() {
         const { classes, options } = this.props;
-        const { optionState } = this.state;
+        const { chosenOptions, subtotal } = this.state;
+        console.log('chosenOptions:', chosenOptions);
+        if (options === undefined || options === null) { return <ListItem />; }
+
         return (
-            options !== undefined ? options.map((option, index) => (
-                <ListItem className={classes.optionList}>
-                    <Checkbox
-                        className={classes.checkbox}
-                        checked={optionState[index].check}
-                        value={option}
-                        onChange={() => this.handleChange(index)}
-                    />
-                    <ListItemText
-                        className={classes.options}
-                        primary={(
-                            <Typography
-                                className={classes.optionTitleText}
-                                variant="subtitle1"
-                            >
-                                {option.name}
-                            </Typography>
-                        )}
-                    />
-                    <ListItemText
-                        className={classes.options}
-                        primary={(
-                            <Typography
-                                className={classes.optionPriceeText}
-                                variant="caption"
-                            >
-                                {`${StringUtils.formatPrice(option.price)} won`}
-                            </Typography>
-                        )}
-                    />
-                </ListItem>
-            )) : <ListItem />
+            <React.Fragment>
+                {options.map(({ name, price, optionId }) => (
+                    <ListItem className={classes.optionList}>
+                        <Checkbox
+                            className={classes.checkbox}
+                            checked={chosenOptions.includes(optionId)}
+                            value={optionId}
+                            onChange={() => this.handleChange(optionId)}
+                        />
+                        <ListItemText
+                            className={classes.options}
+                            primary={(
+                                <Typography
+                                    className={classes.optionTitleText}
+                                    variant="subtitle1"
+                                >
+                                    {name}
+                                </Typography>
+                            )}
+                        />
+                        <ListItemText
+                            className={classes.options}
+                            primary={(
+                                <Typography
+                                    className={classes.optionPriceText}
+                                    variant="caption"
+                                >
+                                    {`${StringUtils.formatPrice(price)} won`}
+                                </Typography>
+                            )}
+                        />
+                    </ListItem>
+                ))}
+                <Divider />
+                <List className={classes.list}>
+                    <ListItem className={classes.footer}>
+                        <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
+                        <Typography className={classes.footerText} variant="subtitle1">
+                            {`${StringUtils.formatPrice(subtotal)} won`}
+                        </Typography>
+                    </ListItem>
+                </List>
+            </React.Fragment>
         );
     }
 }

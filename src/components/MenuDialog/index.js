@@ -6,9 +6,9 @@ import StringUtils from 'utils/StringUtils';
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -78,23 +78,6 @@ const styles = {
         textAlign: 'end',
         color: 'rgba(0, 0, 0, 0.6)',
     },
-    footer: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        backgroundColor: '#ffffff',
-    },
-    footerText: {
-        fontFamily: 'Roboto',
-        fontSize: '16px',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        lineHeight: 1.5,
-        letterSpacing: '0.2px',
-        textAlign: 'end',
-        color: '#3eafa2',
-        width: '110px',
-    },
     button: {
         backgroundColor: '#3eafa2',
         color: '#ffffff',
@@ -108,9 +91,10 @@ const MenuProfile = ({
 
     if (Menu === null || Menu === undefined) return null;
 
-    const priceText = `${StringUtils.formatPrice(Menu.price)} won`;
-
-    const { imagePath, name, options } = Menu;
+    const {
+        imagePath, name, options, price,
+    } = Menu;
+    const priceText = `${StringUtils.formatPrice(price)} won`;
 
     return (
         <React.Fragment>
@@ -138,16 +122,7 @@ const MenuProfile = ({
                 </List>
                 <Divider />
                 <List className={classes.list}>
-                    <OptionPane options={options} />
-                </List>
-                <Divider />
-                <List className={classes.list}>
-                    <ListItem className={classes.footer}>
-                        <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
-                        <Typography className={classes.footerText} variant="subtitle1">
-                            {priceText}
-                        </Typography>
-                    </ListItem>
+                    <OptionPane options={options} menuPrice={price} />
                 </List>
                 <Button variant="contained" className={classes.button} onClick={() => onOrder(Menu)}>
                     ADD TO ORDER
