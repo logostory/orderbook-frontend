@@ -88,9 +88,9 @@ const initialState = {
             ],
         },
     ],
-    selectedMenu: [null],
-    selectedOption: [null],
-    totalPrice: null,
+    selectedMenu: null,
+    selectedOption: [],
+    totalPrice: 0,
     cart: null,
 };
 
@@ -110,7 +110,7 @@ export default handleActions(
             ...state,
             openDig: true,
             selectedMenu: state.products.filter(
-                product => product.productId === action.payload,
+                product => product.menuId === action.payload,
             )[0],
         }),
         [CLICK_OPTION]: (state, action) => ({

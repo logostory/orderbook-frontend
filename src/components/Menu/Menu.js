@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import StringUtils from 'utils/StringUtils';
 
 const styles = () => ({
     ListItemLink: {
@@ -71,10 +72,6 @@ const styles = () => ({
     },
 });
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
-
 const ListItemLink = props => (
     <ListItem
         button
@@ -91,7 +88,7 @@ const Menu = ({ product, classes, onClick }) => {
     } = product;
 
     // 가격을 천 단위로 Comma 찍어서 반환하는 함수
-    const priceWithCommas = numberWithCommas(price);
+    const priceWithCommas = StringUtils.formatPrice(price);
 
     return (
         <ListItemLink

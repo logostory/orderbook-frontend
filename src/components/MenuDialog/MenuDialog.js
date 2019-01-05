@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import * as util from 'utils/utils';
+import StringUtils from 'utils/StringUtils';
 
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 import CloseIcon from '@material-ui/icons/Close';
 
-import MenuDetail from './MenuDetail';
+import OptionPane from './OptionPane';
 
 const styles = {
     closeBtn: {
@@ -103,49 +103,59 @@ const styles = {
 
 const MenuProfile = ({
     classes, onOpen, onClose, onOrder, Menu,
-}) => (
-    <React.Fragment>
-        <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
-            <IconButton className={classes.closeBtn} onClick={onClose}>
-                <CloseIcon />
-            </IconButton>
-            <div className={classes.image} style={{ backgroundImage: `url(${Menu.imagePath})` }} />
-            <List className={classes.list}>
-                <ListItem className={classes.menu}>
-                    <ListItemText
-                        className={classes.menuDescription}
-                        primary={<Typography className={classes.menuTitle} variant="h6">{Menu.name}</Typography>}
-                        secondary={<Typography className={classes.menuDetail} variant="body2">{Menu.name}</Typography>}
-                    />
-                    <ListItemText
-                        className={classes.menuPrice}
-                        primary={(
-                            <Typography className={classes.menuPriceText} variant="caption">
-                                { `${util.priceFormat(Menu.price)} won` }
-                            </Typography>
-                        )}
-                    />
-                </ListItem>
-            </List>
-            <Divider />
-            <List className={classes.list}>
-                <MenuDetail options={Menu.options} />
-            </List>
-            <Divider />
-            <List className={classes.list}>
-                <ListItem className={classes.footer}>
-                    <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
-                    <Typography className={classes.footerText} variant="subtitle1">
-                        { `${util.priceFormat(Menu.price)} won` }
-                    </Typography>
-                </ListItem>
-            </List>
-            <Button variant="contained" className={classes.button} onClick={() => onOrder(Menu)}>
-                ADD TO ORDER
-            </Button>
-        </Dialog>
-    </React.Fragment>
-);
+}) => {
+    console.log('Menu Profile: ', Menu);
+
+    if (Menu === null || Menu === undefined) return null;
+
+    const priceText = `${StringUtils.formatPrice(Menu.price)} won`;
+
+    const { imagePath, name, options } = Menu;
+
+    return (
+        <React.Fragment>
+            <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
+                <IconButton className={classes.closeBtn} onClick={onClose}>
+                    <CloseIcon />
+                </IconButton>
+                <div className={classes.image} style={{ backgroundImage: `url(${imagePath})` }} />
+                <List className={classes.list}>
+                    <ListItem className={classes.menu}>
+                        <ListItemText
+                            className={classes.menuDescription}
+                            primary={<Typography className={classes.menuTitle} variant="h6">{name}</Typography>}
+                            secondary={<Typography className={classes.menuDetail} variant="body2">{name}</Typography>}
+                        />
+                        <ListItemText
+                            className={classes.menuPrice}
+                            primary={(
+                                <Typography className={classes.menuPriceText} variant="caption">
+                                    {priceText}
+                                </Typography>
+                            )}
+                        />
+                    </ListItem>
+                </List>
+                <Divider />
+                <List className={classes.list}>
+                    <OptionPane options={options} />
+                </List>
+                <Divider />
+                <List className={classes.list}>
+                    <ListItem className={classes.footer}>
+                        <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
+                        <Typography className={classes.footerText} variant="subtitle1">
+                            {priceText}
+                        </Typography>
+                    </ListItem>
+                </List>
+                <Button variant="contained" className={classes.button} onClick={() => onOrder(Menu)}>
+                    ADD TO ORDER
+                </Button>
+            </Dialog>
+        </React.Fragment>
+    );
+};
 
 MenuProfile.propTypes = {
     classes: PropTypes.object.isRequired,

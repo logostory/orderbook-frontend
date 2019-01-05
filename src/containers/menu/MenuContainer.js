@@ -5,7 +5,7 @@ import * as menuActions from 'modules/menu';
 import { StickyContainer, Sticky } from 'react-sticky';
 import CategoryList from 'components/Category';
 import { MenuList } from 'components/Menu';
-import MenuProfile from 'components/MenuProfile';
+import MenuDialog from 'components/MenuDialog';
 import StoreProfile from 'components/StoreProfile';
 import Image from '../../Assets/logostory.jpg';
 
@@ -56,6 +56,10 @@ class MenuContainer extends Component {
         const {
             openDig, categories, selectedCategory, products, selectedMenu,
         } = this.props;
+
+        console.log('Menu Dialog Open:', openDig);
+        console.log('MenuContainer - selectedMenu: ', selectedMenu);
+
         const topMargin = 56;
         return (
             <div style={containerStyle}>
@@ -64,7 +68,7 @@ class MenuContainer extends Component {
                     Table="TABLE 17"
                     Title="The Burgur Co"
                 />
-                <MenuProfile
+                <MenuDialog
                     Menu={selectedMenu}
                     onOpen={openDig}
                     onClose={this.handleClickClose}

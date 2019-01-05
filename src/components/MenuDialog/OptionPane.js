@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import * as util from 'utils/utils';
+
+import StringUtils from 'utils/StringUtils';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -42,7 +42,7 @@ const styles = {
     },
 };
 
-class MenuDetail extends Component {
+class OptionPane extends Component {
     state = {
         optionState: [],
     }
@@ -87,16 +87,32 @@ class MenuDetail extends Component {
                         value={option}
                         onChange={() => this.handleChange(index)}
                     />
-                    <ListItemText className={classes.options} primary={<Typography className={classes.optionTitleText} variant="subtitle1">{option.name}</Typography>} />
-                    <ListItemText className={classes.options} primary={<Typography className={classes.optionPriceeText} variant="caption">{ `${util.priceFormat(option.price)} won`}</Typography>} />
+                    <ListItemText
+                        className={classes.options}
+                        primary={(
+                            <Typography
+                                className={classes.optionTitleText}
+                                variant="subtitle1"
+                            >
+                                {option.name}
+                            </Typography>
+                        )}
+                    />
+                    <ListItemText
+                        className={classes.options}
+                        primary={(
+                            <Typography
+                                className={classes.optionPriceeText}
+                                variant="caption"
+                            >
+                                {`${StringUtils.formatPrice(option.price)} won`}
+                            </Typography>
+                        )}
+                    />
                 </ListItem>
             )) : <ListItem />
         );
     }
 }
 
-MenuDetail.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(MenuDetail);
+export default withStyles(styles)(OptionPane);
