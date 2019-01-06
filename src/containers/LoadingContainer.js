@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import queryString from 'query-string';
 
+import * as menuActions from 'modules/menu';
 import { requestNewAccessToken, getAccessToken } from 'modules/OAuth';
 import Loading from 'components/Loading';
 
@@ -12,8 +15,24 @@ class OAuthContainer extends Component {
         askOAuthToken();
     }
 
+    // 로딩 이후 전환 시 호출되는 메소드
+    moveToNextPage = () => {
+        const {
+            getStoreInfo, getCategories, getMenus, history, location: { search },
+        } = this.props;
+        let { shopId } = queryString.parse(search);
+
+        if (shopId === null || shopId === undefined) {
+            const goToDemo = window.confirm('존재하지 않는 상점입니다. 데모로 이동하시겠습니까?');
+            if (!goToDemo) { return; }
+            shopId = 2;
+        }
+
+        Promise.all([getStoreInfo(shopId), getCategories(shopId), getMenus(shopId)]).then((() => history.push('/basic')));
+    }
+
     render() {
-        const { moveToNextPage, accessToken } = this.props;
+        const { accessToken } = this.props;
 
         const accessTokenIsLoaded = accessToken !== null && accessToken !== undefined;
         const shopApiIsLoaded = true;
@@ -22,7 +41,7 @@ class OAuthContainer extends Component {
         return (
             <Loading
                 done={done}
-                moveToNextPage={moveToNextPage}
+                moveToNextPage={this.moveToNextPage}
             />
         );
     }
@@ -34,6 +53,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     requestToken: requestNewAccessToken,
+    getStoreInfo: menuActions.getStoreInfo,
+    getCategories: menuActions.getCategories,
+    getMenus: menuActions.getMenus,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OAuthContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OAuthContainer));

@@ -1,4 +1,9 @@
 import { createAction, handleActions } from 'redux-actions';
+import api from 'utils/api';
+
+const GET_STORE = 'menu/GET_STORE';
+const GET_CATEGORIES = 'menu/GET_CATEGORIES';
+const GET_MENUS = 'menu/GET_MENUS';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
 const CLICK_MENU = 'menu/CLICK_MENU';
@@ -7,6 +12,7 @@ const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
 
 const CLICK_CLOSE = 'menu/CLICK_CLOSE';
 const ADD_TO_ORDER = 'menu/ADD_TO_ORDER';
+
 
 export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, value => value);
 
@@ -17,6 +23,38 @@ export const clickClose = createAction(CLICK_CLOSE, key => key);
 export const addToOrder = createAction(ADD_TO_ORDER, value => value);
 
 export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
+
+
+export const getStoreInfo = shopId => dispatch => (
+    api.get(`/v1/api/shops/${shopId}`)
+        .then((data) => {
+            dispatch({
+                type: GET_STORE,
+                payload: data.data,
+            });
+        })
+        .catch()
+);
+
+export const getCategories = shopId => dispatch => (
+    api.get(`/v1/api/shops/${shopId}/categories`)
+        .then((data) => {
+            dispatch({
+                type: GET_CATEGORIES,
+                payload: data.data,
+            });
+        })
+        .catch()
+);
+
+export const getMenus = shopId => dispatch => (
+    api.get(`/v1/api/shops/${shopId}/menus`)
+        .then(data => dispatch({
+            type: GET_MENUS,
+            payload: data.data,
+        }))
+        .catch()
+);
 
 // API LOAD 구현 되면 삭제
 const initialState = {
@@ -92,10 +130,25 @@ const initialState = {
     selectedOption: [],
     totalPrice: 0,
     cart: null,
+    shopId: undefined,
+    shopImagePath: null,
+    shopName: null,
 };
 
 export default handleActions(
     {
+        [GET_STORE]: (state, action) => ({
+            ...state,
+            ...action.payload,
+        }),
+        [GET_CATEGORIES]: (state, action) => ({
+            ...state,
+            categories: action.payload,
+        }),
+        [GET_MENUS]: (state, action) => ({
+            ...state,
+            products: action.payload,
+        }),
         [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
             ...state,
             selectedCategory: action.payload,

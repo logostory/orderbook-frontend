@@ -1,7 +1,5 @@
 import React from 'react';
-import queryString from 'query-string';
 
-import api from 'utils/api';
 import LoadingContainer from '../containers/LoadingContainer';
 
 /**
@@ -32,37 +30,7 @@ import LoadingContainer from '../containers/LoadingContainer';
  * 3. GET /v1/api/shops/{shopId}/categories
  * 4. GET /v1/api/shops/{shopId}/menus
  */
-class LoadingPage extends React.Component {
-    constructor() {
-        super();
-
-        this.moveToNextPage = this.moveToNextPage.bind(this);
-    }
-
-    // 로딩 이후 전환 시 호출되는 메소드
-    moveToNextPage() {
-        const { history, location: { search } } = this.props;
-        let { shopId } = queryString.parse(search);
-        console.log(`shopId:${shopId}`);
-
-        if (shopId === null || shopId === undefined) {
-            const goToDemo = window.confirm('존재하지 않는 상점입니다. 데모로 이동하시겠습니까?');
-            if (!goToDemo) { return; }
-            shopId = 2;
-        }
-
-        api.get(`/v1/api/shops/${shopId}`)
-            .then(({ data }) => {
-                console.log(data);
-
-                history.push('/basic');
-            });
-    }
-
-    render() {
-        return <LoadingContainer moveToNextPage={this.moveToNextPage} />;
-    }
-}
+const LoadingPage = () => <LoadingContainer />;
 
 /*
 Q:
@@ -74,4 +42,5 @@ A:
     props가 기본적으로 전달되므로, withRouter HoC를 쓸 필요가 없습니다.
 
 */
+
 export default LoadingPage;
