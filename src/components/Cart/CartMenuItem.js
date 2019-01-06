@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import * as util from 'utils/utils';
+import StringUtils from 'utils/StringUtils';
 import RemoveSvg from 'Assets/svg/custom_icon_remove.svg';
 import CartOptionItem from './CartOptionItem';
 
@@ -123,7 +123,7 @@ const CartMenuItem = ({
             <div className={classes['Food-Main']} key={index}>
                 <Typography component="span" className={classes['Headline-6']}>{name}</Typography>
                 <Typography component="span" variant="display4" className={classes.caption}>
-                    { `${util.priceFormat(unitPrice)} won` }
+                    { `${StringUtils.formatPrice(unitPrice)} won` }
                 </Typography>
             </div>
             { OptionList }
