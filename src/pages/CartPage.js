@@ -2,13 +2,13 @@ import React from 'react';
 
 import CartContainer from 'containers/cart/CartContainer';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import FooterContainer from 'containers/FooterContainer';
 
-const CartPage = () => (
+const CartPage = ({ history }) => (
     <React.Fragment>
         <Header title="My Order" />
         <CartContainer />
-        <Footer totalPrice={0} text="Place Order" />
+        <FooterContainer text="Place Order" onClick={() => history.push('/payment')} />
     </React.Fragment>
 );
 

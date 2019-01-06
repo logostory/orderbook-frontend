@@ -57,3 +57,32 @@ export default (state = initialState, action) => {
 };
 
 export const getItems = ({ cart }) => cart.items;
+export const showFooter = ({ cart }) => console.log(cart.items.length) || cart.items.length > 0;
+
+// state와 무관련
+export const calcSubtotalPrice = (selectedMenu, chosenOptions) => {
+    if (selectedMenu === null || selectedMenu === undefined) { return 0; }
+
+    const { options, price: menuPrice } = selectedMenu;
+
+    let subtotal = menuPrice;
+    options.forEach(({ optionId, price: optionPrice }) => {
+        if (chosenOptions.includes(optionId)) { subtotal += optionPrice; }
+    });
+
+    return subtotal;
+};
+
+// state와 관련
+export const getTotalPrice = ({ cart: { items }, menu: { products } }) => {
+    let total = 0;
+    let selectedMenu;
+    let subtotal = 0;
+    items.forEach((item) => {
+        selectedMenu = products.find(menu => item.menuId === menu.menuId);
+        subtotal = calcSubtotalPrice(selectedMenu, item.options);
+        total += subtotal;
+    });
+
+    return total;
+};
