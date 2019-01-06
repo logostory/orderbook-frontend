@@ -98,21 +98,22 @@ const styles = {
     },
 };
 
-const MenuProfile = ({
-    classes, onOpen, onClose, onOrder, Menu,
+const MenuDialog = ({
+    classes,
+    open,
+    onClose,
+    addToCart,
+    handleOptionChange,
+    menu,
+    mappedOptions,
+    subtotal,
 }) => {
-    console.log('Menu Profile: ', Menu);
-
-    if (Menu === null || Menu === undefined) return null;
-
-    const {
-        imagePath, name, options, price,
-    } = Menu;
+    const { imagePath, name, price } = menu;
     const priceText = `${StringUtils.formatPrice(price)} won`;
 
     return (
         <React.Fragment>
-            <Dialog open={onOpen} style={{ backgroundColor: 'none' }}>
+            <Dialog open={open} style={{ backgroundColor: 'none' }}>
                 <DialogTitle className={classes.title}>Menu Detail</DialogTitle>
                 <div className={classes.image} style={{ backgroundImage: `url(${imagePath})` }} />
                 <List className={classes.list}>
@@ -134,19 +135,19 @@ const MenuProfile = ({
                 </List>
                 <Divider />
                 <List className={classes.list}>
-                    <OptionPane options={options} menuPrice={price} />
+                    <OptionPane
+                        mappedOptions={mappedOptions}
+                        subtotal={subtotal}
+                        onOptionChange={handleOptionChange}
+                    />
                 </List>
                 <DialogActions>
-                    <Button className={classes.button} onClick={onClose}>
-                    CANCEL
-                    </Button>
-                    <Button className={classes.button} onClick={() => onOrder(Menu)}>
-                    ADD TO ORDER
-                    </Button>
+                    <Button className={classes.button} onClick={onClose}>CANCEL</Button>
+                    <Button className={classes.button} onClick={() => console.log('add to cart clicked:', addToCart) || addToCart()}>ADD TO CART</Button>
                 </DialogActions>
             </Dialog>
         </React.Fragment>
     );
 };
 
-export default withStyles(styles)(MenuProfile);
+export default withStyles(styles)(MenuDialog);
