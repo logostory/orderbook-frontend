@@ -4,6 +4,7 @@ import LoadingPage from './pages/LoadingPage';
 import BasicPage from './pages/BasicPage';
 import CartPage from './pages/CartPage';
 import PaymentPage from './pages/PaymentPage';
+import OrderConfirmPage from "./pages/OrderConfirmPage";
 import errPageHandler from './pages/errPageHandler';
 
 // ??
@@ -17,6 +18,7 @@ export default () => (
             <Route path="/basic" component={BasicPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/payment" component={PaymentPage} />
+            <Route path="/order" component={OrderConfirmPage} />
             <Route path="*" component={errPageHandler} />
         </Switch>
     </HashRouter>
