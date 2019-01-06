@@ -5,21 +5,38 @@ import * as menuActions from 'modules/menu';
 import { StickyContainer, Sticky } from 'react-sticky';
 import CategoryList from 'components/Category';
 import { MenuList } from 'components/Menu';
-import MenuDialog from 'components/MenuDialog';
 import StoreProfile from 'components/StoreProfile';
+import MenuDialogContainer from 'containers/menu/MenuDialogContainer';
 import Image from '../../Assets/logostory.jpg';
 
 class MenuContainer extends Component {
+    state = {
+        dialogOpen: false,
+        selectedMenu: null,
+    };
+
     handleClickCategory = (value) => {
         const { MenuActions } = this.props;
         MenuActions.changeSelectedCategory(value);
     };
 
-    // @Leo 매뉴 클릭 함수
     handleClickMenu = (menuId) => {
-        const { MenuActions } = this.props;
-        MenuActions.clickManu(menuId);
+        const mappedMenu = this.mapMenu(menuId);
+
+        this.setState({ selectedMenu: mappedMenu });
+        this.toggleDialog();
     };
+
+    toggleDialog = () => {
+        const { dialogOpen } = this.state;
+        this.setState({ dialogOpen: !dialogOpen });
+    }
+
+    mapMenu = (menuId) => {
+        const { products } = this.props;
+
+        return products.find(product => product.menuId === menuId);
+    }
 
     /*
         함수형으로 바꿔야
@@ -42,20 +59,11 @@ class MenuContainer extends Component {
         }
     };
 
-    handleClickClose = () => {
-        const { MenuActions } = this.props;
-        MenuActions.clickClose();
-    };
-
-    handleAddToOrder = (menuId) => {
-        const { MenuActions } = this.props;
-        MenuActions.addToOrder(menuId);
-    };
-
     render() {
         const {
-            openDig, categories, selectedCategory, products, selectedMenu, showFooter,
+            categories, selectedCategory, products, showFooter,
         } = this.props;
+        const { dialogOpen, selectedMenu } = this.state;
 
         const topMargin = 56;
         return (
@@ -65,11 +73,10 @@ class MenuContainer extends Component {
                     Table="TABLE 17"
                     Title="The Burgur Co"
                 />
-                <MenuDialog
-                    Menu={selectedMenu}
-                    onOpen={openDig}
-                    onClose={this.handleClickClose}
-                    onOrder={this.handleAddToOrder}
+                <MenuDialogContainer
+                    selectedMenu={selectedMenu}
+                    dialogOpen={dialogOpen}
+                    onClose={this.toggleDialog}
                 />
                 <StickyContainer>
                     <Sticky topOffset={topMargin * -1}>
@@ -108,11 +115,9 @@ const containerStyle = {
 };
 
 const mapStateToProps = ({ menu }) => ({
-    openDig: menu.openDig,
     selectedCategory: menu.selectedCategory,
     categories: menu.categories,
     products: menu.products,
-    selectedMenu: menu.selectedMenu,
 });
 
 const mapDispatchToProps = dispatch => ({
