@@ -32,40 +32,43 @@ const styles = theme => ({
 });
 
 const MenuList = ({
-    classes, products, categories, onScroll, onClick,
+    classes, products, categories, onScroll, onClick, showFooter,
 }) => (
-    <List
-        className={classes.root}
-        subheader={<li />}
-        dense
-        onScroll={e => onScroll(e)}
-    >
-        {categories.map(({ categoryId, categoryName }) => (
-            <li
-                key={categoryId}
-                className={classes.listSection}
-                id={`tab_${categoryId}`}
-            >
-                <ul className={classes.ul}>
-                    <ListSubheader
-                        className={classes.ListSubheader}
-                        disableSticky
-                    >
-                        <span className={classes.subheaderText}>{categoryName}</span>
-                    </ListSubheader>
-                    {products
-                        .filter(item => item.categoryId === categoryId)
-                        .map(item => (
-                            <Menu
-                                product={item}
-                                key={item.menuId}
-                                onClick={onClick}
-                            />
-                        ))}
-                </ul>
-            </li>
-        ))}
-    </List>
+    <React.Fragment>
+        <List
+            className={classes.root}
+            subheader={<li />}
+            dense
+            onScroll={e => onScroll(e)}
+        >
+            {categories.map(({ categoryId, categoryName }) => (
+                <li
+                    key={categoryId}
+                    className={classes.listSection}
+                    id={`tab_${categoryId}`}
+                >
+                    <ul className={classes.ul}>
+                        <ListSubheader
+                            className={classes.ListSubheader}
+                            disableSticky
+                        >
+                            <span className={classes.subheaderText}>{categoryName}</span>
+                        </ListSubheader>
+                        {products
+                            .filter(item => item.categoryId === categoryId)
+                            .map(item => (
+                                <Menu
+                                    product={item}
+                                    key={item.menuId}
+                                    onClick={onClick}
+                                />
+                            ))}
+                    </ul>
+                </li>
+            ))}
+        </List>
+        {showFooter ? <div style={{ height: 110 }} /> : null}
+    </React.Fragment>
 );
 
 export default withStyles(styles, { withTheme: true })(MenuList);
