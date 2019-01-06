@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import api from 'utils/api';
+import axios from 'axios';
+import ServerConfig from 'ServerConfig';
 
 const GET_STORE = 'menu/GET_STORE';
 const GET_CATEGORIES = 'menu/GET_CATEGORIES';
@@ -16,7 +17,7 @@ export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
 
 
 export const getStoreInfo = shopId => dispatch => (
-    api.get(`/v1/api/shops/${shopId}`)
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}`)
         .then((data) => {
             dispatch({
                 type: GET_STORE,
@@ -27,7 +28,7 @@ export const getStoreInfo = shopId => dispatch => (
 );
 
 export const getCategories = shopId => dispatch => (
-    api.get(`/v1/api/shops/${shopId}/categories`)
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/categories`)
         .then((data) => {
             dispatch({
                 type: GET_CATEGORIES,
@@ -38,7 +39,7 @@ export const getCategories = shopId => dispatch => (
 );
 
 export const getMenus = shopId => dispatch => (
-    api.get(`/v1/api/shops/${shopId}/menus`)
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/menus`)
         .then(data => dispatch({
             type: GET_MENUS,
             payload: data.data,
