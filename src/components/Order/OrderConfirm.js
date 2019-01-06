@@ -3,54 +3,32 @@ import {Button, AppBar, Grid, Typography} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import standingCopy from "Assets/svg/standing-copy.svg";
 
+
 const styles = theme => ({
     root: {
-        position: 'absolute',
         width: '100%',
-        bottom: '16px',
-        padding: '0 2rem',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'space between',
+        flexDirection: 'column'
     },
-    appBar: {
+    header: {
         width: '100%',
         height: '56px',
         backgroundColor: '#ff4a5b',
-        marginBottom: '58px'
-    },
-    title: {
-        fontFamily: 'Roboto',
-        fontSize: '20px',
-        fontWeight: '500',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        lineHeight: 'normal',
-        letterSpacing: '0.3px',
         textAlign: 'center',
-        color: '#ffffff',
-        marginTop: '15px',
-        marginBottom: '17px'
+        paddingTop: '17px',
     },
-    order: {
-        fontFamily: 'Roboto',
-        fontSize: '16px',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        lineHeight: '1.5',
-        letterSpacing: '0.2px',
-        textAlign: 'center',
-        color: 'rgba(0, 0, 0, 0.6)',
+    contents: {
+        flex:1,
+        paddingTop: '138px',
+        textAlign: 'center'
     },
-    orderNumber: {
-        fontFamily: 'Roboto',
-        fontSize: '48px',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontStretch: 'normal',
-        textAlign: 'center',
-        color: 'rgba(0, 0, 0, 0.87)',
+    buttons: {
+        height: '108px',
+        padding: '16px'
     },
-    aboutBtn: {
-
+    aboutButton: {
         width: '100%',
         height: '48px',
         color: '#ff4a5b',
@@ -61,11 +39,10 @@ const styles = theme => ({
         '&:active': {
             backgroundColor: '#ffffff',
         },
-        marginTop: '58px',
-        marginLeft: '16px',
-        marginRight: '16px'
+        marginBottom: '12px',
+        borderColor: '#ff4a5b'
     },
-    button: {
+    confirmButton: {
         width: '100%',
         height: '48px',
         color: 'white',
@@ -76,22 +53,45 @@ const styles = theme => ({
         '&:active': {
             backgroundColor: '#ff4a5b',
         },
-        marginTop: '16px',
-        marginLeft: '16px',
-        marginRight: '16px',
-        marginBottom: '16px',
+    },
+    titleText: {
+        fontFamily: 'Roboto',
+        fontSize: '20px',
+        fontWeight: '500',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: 'normal',
+        letterSpacing: '0.3px',
+        textAlign: 'center',
+        color: '#ffffff',
+    },
+    numberText: {
+        fontFamily: 'Roboto',
+        fontSize: '48px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        textAlign: 'center',
+        color: 'rgba(0, 0, 0, 0.87)',
+    },
+    text: {
+        fontFamily: 'Roboto',
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        lineHeight: '1.5',
+        letterSpacing: '0.2px',
+        textAlign: 'center',
+        color: 'rgba(0, 0, 0, 0.6)',
     },
     img: {
         width: '100px',
         height: '140px',
         objectFit: 'contain',
-        align: 'center',
-        marginTop: '24px',
-        marginBottom:' 24px'
+        marginBottom: '24px',
     }
 });
-
-
 
 class OrderConfirm extends React.Component {
 
@@ -99,28 +99,22 @@ class OrderConfirm extends React.Component {
         const { classes, handleClickConfirm, handleClickAbout, orderNumber } = this.props;
 
         return (
-            <React.Fragment className={classes.root}>
-                <AppBar position="static" className={classes.appBar}>
-                    <Typography className={classes.title}>Done !</Typography>
+            <div className={classes.root}>
+                <AppBar position="static" className={classes.header}>
+                    <Typography className={classes.titleText}>Done !</Typography>
                 </AppBar>
-                <Grid>
-                    <Typography className={classes.order}>Your order number is:</Typography>
-                    <Typography className={classes.orderNumber}>{orderNumber}</Typography>
+                <Grid className={classes.contents}>
+                    <Typography className={classes.text}>Your order number is:</Typography>
+                    <Typography className={classes.numberText}>{orderNumber}</Typography>
                     <img className={classes.img} src={`${standingCopy}`} alt="" />
+                    <Typography className={classes.text}>Please wait while your</Typography>
+                    <Typography className={classes.text}>meal is being prepared.</Typography>
                 </Grid>
-                <Grid>
-                    <Typography className={classes.order}>Please wait while your</Typography>
-                    <Typography className={classes.order}>meal is being prepared.</Typography>
+                <Grid className={classes.buttons}>
+                    <Button className={classes.aboutButton} variant="outlined" onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
+                    <Button className={classes.confirmButton} onClick={handleClickConfirm}>CONFIRM</Button>
                 </Grid>
-                <Grid>
-                    <Button variant="outlined" classes={{
-                        root: classes.aboutBtn
-                    }} onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
-                    <Button classes={{
-                        root: classes.button
-                    }} onClick={handleClickConfirm}>CONFIRM</Button>
-                </Grid>
-            </React.Fragment>
+            </div>
         );
     }
 };
