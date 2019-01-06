@@ -1,36 +1,29 @@
-/* eslint-disable react/sort-comp */
-/* eslint-disable class-methods-use-this */
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from 'modules/Cart';
 import CartList from 'components/Cart/CartList';
+import { getItems, removeItemByIndex } from 'modules/Cart';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class CartContainer extends Component {
-    handleRemove = (itemKey) => {
-        this.totalPrice = 0;
-        const { CartActions } = this.props;
-        CartActions.removeCartMenu({ itemKey });
-    }
+const CartContainer = ({
+    menus,
+    items,
+    removeItemByIndex: handleItemRemove,
+}) => (
+    <div>
+        <CartList
+            menus={menus}
+            items={items}
+            removeItem={handleItemRemove}
+        />
+    </div>
+);
 
-    render() {
-        const { menus } = this.props;
-        const { handleRemove } = this;
+const mapStateToProps = state => ({
+    items: getItems(state),
+    menus: state.menu.products, // menu 모듈이 아직 미완성
+});
 
-        return (
-            <div>
-                <CartList menus={menus} handleRemove={handleRemove} />
-            </div>
-        );
-    }
-}
+const mapDispatchToProps = {
+    removeItemByIndex,
+};
 
-export default connect(
-    state => ({
-        menus: state.Cart.menus,
-    }),
-    dispatch => ({
-        CartActions: bindActionCreators(actions, dispatch),
-    }),
-)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

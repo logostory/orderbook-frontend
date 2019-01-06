@@ -1,21 +1,9 @@
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import Payment from 'components/Payment';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class PaymentContainer extends Component {
-    render() {
-        const { totalPrice } = this.props;
+const PaymentContainer = () => (
+    <Payment />
+);
 
-        return (
-            <Payment />
-        );
-    }
-}
-
-export default connect(
-    state => ({
-        totalPrice: state.Cart.totalPrice,
-    }),
-)(PaymentContainer);
+export default PaymentContainer;
