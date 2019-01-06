@@ -3,8 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import StringUtils from 'utils/StringUtils';
 
-// eslint-disable-next-line no-unused-vars
-const styles = theme => ({
+const styles = () => ({
     'Food-Option': {
         display: 'flex',
         alignItems: 'center',
@@ -39,16 +38,15 @@ const styles = theme => ({
     },
 });
 
-const CartOptionItem = ({ classes, name, unitPrice }) => (
+const CartOptionItem = ({ classes, name, price }) => (
     <div className={classes['Food-Option']}>
         <Typography component="span" className={classes['Subtitle-1']}>
             {`+ ${name}`}
         </Typography>
         <Typography component="span" className={classes.caption}>
-            {`${StringUtils.formatPrice(unitPrice)} won`}
+            {`${StringUtils.formatPrice(price)} won`}
         </Typography>
     </div>
 );
-
 
 export default withStyles(styles)(CartOptionItem);

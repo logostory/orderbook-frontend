@@ -1,5 +1,4 @@
 import React from 'react';
-import Proptypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -7,8 +6,7 @@ import StringUtils from 'utils/StringUtils';
 import RemoveSvg from 'Assets/svg/custom_icon_remove.svg';
 import CartOptionItem from './CartOptionItem';
 
-// eslint-disable-next-line no-unused-vars
-const styles = theme => ({
+const styles = () => ({
     product: {
         padding: '0 16px',
         // border: '1px solid red',
@@ -93,13 +91,13 @@ const styles = theme => ({
 });
 
 const CartMenuItem = ({
-    classes, name, unitPrice, index, handleRemove, options = [],
+    classes, menuName, menuPrice, options, removeItem, index,
 }) => {
-    const OptionList = options.map((option, optKey) => (
+    const cartOptionItems = options.map(({ name, price }) => (
         <CartOptionItem
-            name={option.name}
-            unitPrice={option.unitPrice}
-            key={optKey}
+            name={name}
+            price={price}
+            key={name}
         />
     ));
 
@@ -107,7 +105,7 @@ const CartMenuItem = ({
         const elem = document.querySelector(`#CartMenu${idkey}`);
         elem.classList.add(classes.hidden);
         setTimeout(() => {
-            handleRemove.call(idkey);
+            removeItem();
             elem.classList.remove(classes.hidden);
         }, 250);
     };
@@ -121,24 +119,15 @@ const CartMenuItem = ({
                 </Typography>
             </Grid>
             <div className={classes['Food-Main']} key={index}>
-                <Typography component="span" className={classes['Headline-6']}>{name}</Typography>
+                <Typography component="span" className={classes['Headline-6']}>{menuName}</Typography>
                 <Typography component="span" variant="display4" className={classes.caption}>
-                    { `${StringUtils.formatPrice(unitPrice)} won` }
+                    { `${StringUtils.formatPrice(menuPrice)} won` }
                 </Typography>
             </div>
-            { OptionList }
+            {cartOptionItems}
             <div className={classes['Rectangle-13']} />
         </Grid>
     );
-};
-
-CartMenuItem.propTypes = {
-    classes: Proptypes.object.isRequired,
-    name: Proptypes.string.isRequired,
-    unitPrice: Proptypes.number.isRequired,
-    index: Proptypes.any.isRequired,
-    handleRemove: Proptypes.func.isRequired,
-    options: Proptypes.array,
 };
 
 export default withStyles(styles)(CartMenuItem);
