@@ -27,20 +27,4 @@ api.convertBodyAsFormUrlEncoded = (data) => {
     return str.join('&');
 };
 
-api.getStore = (shopId) => {
-    api.get(`/v1/api/shops/${shopId}`)
-        .then(data => data.data)
-        .catch();
-};
-api.getCategories = (shopId) => {
-    api.get(`/v1/api/shops/${shopId}/categories`)
-        .then(data => data.data)
-        .catch();
-};
-api.getMenus = (shopId) => {
-    api.get(`/v1/api/shops/${shopId}/menus`)
-        .then(data => data.data)
-        .catch();
-};
-
 export default api;
