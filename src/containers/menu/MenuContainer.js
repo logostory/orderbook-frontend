@@ -54,7 +54,7 @@ class MenuContainer extends Component {
 
     render() {
         const {
-            openDig, categories, selectedCategory, products, selectedMenu,
+            openDig, categories, selectedCategory, products, selectedMenu, showFooter,
         } = this.props;
 
         const topMargin = 56;
@@ -93,6 +93,7 @@ class MenuContainer extends Component {
                         categories={categories}
                         onScroll={this.handleScroll}
                         onClick={this.handleClickMenu}
+                        showFooter={showFooter}
                     />
                 </StickyContainer>
             </div>
