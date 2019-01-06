@@ -7,7 +7,7 @@ const styles = () => ({
     root: {
         flexGrow: 1,
         display: 'block',
-        height: `calc(100vh - 136px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
+        height: `calc(100vh - 100px - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
         '@media screen and (max-width: 360px) and  (orientation: portrait)': {
             width: '360px',
         },

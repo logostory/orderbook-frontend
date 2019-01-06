@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { addItem } from 'modules/Cart';
+import { addItem, calcSubtotalPrice } from 'modules/Cart';
 import * as menuActions from 'modules/menu';
 import MenuDialog from 'components/MenuDialog';
 
@@ -54,16 +54,9 @@ class MenuDialogContainer extends Component {
 
     calculateSubtotal = () => {
         const { selectedMenu } = this.props;
-        if (selectedMenu === null || selectedMenu === undefined) { return null; }
         const { chosenOptions } = this.state;
-        const { options, price: menuPrice } = selectedMenu;
 
-        let subtotal = menuPrice;
-        options.forEach(({ optionId, price: optionPrice }) => {
-            if (chosenOptions.includes(optionId)) { subtotal += optionPrice; }
-        });
-
-        this.setState({ subtotal });
+        this.setState({ subtotal: calcSubtotalPrice(selectedMenu, chosenOptions) });
     }
 
     mapOptions() {
