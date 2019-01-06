@@ -6,21 +6,11 @@ const GET_CATEGORIES = 'menu/GET_CATEGORIES';
 const GET_MENUS = 'menu/GET_MENUS';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
-const CLICK_MENU = 'menu/CLICK_MENU';
-const CLICK_OPTION = 'menu/CLICK_OPTION';
 const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
-
-const CLICK_CLOSE = 'menu/CLICK_CLOSE';
-const ADD_TO_ORDER = 'menu/ADD_TO_ORDER';
-
 
 export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, value => value);
 
 // @LEO 메뉴 클릭시 액션이 필요하실거 같아서 일단 만들어 놨습니다.
-export const clickManu = createAction(CLICK_MENU, key => key);
-export const clickOption = createAction(CLICK_OPTION, key => key);
-export const clickClose = createAction(CLICK_CLOSE, key => key);
-export const addToOrder = createAction(ADD_TO_ORDER, value => value);
 
 export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
 
@@ -153,31 +143,9 @@ export default handleActions(
             ...state,
             selectedCategory: action.payload,
         }),
-
         [CATEGORY_CHANGE]: (state, action) => ({
             ...state,
             selectedCategory: action.payload,
-        }),
-        // @Leo 메뉴 클릭 액션
-        [CLICK_MENU]: (state, action) => ({
-            ...state,
-            openDig: true,
-            selectedMenu: state.products.filter(
-                product => product.menuId === action.payload,
-            )[0],
-        }),
-        [CLICK_OPTION]: (state, action) => ({
-            ...state,
-            selectedOption: state.selectedOption.concat(action.payload),
-        }),
-        [CLICK_CLOSE]: state => ({
-            ...state,
-            openDig: false,
-        }),
-        [ADD_TO_ORDER]: (state, action) => ({
-            ...state,
-            cart: action.payload,
-            openDig: false,
         }),
     }, initialState,
 );

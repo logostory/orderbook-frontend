@@ -1,63 +1,88 @@
-export const CART_REMOVE_MENU = 'cart/REMOVE_MENU';
-export const CART_ADD_MENU = 'cart/ADD_MENU';
+export const LOAD_SHOP = 'cart/LOAD_SHOP';
+export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
+export const ADD_ITEM = 'cart/ADD_ITEM';
 
-export const removeCartMenu = ({ itemKey }) => ({
-    type: CART_REMOVE_MENU,
-    payload: { itemKey },
+export const removeItemByIndex = index => ({
+    type: REMOVE_ITEM,
+    payload: index,
 });
 
-export const addCartMenu = menu => ({
-    type: CART_ADD_MENU,
-    payload: { menu },
+export const addItem = item => ({
+    type: ADD_ITEM,
+    payload: item,
 });
 
 const initialState = {
-    totalPrice: 0,
-    identity: [{
-        storeId: 0,
-        seatId: 0,
-    }],
-    menus: [],
+    shopId: undefined,
+    seatId: undefined,
+    items: [],
 };
 
 export default (state = initialState, action) => {
-    // eslint-disable-next-line no-case-declarations
-    const menus = state.menus.slice();
-    const { totalPrice } = state;
-    let price = totalPrice;
-
-    const calcPrice = (targetMenu, flag) => {
-        targetMenu.forEach((menu) => {
-            price += (menu.unitPrice * flag);
-            const { options } = menu;
-            if (options) {
-                options.forEach((option) => {
-                    price += (option.unitPrice * flag);
-                });
-            }
-        });
-        return price;
-    };
-
     switch (action.type) {
-    case CART_REMOVE_MENU:
-        // eslint-disable-next-line no-case-declarations
-        const itemMenu = menus.splice(action.payload.itemKey, 1);
-        calcPrice(itemMenu, -1);
-        return ({
+    case LOAD_SHOP: {
+        const { shopId, seatId } = action.payload;
+
+        return {
             ...state,
-            totalPrice: price,
-            menus,
-        });
-    case CART_ADD_MENU:
-        menus.push(action.payload.menu);
-        calcPrice(action.payload.menu, +1);
-        return ({
+            shopId,
+            seatId,
+        };
+    }
+    case ADD_ITEM: {
+        const { items } = state;
+
+        return {
             ...state,
-            totalPrice: price,
-            menus,
-        });
+            items: [
+                ...items,
+                action.payload,
+            ],
+        };
+    }
+    case REMOVE_ITEM: {
+        const { items } = state;
+
+        const next = {
+            ...state,
+            // payload가 대상 index이고, 1은 deleteCount 이다.
+            items: items.filter((item, index) => index !== action.payload),
+        };
+
+        return next;
+    }
     default:
         return state;
     }
+};
+
+export const getItems = ({ cart }) => cart.items;
+export const showFooter = ({ cart }) => console.log(cart.items.length) || cart.items.length > 0;
+
+// state와 무관련
+export const calcSubtotalPrice = (selectedMenu, chosenOptions) => {
+    if (selectedMenu === null || selectedMenu === undefined) { return 0; }
+
+    const { options, price: menuPrice } = selectedMenu;
+
+    let subtotal = menuPrice;
+    options.forEach(({ optionId, price: optionPrice }) => {
+        if (chosenOptions.includes(optionId)) { subtotal += optionPrice; }
+    });
+
+    return subtotal;
+};
+
+// state와 관련
+export const getTotalPrice = ({ cart: { items }, menu: { products } }) => {
+    let total = 0;
+    let selectedMenu;
+    let subtotal = 0;
+    items.forEach((item) => {
+        selectedMenu = products.find(menu => item.menuId === menu.menuId);
+        subtotal = calcSubtotalPrice(selectedMenu, item.options);
+        total += subtotal;
+    });
+
+    return total;
 };

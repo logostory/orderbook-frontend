@@ -1,0 +1,105 @@
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { addItem, calcSubtotalPrice } from 'modules/Cart';
+import * as menuActions from 'modules/menu';
+import MenuDialog from 'components/MenuDialog';
+
+const initialState = {
+    chosenOptions: [],
+    subtotal: 0,
+};
+
+class MenuDialogContainer extends Component {
+    state = initialState;
+
+    componentDidMount() {
+        this.calculateSubtotal();
+    }
+
+    handleAddItemToCart = (menuId) => {
+        const { addItem } = this.props;
+        const { chosenOptions } = this.state;
+
+        addItem({
+            menuId,
+            options: chosenOptions,
+        });
+
+        this.handleClose();
+    }
+
+    handleClose = () => {
+        const { onClose } = this.props;
+        onClose();
+        this.setState(initialState);
+    };
+
+    handleOptionChange = (optionId) => {
+        const { chosenOptions } = this.state;
+        let nextVal = chosenOptions.slice();
+
+        if (chosenOptions.includes(optionId)) {
+            nextVal = chosenOptions.filter(chosenOption => chosenOption !== optionId);
+        } else {
+            nextVal.push(optionId);
+        }
+
+        this.setState(
+            { chosenOptions: nextVal },
+            () => this.calculateSubtotal(),
+        );
+    }
+
+    calculateSubtotal = () => {
+        const { selectedMenu } = this.props;
+        const { chosenOptions } = this.state;
+
+        this.setState({ subtotal: calcSubtotalPrice(selectedMenu, chosenOptions) });
+    }
+
+    mapOptions() {
+        const { selectedMenu: { options: menuOptions } } = this.props;
+        const { chosenOptions } = this.state;
+
+        return menuOptions.map((menuOption) => {
+            const checked = chosenOptions.includes(menuOption.optionId);
+            const { name, price, optionId } = menuOption;
+
+            return {
+                name,
+                price,
+                optionId,
+                checked,
+            };
+        });
+    }
+
+    render() {
+        const { dialogOpen, selectedMenu } = this.props;
+        if (selectedMenu === null || selectedMenu === undefined) { return null; }
+
+        const { subtotal } = this.state;
+        const mappedOptions = this.mapOptions();
+
+        return (
+            <MenuDialog
+                open={dialogOpen}
+                onClose={this.handleClose}
+                addToCart={() => this.handleAddItemToCart(selectedMenu.menuId)}
+                handleOptionChange={this.handleOptionChange}
+                menu={selectedMenu}
+                mappedOptions={mappedOptions}
+                subtotal={subtotal}
+            />
+        );
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    MenuActions: bindActionCreators(menuActions, dispatch),
+    addItem: item => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(MenuDialogContainer);

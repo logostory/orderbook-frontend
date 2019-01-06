@@ -1,20 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import PaymentContainer from 'containers/payment/PaymentContainer';
-
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import FooterContainer from 'containers/FooterContainer';
 
-const PaymentPage = ({ totalPrice }) => (
+const PaymentPage = ({ history }) => (
     <React.Fragment>
         <Header title="Payment Methods" />
         <PaymentContainer />
-        <Footer totalPrice={totalPrice} text="Proceed to Transaction" />
+        <FooterContainer text="Proceed to Transaction" onClick={() => history.push('/order?number=미정')} />
     </React.Fragment>
 );
 
-export default connect(
-    state => ({
-        totalPrice: state.Cart.totalPrice,
-    }),
-)(PaymentPage);
+export default PaymentPage;

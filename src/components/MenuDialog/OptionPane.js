@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
-import StringUtils from 'utils/StringUtils';
-
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+
+import OptionPaneItem from 'components/MenuDialog/OptionPaneItem';
+import StringUtils from 'utils/StringUtils';
 
 const styles = {
     optionList: {
@@ -71,96 +69,38 @@ const styles = {
     },
 };
 
-class OptionPane extends Component {
-    state = {
-        chosenOptions: [],
-        subtotal: 0,
-    }
-
-    componentDidMount() {
-        this.calculateSubtotal();
-    }
-
-    calculateSubtotal() {
-        const { options, menuPrice } = this.props;
-        const { chosenOptions } = this.state;
-        let subtotal = menuPrice;
-        options.forEach(({ optionId, price }) => {
-            if (chosenOptions.includes(optionId)) { subtotal += price; }
-        });
-        this.setState({ subtotal });
-    }
-
-    handleChange(optionId) {
-        const { chosenOptions } = this.state;
-        let nextVal = chosenOptions.slice();
-
-        if (chosenOptions.includes(optionId)) {
-            nextVal = chosenOptions.filter(chosenOption => chosenOption !== optionId);
-        } else {
-            nextVal.push(optionId);
+const OptionPane = ({
+    classes, mappedOptions, subtotal, onOptionChange,
+}) => (
+    <React.Fragment>
+        {mappedOptions === undefined || mappedOptions === null ? <ListItem />
+            : (
+                <React.Fragment>
+                    {mappedOptions.map(({
+                        name, price, optionId, checked,
+                    }) => (
+                        <OptionPaneItem
+                            checked={checked}
+                            name={name}
+                            price={price}
+                            onChange={() => onOptionChange(optionId)}
+                        />
+                    ))}
+                </React.Fragment>
+            )
         }
-        this.setState(
-            { chosenOptions: nextVal },
-            () => this.calculateSubtotal(),
-        );
-    }
-
-    render() {
-        const { classes, options } = this.props;
-        const { chosenOptions, subtotal } = this.state;
-        return (
-            <React.Fragment>
-                {options === undefined || options === null ? <ListItem />
-                    : (
-                        <React.Fragment>
-                            {options.map(({ name, price, optionId }) => (
-                                <ListItem className={classes.optionList}>
-                                    <Checkbox
-                                        className={classes.checkbox}
-                                        checked={chosenOptions.includes(optionId)}
-                                        value={optionId}
-                                        onChange={() => this.handleChange(optionId)}
-                                    />
-                                    <ListItemText
-                                        className={classes.options}
-                                        primary={(
-                                            <Typography
-                                                className={classes.optionTitleText}
-                                                variant="subtitle1"
-                                            >
-                                                {name}
-                                            </Typography>
-                                        )}
-                                    />
-                                    <ListItemText
-                                        className={classes.options}
-                                        primary={(
-                                            <Typography
-                                                className={classes.optionPriceText}
-                                                variant="caption"
-                                            >
-                                                {`${StringUtils.formatPrice(price)} won`}
-                                            </Typography>
-                                        )}
-                                    />
-                                </ListItem>
-                            ))}
-                        </React.Fragment>
-                    )
-                }
-                <Divider />
-                <List className={classes.list}>
-                    <ListItem className={classes.footer}>
-                        <Typography className={classes.footerText} variant="subtitle1">Subtotal</Typography>
-                        <Typography className={classes.footerText} variant="subtitle1">
-                            {`${StringUtils.formatPrice(subtotal)} won`}
-                        </Typography>
-                    </ListItem>
-                </List>
-            </React.Fragment>
-        );
-    }
-}
+        <Divider />
+        <List className={classes.list}>
+            <ListItem className={classes.footer}>
+                <Typography className={classes.footerText} variant="subtitle1">
+                    Subtotal
+                </Typography>
+                <Typography className={classes.footerText} variant="subtitle1">
+                    {`${StringUtils.formatPrice(subtotal)} won`}
+                </Typography>
+            </ListItem>
+        </List>
+    </React.Fragment>
+);
 
 export default withStyles(styles)(OptionPane);
