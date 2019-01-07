@@ -1,10 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import OrderConfirm from '../components/Order/OrderConfirm';
 
+/*
+    로직이 Container로 나눌만큼 크지 않아 Page에서 수행
+*/
 class OrderConfirmPage extends React.Component {
-    handleClickConfirm = (e) => {
+    handleClickConfirm = () => {
         const { history } = this.props;
         history.push('/basic');
     };
@@ -14,12 +16,17 @@ class OrderConfirmPage extends React.Component {
     render() {
         const { handleClickConfirm, handleClickAbout } = this;
         const { location: { search } } = this.props;
-        const { number } = queryString.parse(search);
+        let { number } = queryString.parse(search);
+        if (number === 'undefined' || number === undefined || number === null) { number = '미정'; }
 
         return (
-            <OrderConfirm handleClickConfirm={handleClickConfirm} handleClickAbout={handleClickAbout} orderNumber={number} />
+            <OrderConfirm
+                handleClickConfirm={handleClickConfirm}
+                handleClickAbout={handleClickAbout}
+                orderNumber={number}
+            />
         );
     }
 }
 
-export default withRouter(OrderConfirmPage);
+export default OrderConfirmPage;

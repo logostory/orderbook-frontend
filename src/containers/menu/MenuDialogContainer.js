@@ -14,8 +14,13 @@ const initialState = {
 class MenuDialogContainer extends Component {
     state = initialState;
 
-    componentDidMount() {
-        this.calculateSubtotal();
+    componentDidUpdate(prevProps) {
+        const { dialogOpen: prevOpen } = prevProps;
+        const { dialogOpen: nextOpen } = this.props;
+
+        if (prevOpen === false && nextOpen === true) {
+            this.calculateSubtotal();
+        }
     }
 
     handleAddItemToCart = (menuId) => {
@@ -33,7 +38,8 @@ class MenuDialogContainer extends Component {
     handleClose = () => {
         const { onClose } = this.props;
         onClose();
-        this.setState(initialState);
+
+        this.initializeState();
     };
 
     handleOptionChange = (optionId) => {
@@ -55,8 +61,15 @@ class MenuDialogContainer extends Component {
     calculateSubtotal = () => {
         const { selectedMenu } = this.props;
         const { chosenOptions } = this.state;
+        const subtotal = calcSubtotalPrice(selectedMenu, chosenOptions);
 
-        this.setState({ subtotal: calcSubtotalPrice(selectedMenu, chosenOptions) });
+        console.log(selectedMenu, chosenOptions, subtotal);
+
+        this.setState({ subtotal });
+    }
+
+    initializeState() {
+        this.setState(initialState);
     }
 
     mapOptions() {

@@ -1,9 +1,11 @@
 import React from 'react';
-import styles from './styles.module.css';
-import arrowLeftIcon from '../../images/baseline-chevron_left-24px.svg';
-import menuIcon from '../../images/baseline-menu-24px.svg';
+import { withRouter } from 'react-router-dom';
 
-const Header = ({ title = '', hideBackBtn = false }) => {
+import arrowLeftIcon from 'Assets/left-chevron.svg';
+import menuIcon from 'Assets/hamburger.svg';
+import styles from './styles.module.css';
+
+const Header = ({ title = '', hideBackBtn = false, history }) => {
     if (hideBackBtn) {
         return (
             <header className={styles.header}>
@@ -22,11 +24,15 @@ const Header = ({ title = '', hideBackBtn = false }) => {
 
     return (
         <header className={styles.header}>
-            <img src={arrowLeftIcon} alt="뒤로 가기" />
+            <img
+                src={arrowLeftIcon}
+                alt="뒤로 가기"
+                onClick={() => history.goBack()}
+            />
             <div>{title}</div>
             <img src={menuIcon} alt="메뉴" />
         </header>
     );
 };
 
-export default Header;
+export default withRouter(Header);

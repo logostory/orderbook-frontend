@@ -1,5 +1,6 @@
-import { checkToken, getAccessToken, requestTokenRefresh } from 'modules/OAuth';
-import { access } from 'fs';
+import {
+    checkToken, getAccessToken, requestTokenRefresh, cleanupOAuth,
+} from 'modules/OAuth';
 import api from './api';
 
 // 발급, 조회 시에 무한 루프가 걸리게 됨
@@ -26,6 +27,7 @@ const configureAndConnectOAUthInterceptor = ({ dispatch, getState }) => {
                     // 리프레시 필요 없음
                     if (active) {
                         resolve(AxiosRequestConfig);
+                        cleanupOAuth(accessToken);
                         return;
                     }
 

@@ -143,7 +143,7 @@ const MenuDialog = ({
                 </List>
                 <DialogActions>
                     <Button className={classes.button} onClick={onClose}>CANCEL</Button>
-                    <Button className={classes.button} onClick={() => console.log('add to cart clicked:', addToCart) || addToCart()}>ADD TO CART</Button>
+                    <Button className={classes.button} onClick={() => addToCart()}>ADD TO CART</Button>
                 </DialogActions>
             </Dialog>
         </React.Fragment>

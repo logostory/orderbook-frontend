@@ -1,4 +1,8 @@
-export const LOAD_SHOP = 'cart/LOAD_SHOP';
+import api from 'utils/api';
+import { GET_SEAT_ID, GET_STORE } from './menu';
+
+export const MAKE_ORDER = 'cart/MAKE_ORDER';
+export const MAKE_ORDER_SUCCESS = 'cart/ORDER_SUCCESS';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
 export const ADD_ITEM = 'cart/ADD_ITEM';
 
@@ -12,21 +16,51 @@ export const addItem = item => ({
     payload: item,
 });
 
+export const makeOrder = () => (dispatch, getState) => {
+    const { cart: { shopId, seatId, items } } = getState();
+
+    // API에 { optionId: 1 } 과 같이 보내야 함
+    const mappedItems = items.map(({ menuId, options }) => ({
+        menuId,
+        options: options.map(option => ({
+            optionId: option,
+        })),
+    }));
+
+    api.post(`/v1/api/shops/${shopId}/orders`, {
+        menus: mappedItems,
+        seatNumber: seatId,
+    })
+        .then(({ data: { orderId } }) => dispatch({
+            type: MAKE_ORDER_SUCCESS,
+            payload: orderId,
+        }));
+};
+
 const initialState = {
     shopId: undefined,
     seatId: undefined,
     items: [],
+    lastOrderId: undefined,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case LOAD_SHOP: {
-        const { shopId, seatId } = action.payload;
-
+    case MAKE_ORDER_SUCCESS:
+        return {
+            ...state,
+            lastOrderId: action.payload,
+        };
+    case GET_SEAT_ID:
+        return {
+            ...state,
+            seatId: action.payload,
+        };
+    case GET_STORE: {
+        const { shopId } = action.payload;
         return {
             ...state,
             shopId,
-            seatId,
         };
     }
     case ADD_ITEM: {
@@ -43,13 +77,10 @@ export default (state = initialState, action) => {
     case REMOVE_ITEM: {
         const { items } = state;
 
-        const next = {
+        return {
             ...state,
-            // payload가 대상 index이고, 1은 deleteCount 이다.
             items: items.filter((item, index) => index !== action.payload),
         };
-
-        return next;
     }
     default:
         return state;
@@ -57,7 +88,9 @@ export default (state = initialState, action) => {
 };
 
 export const getItems = ({ cart }) => cart.items;
-export const showFooter = ({ cart }) => console.log(cart.items.length) || cart.items.length > 0;
+export const showFooter = ({ cart }) => cart.items.length > 0;
+export const getLastOrderId = ({ cart }) => cart.lastOrderId;
+export const getOrderIsCompleted = ({ cart }) => cart.lastOrderId !== undefined;
 
 // state와 무관련
 export const calcSubtotalPrice = (selectedMenu, chosenOptions) => {
