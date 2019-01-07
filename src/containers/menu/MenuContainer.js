@@ -67,7 +67,7 @@ class MenuContainer extends Component {
 
         const topMargin = 56;
         return (
-            <div style={containerStyle}>
+            <div style={showFooter ? containerStyleWithFooter : containerStyle}>
                 <StoreProfile
                     Image={shopImagePath || Image}
                     Table={`TABLE ${seatId || ''}`}
@@ -100,7 +100,6 @@ class MenuContainer extends Component {
                         categories={categories}
                         onScroll={this.handleScroll}
                         onClick={this.handleClickMenu}
-                        showFooter={showFooter}
                     />
                 </StickyContainer>
             </div>
@@ -109,9 +108,13 @@ class MenuContainer extends Component {
 }
 
 const containerStyle = {
-    height: window.screen.height,
-    maxHeight: window.screen.height,
-    overflow: 'auto',
+    height: `calc(100vh - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
+    overflow: 'scroll',
+};
+
+const containerStyleWithFooter = {
+    height: `calc(100vh - ${/mobile/i.test(navigator.userAgent) ? 175 : 100}px)`,
+    overflow: 'scroll',
 };
 
 const mapStateToProps = ({ menu }) => ({
