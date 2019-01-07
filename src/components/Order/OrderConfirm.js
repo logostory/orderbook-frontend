@@ -1,16 +1,18 @@
 import React from 'react';
-import {Button, AppBar, Grid, Typography} from "@material-ui/core";
-import withStyles from "@material-ui/core/styles/withStyles";
-import standingCopy from "Assets/svg/standing-copy.svg";
+import {
+    Button, AppBar, Grid, Typography,
+} from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import standingCopy from 'Assets/svg/standing-copy.svg';
 
 
-const styles = theme => ({
+const styles = () => ({
     root: {
         width: '100%',
         height: '100vh',
         display: 'flex',
         justifyContent: 'space between',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     header: {
         width: '100%',
@@ -20,13 +22,16 @@ const styles = theme => ({
         paddingTop: '17px',
     },
     contents: {
-        flex:1,
-        paddingTop: '138px',
-        textAlign: 'center'
+        flex: 1,
+        paddingTop: '30%',
+        textAlign: 'center',
+        '@media screen and (max-height: 600px)': {
+            paddingTop: '15%',
+        },
     },
     buttons: {
         height: '108px',
-        padding: '16px'
+        padding: '16px',
     },
     aboutButton: {
         width: '100%',
@@ -40,7 +45,7 @@ const styles = theme => ({
             backgroundColor: '#ffffff',
         },
         marginBottom: '12px',
-        borderColor: '#ff4a5b'
+        borderColor: '#ff4a5b',
     },
     confirmButton: {
         width: '100%',
@@ -90,33 +95,28 @@ const styles = theme => ({
         height: '140px',
         objectFit: 'contain',
         marginBottom: '24px',
-    }
+    },
 });
 
-class OrderConfirm extends React.Component {
-
-    render() {
-        const { classes, handleClickConfirm, handleClickAbout, orderNumber } = this.props;
-
-        return (
-            <div className={classes.root}>
-                <AppBar position="static" className={classes.header}>
-                    <Typography className={classes.titleText}>Done !</Typography>
-                </AppBar>
-                <Grid className={classes.contents}>
-                    <Typography className={classes.text}>Your order number is:</Typography>
-                    <Typography className={classes.numberText}>{orderNumber}</Typography>
-                    <img className={classes.img} src={`${standingCopy}`} alt="" />
-                    <Typography className={classes.text}>Please wait while your</Typography>
-                    <Typography className={classes.text}>meal is being prepared.</Typography>
-                </Grid>
-                <Grid className={classes.buttons}>
-                    <Button className={classes.aboutButton} variant="outlined" onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
-                    <Button className={classes.confirmButton} onClick={handleClickConfirm}>CONFIRM</Button>
-                </Grid>
-            </div>
-        );
-    }
-};
+const OrderConfirm = ({
+    classes, handleClickConfirm, handleClickAbout, orderNumber,
+}) => (
+    <div className={classes.root}>
+        <AppBar position="static" className={classes.header}>
+            <Typography className={classes.titleText}>Done !</Typography>
+        </AppBar>
+        <Grid className={classes.contents}>
+            <Typography className={classes.text}>Your order number is:</Typography>
+            <Typography className={classes.numberText}>{orderNumber}</Typography>
+            <img className={classes.img} src={`${standingCopy}`} alt="" />
+            <Typography className={classes.text}>Please wait while your</Typography>
+            <Typography className={classes.text}>meal is being prepared.</Typography>
+        </Grid>
+        <Grid className={classes.buttons}>
+            <Button className={classes.aboutButton} variant="outlined" onClick={handleClickAbout}>LEARN MORE ABOUT US</Button>
+            <Button className={classes.confirmButton} onClick={handleClickConfirm}>CONFIRM</Button>
+        </Grid>
+    </div>
+);
 
 export default withStyles(styles)(OrderConfirm);
