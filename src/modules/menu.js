@@ -1,4 +1,10 @@
 import { createAction, handleActions } from 'redux-actions';
+import axios from 'axios';
+import ServerConfig from 'ServerConfig';
+
+const GET_STORE = 'menu/GET_STORE';
+const GET_CATEGORIES = 'menu/GET_CATEGORIES';
+const GET_MENUS = 'menu/GET_MENUS';
 
 const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
 const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
@@ -8,6 +14,38 @@ export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, val
 // @LEO 메뉴 클릭시 액션이 필요하실거 같아서 일단 만들어 놨습니다.
 
 export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
+
+
+export const getStoreInfo = shopId => dispatch => (
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}`)
+        .then((data) => {
+            dispatch({
+                type: GET_STORE,
+                payload: data.data,
+            });
+        })
+        .catch()
+);
+
+export const getCategories = shopId => dispatch => (
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/categories`)
+        .then((data) => {
+            dispatch({
+                type: GET_CATEGORIES,
+                payload: data.data,
+            });
+        })
+        .catch()
+);
+
+export const getMenus = shopId => dispatch => (
+    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/menus`)
+        .then(data => dispatch({
+            type: GET_MENUS,
+            payload: data.data,
+        }))
+        .catch()
+);
 
 // API LOAD 구현 되면 삭제
 const initialState = {
@@ -80,10 +118,28 @@ const initialState = {
         },
     ],
     selectedMenu: null,
+    selectedOption: [],
+    totalPrice: 0,
+    cart: null,
+    shopId: undefined,
+    shopImagePath: null,
+    shopName: null,
 };
 
 export default handleActions(
     {
+        [GET_STORE]: (state, action) => ({
+            ...state,
+            ...action.payload,
+        }),
+        [GET_CATEGORIES]: (state, action) => ({
+            ...state,
+            categories: action.payload,
+        }),
+        [GET_MENUS]: (state, action) => ({
+            ...state,
+            products: action.payload,
+        }),
         [CHANGE_SELECTED_CATEGORY]: (state, action) => ({
             ...state,
             selectedCategory: action.payload,
