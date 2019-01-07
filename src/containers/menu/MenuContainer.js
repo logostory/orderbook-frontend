@@ -61,7 +61,7 @@ class MenuContainer extends Component {
 
     render() {
         const {
-            categories, selectedCategory, products, showFooter,
+            categories, selectedCategory, products, showFooter, shopImagePath, shopName, seatId,
         } = this.props;
         const { dialogOpen, selectedMenu } = this.state;
 
@@ -69,9 +69,9 @@ class MenuContainer extends Component {
         return (
             <div style={containerStyle}>
                 <StoreProfile
-                    Image={Image}
-                    Table="TABLE 17"
-                    Title="The Burgur Co"
+                    Image={shopImagePath || Image}
+                    Table={`TABLE ${seatId || ''}`}
+                    Title={shopName}
                 />
                 <MenuDialogContainer
                     selectedMenu={selectedMenu}
@@ -115,6 +115,9 @@ const containerStyle = {
 };
 
 const mapStateToProps = ({ menu }) => ({
+    seatId: menu.seatId,
+    shopName: menu.shopName,
+    shopImagePath: menu.shopImagePath,
     selectedCategory: menu.selectedCategory,
     categories: menu.categories,
     products: menu.products,
