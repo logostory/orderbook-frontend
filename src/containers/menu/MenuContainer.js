@@ -65,8 +65,6 @@ class MenuContainer extends Component {
         } = this.props;
         const { dialogOpen, selectedMenu } = this.state;
 
-        console.log('selectedMenu: ', selectedMenu);
-
         const topMargin = 56;
         return (
             <div style={containerStyle}>
