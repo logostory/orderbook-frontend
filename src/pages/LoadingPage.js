@@ -1,36 +1,17 @@
 import React from 'react';
+import queryString from 'query-string';
 
 import LoadingContainer from '../containers/LoadingContainer';
 
-/**
- * TODO
- *
- * 1. Module에서 API 구현
- *
- * 2. Page는 Container를 렌더링
- *
- * 3. Container는 Module과 연결되어 호출
- *
- * 4. Container가 적절한 기능을 Component에게 전달
- *
- * 5. Container는 Component를 렌더링하고, Component는 화면을 렌더링
- *
- * Server: http://api-orderbook.logostory.io/
- * ShopId: 2
- * Basic Auth: orderbook:secret
- * Access Token: c6c9daef-fd38-4cfa-8c35-2b08c965607c
- *
- * 1. OAuth 토큰 발행
- *    POST /oauth/token
- *      - Content-Type: application/x-www-form-urlencoded
- *      - Authorization: basic b3JkZXJib29rOnNlY3JldA==
- *
- * 2. GET /v1/api/shops/{shopId}
- *      - Authorization: bearer
- * 3. GET /v1/api/shops/{shopId}/categories
- * 4. GET /v1/api/shops/{shopId}/menus
- */
-const LoadingPage = () => <LoadingContainer />;
+const LoadingPage = ({ location: { search }, history }) => {
+    const { shopId } = queryString.parse(search);
+    return (
+        <LoadingContainer
+            shopId={shopId}
+            onLoadFinished={() => history.push('/basic')}
+        />
+    );
+};
 
 /*
 Q:

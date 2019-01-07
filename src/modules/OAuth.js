@@ -1,6 +1,23 @@
 import api from 'utils/api';
 import ServerConfig from 'ServerConfig';
 
+/**
+ * Server: http://api-orderbook.logostory.io/
+ * ShopId: 2
+ * Basic Auth: orderbook:secret
+ * Access Token: c6c9daef-fd38-4cfa-8c35-2b08c965607c
+ *
+ * 1. OAuth 토큰 발행
+ *    POST /oauth/token
+ *      - Content-Type: application/x-www-form-urlencoded
+ *      - Authorization: basic b3JkZXJib29rOnNlY3JldA==
+ *
+ * 2. GET /v1/api/shops/{shopId}
+ *      - Authorization: bearer
+ * 3. GET /v1/api/shops/{shopId}/categories
+ * 4. GET /v1/api/shops/{shopId}/menus
+ */
+
 /* Action Types */
 /*
     1. 토큰을 생성해야 함
