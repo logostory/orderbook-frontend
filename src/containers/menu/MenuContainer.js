@@ -109,12 +109,12 @@ class MenuContainer extends Component {
 
 const containerStyle = {
     height: `calc(100vh - ${/mobile/i.test(navigator.userAgent) ? 75 : 0}px)`,
-    overflow: 'scroll',
+    overflow: 'auto',
 };
 
 const containerStyleWithFooter = {
     height: `calc(100vh - ${/mobile/i.test(navigator.userAgent) ? 175 : 100}px)`,
-    overflow: 'scroll',
+    overflow: 'auto',
 };
 
 const mapStateToProps = ({ menu }) => ({
