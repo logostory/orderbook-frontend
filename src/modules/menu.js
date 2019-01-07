@@ -66,13 +66,10 @@ const initialState = {
 
 export default handleActions(
     {
-        [GET_SEAT_ID]: (state, action) => {
-            console.log(action.payload);
-            return ({
-                ...state,
-                seatId: action.payload,
-            });
-        },
+        [GET_SEAT_ID]: (state, action) => ({
+            ...state,
+            seatId: action.payload,
+        }),
         [GET_STORE]: (state, action) => ({
             ...state,
             ...action.payload,
