@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
-import axios from 'axios';
-import ServerConfig from 'ServerConfig';
+import api from 'utils/api';
 
+const GET_SEAT_ID = 'menu/GET_SEAT_ID';
 const GET_STORE = 'menu/GET_STORE';
 const GET_CATEGORIES = 'menu/GET_CATEGORIES';
 const GET_MENUS = 'menu/GET_MENUS';
@@ -11,13 +11,15 @@ const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
 
 export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, value => value);
 
-// @LEO 메뉴 클릭시 액션이 필요하실거 같아서 일단 만들어 놨습니다.
-
 export const categoryChange = createAction(CATEGORY_CHANGE, chgID => chgID);
 
+export const getSeatId = seatId => ({
+    type: GET_SEAT_ID,
+    payload: seatId,
+});
 
 export const getStoreInfo = shopId => dispatch => (
-    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}`)
+    api.get(`/v1/api/shops/${shopId}`)
         .then((data) => {
             dispatch({
                 type: GET_STORE,
@@ -28,7 +30,7 @@ export const getStoreInfo = shopId => dispatch => (
 );
 
 export const getCategories = shopId => dispatch => (
-    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/categories`)
+    api.get(`/v1/api/shops/${shopId}/categories`)
         .then((data) => {
             dispatch({
                 type: GET_CATEGORIES,
@@ -39,7 +41,7 @@ export const getCategories = shopId => dispatch => (
 );
 
 export const getMenus = shopId => dispatch => (
-    axios.get(`${ServerConfig.ROOT_URL}/v1/api/shops/${shopId}/menus`)
+    api.get(`/v1/api/shops/${shopId}/menus`)
         .then(data => dispatch({
             type: GET_MENUS,
             payload: data.data,
@@ -49,78 +51,14 @@ export const getMenus = shopId => dispatch => (
 
 // API LOAD 구현 되면 삭제
 const initialState = {
-    openDig: false,
-    selectedCategory: 0,
-    categories: [
-        {
-            categoryName: 'BUGERS',
-            categoryId: 3,
-        },
-        {
-            categoryName: 'SIDES',
-            categoryId: 4,
-        },
-        {
-            categoryName: 'BEVERAGES',
-            categoryId: 5,
-        },
-    ],
-    products: [
-        {
-            categoryId: 3,
-            name: 'Cheeseburger',
-            price: 6500,
-            comment: 'Angus beef patty with creamy cheese, crispy lettuce',
-            imagePath: 'https://s3.ap-northeast-2.amazonaws.com/logostory/orderbook/16-9/hamburger01.jpg',
-            menuId: 6,
-            options: [
-                {
-                    name: 'Double Cheese',
-                    price: 1000,
-                    optionId: 7,
-                },
-                {
-                    name: 'Grilled Mushrooms',
-                    price: 1500,
-                    optionId: 8,
-                },
-                {
-                    name: 'Double Meat',
-                    price: 3000,
-                    optionId: 9,
-                },
-                {
-                    name: 'Extra Bacons',
-                    price: 2000,
-                    optionId: 10,
-                },
-            ],
-        },
-        {
-            categoryId: 4,
-            name: 'French frides',
-            price: 7000,
-            comment: 'Very nice french frides',
-            imagePath: 'https://s3.ap-northeast-2.amazonaws.com/logostory/orderbook/16-9/frenchfries01.jpg',
-            menuId: 26,
-            options: [
-                {
-                    name: 'Tomato source',
-                    price: 500,
-                    optionId: 27,
-                },
-                {
-                    name: 'Remon source',
-                    price: 600,
-                    optionId: 28,
-                },
-            ],
-        },
-    ],
+
     selectedMenu: null,
-    selectedOption: [],
-    totalPrice: 0,
-    cart: null,
+    selectedCategory: 0,
+
+    categories: [],
+    products: [],
+
+    seatId: undefined,
     shopId: undefined,
     shopImagePath: null,
     shopName: null,
@@ -128,6 +66,10 @@ const initialState = {
 
 export default handleActions(
     {
+        [GET_SEAT_ID]: (state, action) => ({
+            ...state,
+            seatId: action.payload,
+        }),
         [GET_STORE]: (state, action) => ({
             ...state,
             ...action.payload,

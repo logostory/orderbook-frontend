@@ -21,8 +21,10 @@ class LoadingContainer extends Component {
             if (!goToDemo) { return; }
             shopId = 2;
         }
-
         this.loadShopData(shopId);
+
+        const { seatId, getSeatId } = this.props;
+        getSeatId(seatId);
     }
 
     loadShopData(shopId) {
@@ -63,6 +65,7 @@ const mapDispatchToProps = {
     getStoreInfo: menuActions.getStoreInfo,
     getCategories: menuActions.getCategories,
     getMenus: menuActions.getMenus,
+    getSeatId: menuActions.getSeatId,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingContainer);

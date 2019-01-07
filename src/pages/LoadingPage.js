@@ -4,10 +4,11 @@ import queryString from 'query-string';
 import LoadingContainer from '../containers/LoadingContainer';
 
 const LoadingPage = ({ location: { search }, history }) => {
-    const { shopId } = queryString.parse(search);
+    const { shopId, seatId } = queryString.parse(search);
     return (
         <LoadingContainer
             shopId={shopId}
+            seatId={seatId}
             onLoadFinished={() => history.push('/basic')}
         />
     );
