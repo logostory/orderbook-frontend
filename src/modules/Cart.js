@@ -1,10 +1,20 @@
 import api from 'utils/api';
 import { GET_SEAT_ID, GET_STORE } from './menu';
 
+export const CLEAR_CART = 'cart/CLEAR_CART';
 export const MAKE_ORDER = 'cart/MAKE_ORDER';
 export const MAKE_ORDER_SUCCESS = 'cart/ORDER_SUCCESS';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
 export const ADD_ITEM = 'cart/ADD_ITEM';
+
+export const dispathOrderId = orderId => ({
+    type: MAKE_ORDER_SUCCESS,
+    payload: orderId,
+});
+
+export const clearCart = () => ({
+    type: CLEAR_CART,
+});
 
 export const removeItemByIndex = index => ({
     type: REMOVE_ITEM,
@@ -31,10 +41,10 @@ export const makeOrder = () => (dispatch, getState) => {
         menus: mappedItems,
         seatNumber: seatId,
     })
-        .then(({ data: { orderId } }) => dispatch({
-            type: MAKE_ORDER_SUCCESS,
-            payload: orderId,
-        }));
+        .then(({ data: { orderId } }) => {
+            dispatch(dispathOrderId(orderId));
+            dispatch(clearCart());
+        });
 };
 
 const initialState = {
@@ -46,6 +56,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+    case CLEAR_CART:
+        return {
+            ...state,
+            items: [],
+        };
     case MAKE_ORDER_SUCCESS:
         return {
             ...state,
