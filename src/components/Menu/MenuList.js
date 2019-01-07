@@ -32,7 +32,7 @@ const styles = theme => ({
 });
 
 const MenuList = ({
-    classes, products, categories, onScroll, onClick, showFooter,
+    classes, products, categories, onScroll, onClick,
 }) => (
     <React.Fragment>
         <List
@@ -67,7 +67,6 @@ const MenuList = ({
                 </li>
             ))}
         </List>
-        {showFooter ? <div style={{ height: 110 }} /> : null}
     </React.Fragment>
 );
 
