@@ -23,11 +23,11 @@ const styles = () => ({
     },
     contents: {
         flex: 1,
-        paddingTop: '30%',
+        display: 'flex',
+        flexDirection: 'column',
         textAlign: 'center',
-        '@media screen and (max-height: 600px)': {
-            paddingTop: '15%',
-        },
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     buttons: {
         height: '108px',
