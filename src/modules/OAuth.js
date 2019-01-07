@@ -39,7 +39,7 @@ const prepareOAuth = () => {
     api.setContentType('application/x-www-form-urlencoded');
 };
 
-const cleanupOAuth = (accessToken) => {
+export const cleanupOAuth = (accessToken) => {
     // api에 AUTHORIZATION 헤더를 accessToken으로 지정
     api.setAccessToken(`bearer ${accessToken}`);
 
@@ -110,11 +110,7 @@ export const requestTokenRefresh = () => {
     }
 */
 export const checkToken = (accessToken) => {
-    // 1. AUTHRIZATION 헤더 변경
-    api.setAccessToken(ServerConfig.TOKEN_AUTHORIZATION);
-
-    // 2. Content-Type 변경
-    api.setContentType('application/x-www-form-urlencoded');
+    prepareOAuth();
 
     const formData = api.convertBodyAsFormUrlEncoded({
         token: accessToken,

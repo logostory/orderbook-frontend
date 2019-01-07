@@ -1,13 +1,13 @@
 import { createAction, handleActions } from 'redux-actions';
 import api from 'utils/api';
 
-const GET_SEAT_ID = 'menu/GET_SEAT_ID';
-const GET_STORE = 'menu/GET_STORE';
-const GET_CATEGORIES = 'menu/GET_CATEGORIES';
-const GET_MENUS = 'menu/GET_MENUS';
+export const GET_SEAT_ID = 'menu/GET_SEAT_ID';
+export const GET_STORE = 'menu/GET_STORE';
+export const GET_CATEGORIES = 'menu/GET_CATEGORIES';
+export const GET_MENUS = 'menu/GET_MENUS';
 
-const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
-const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
+export const CHANGE_SELECTED_CATEGORY = 'menu/CHANGE_SELECTED_CATEGORY';
+export const CATEGORY_CHANGE = 'menu/CATEGORY_CHANGE';
 
 export const changeSelectedCategory = createAction(CHANGE_SELECTED_CATEGORY, value => value);
 
@@ -61,7 +61,7 @@ const initialState = {
     seatId: undefined,
     shopId: undefined,
     shopImagePath: null,
-    shopName: null,
+    shopName: undefined,
 };
 
 export default handleActions(

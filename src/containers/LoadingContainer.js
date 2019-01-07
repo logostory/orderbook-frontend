@@ -15,15 +15,16 @@ class LoadingContainer extends Component {
 
     // 로딩 이후 전환 시 호출되는 메소드
     moveToNextPage = () => {
-        let { shopId } = this.props;
+        let { shopId, seatId } = this.props;
         if (shopId === null || shopId === undefined) {
-            const goToDemo = window.confirm('존재하지 않는 상점입니다. 데모로 이동하시겠습니까?');
+            const goToDemo = window.confirm('데모로 이동하시겠습니까?');
             if (!goToDemo) { return; }
             shopId = 2;
+            seatId = 999;
         }
         this.loadShopData(shopId);
 
-        const { seatId, getSeatId } = this.props;
+        const { getSeatId } = this.props;
         getSeatId(seatId);
     }
 
